@@ -1,18 +1,21 @@
 <title>시장 인자 & 1년 레퍼런스 달력</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
   :root{
     color-scheme:light;
-    --bg:#EEF3FB; --wash1:#F7FAFF; --wash2:#EAF0FC;
-    --surface:#FFFFFF; --surface2:#F4F7FD;
-    --ink:#16203A; --soft:#5A6784; --faint:#93A0BC; --line:#E2E9F5;
+    --bg:#FAF3E4; --wash1:#FFFBF3; --wash2:#F6E9CC;
+    --surface:#FFFFFF; --surface2:#FBF5E8;
+    --ink:#16203A; --soft:#5A6784; --faint:#93A0BC; --line:#ECE0C2;
     --accent:#3B6FF6; --accent-ink:#2451D6; --accent-tint:#E9F0FE; --accent-tint2:#DCE8FE;
     --high:#EE4B54; --mid:#EE9611; --low:#12A66B;
     --high-tint:#FDECEC; --mid-tint:#FDF2E0; --low-tint:#E3F6EE;
+    --gold:#B8933C; --gold-ink:#8C6D26; --gold-tint:#F8F0DC; --gold-light:#E9CE84;
     --shadow-s:0 1px 2px rgba(23,40,80,.05);
     --shadow-m:0 2px 4px rgba(23,40,80,.05),0 12px 28px rgba(23,40,80,.07);
     --shadow-l:0 8px 20px rgba(35,70,160,.10),0 24px 48px rgba(35,70,160,.10);
     --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
     --body:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    --display:"Fraunces","Apple SD Gothic Neo",serif;
   }
   *{box-sizing:border-box}
   html{background:var(--bg)}
@@ -27,25 +30,29 @@
   .pagetag{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint);
     margin:0 0 10px;font-weight:600}
 
-  .hero{background:linear-gradient(135deg,#ffffff 0%,#f3f7ff 100%);
+  .hero{background:linear-gradient(135deg,#ffffff 0%,#fdf6e6 100%);
     border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,38px);
     box-shadow:var(--shadow-l);position:relative;overflow:hidden}
   .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;
-    background:radial-gradient(closest-side,var(--accent-tint2),transparent);border-radius:50%}
+    background:radial-gradient(closest-side,var(--gold-tint),transparent);border-radius:50%}
+  .heroline{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;pointer-events:none}
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-ink);margin:0 0 12px;font-weight:600}
-  h1{font-size:clamp(27px,5.4vw,44px);line-height:1.06;letter-spacing:-.025em;margin:0 0 14px;
-    text-wrap:balance;font-weight:800}
-  .lede{font-size:clamp(15px,2.1vw,17px);color:var(--soft);max-width:62ch;margin:0;position:relative}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative}
+    color:var(--accent-ink);margin:0 0 12px;font-weight:600;position:relative;z-index:1}
+  h1{font-family:var(--display);font-size:clamp(29px,5.6vw,47px);line-height:1.08;letter-spacing:-.01em;margin:0 0 14px;
+    text-wrap:balance;font-weight:600;position:relative;z-index:1}
+  .lede{font-size:clamp(15px,2.1vw,17px);color:var(--soft);max-width:62ch;margin:0;position:relative;z-index:1}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative;z-index:1}
   .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;padding:6px 12px;border-radius:999px;
     background:#fff;border:1px solid var(--line);color:var(--soft);box-shadow:var(--shadow-s)}
   .tag.k{background:var(--accent-tint);border-color:var(--accent-tint2);color:var(--accent-ink);font-weight:600}
 
-  h2{font-size:clamp(19px,3vw,23px);letter-spacing:-.015em;margin:0;font-weight:780}
-  .sec-head{display:flex;align-items:center;gap:13px;margin:52px 0 6px}
+  h2{font-family:var(--display);font-size:clamp(20px,3.1vw,25px);letter-spacing:-.01em;margin:0;font-weight:600}
+  .sec-head{display:flex;align-items:center;gap:13px;margin:52px 0 6px;position:relative}
+  .sec-head::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:1px;
+    background:linear-gradient(90deg,var(--gold),transparent)}
   .sec-head .n{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--accent);
-    padding:5px 10px;border-radius:8px;letter-spacing:.04em;box-shadow:0 3px 8px rgba(59,111,246,.28)}
+    padding:5px 10px;border-radius:8px;letter-spacing:.04em;
+    box-shadow:0 3px 8px rgba(59,111,246,.28),0 0 0 1px rgba(184,147,60,.35) inset}
   .sec-sub{color:var(--soft);font-size:14px;margin:10px 0 22px;max-width:70ch}
 
   .groups{display:grid;gap:18px}
@@ -87,7 +94,9 @@
   @media(max-width:700px){.cal{grid-template-columns:1fr}}
   @media(min-width:1300px){.cal{grid-template-columns:repeat(3,1fr)} .groups{grid-template-columns:repeat(2,1fr)}}
   .mo{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-m);
-    overflow:hidden;display:flex;flex-direction:column}
+    overflow:hidden;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
+  .mo:hover{transform:translateY(-3px);box-shadow:var(--shadow-l)}
+  @media(prefers-reduced-motion:reduce){.mo{transition:none}.mo:hover{transform:none}}
   .mh{padding:15px 18px 13px;background:linear-gradient(90deg,var(--accent-tint),#fff);
     border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:10px}
   .mh .mdate{display:flex;align-items:baseline;gap:9px}
@@ -105,10 +114,23 @@
   .ev .eb{min-width:0}
   .ev .el{font-size:13.5px;font-weight:650;line-height:1.32}
   .ev .etag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.02em;
-    padding:2px 7px;border-radius:6px;margin-top:5px}
+    padding:2px 7px;border-radius:6px;margin-top:5px;cursor:pointer;
+    box-shadow:0 0 0 1px rgba(0,0,0,0);transition:box-shadow .15s ease}
+  .ev .etag:hover,.ev .etag:focus-visible{box-shadow:0 0 0 1px currentColor}
   .ev.h .etag{background:var(--high-tint);color:var(--high)}
   .ev.m .etag{background:var(--mid-tint);color:#c67a05}
   .ev.l .etag{background:var(--low-tint);color:var(--low)}
+
+  .glossbubble{position:absolute;z-index:80;max-width:280px;background:var(--ink);color:#EAF0FF;
+    padding:13px 15px;border-radius:12px;box-shadow:var(--shadow-l);border-top:3px solid var(--gold);
+    animation:gbpop .16s ease}
+  .glossbubble .gb-term{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--gold-light);
+    font-weight:700}
+  .glossbubble .gb-desc{font-size:12.5px;line-height:1.55;margin-top:5px}
+  .glossbubble .gb-close{position:absolute;top:8px;right:10px;font-family:var(--mono);font-size:13px;
+    color:#7f8bab;cursor:pointer;line-height:1}
+  @keyframes gbpop{from{opacity:0;transform:scale(.94) translateY(-4px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  @media(prefers-reduced-motion:reduce){.glossbubble{animation:none}}
 
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
   @media(max-width:640px){.legend{grid-template-columns:1fr}}
@@ -122,9 +144,9 @@
   .gloss dt:first-child{margin-top:0}
   .gloss dd{margin:2px 0 0;font-size:12.5px;color:var(--soft);line-height:1.55}
 
-  .note{margin-top:22px;padding:18px 20px;background:linear-gradient(120deg,var(--accent-tint),#fff);
-    border:1px solid var(--accent-tint2);border-radius:16px;font-size:13px;color:var(--ink);line-height:1.65}
-  .note b{color:var(--accent-ink)}
+  .note{margin-top:22px;padding:18px 20px;background:linear-gradient(120deg,var(--gold-tint),#fff);
+    border:1px solid #EAD9A8;border-radius:16px;font-size:13px;color:var(--ink);line-height:1.65}
+  .note b{color:var(--gold-ink)}
   footer{margin-top:26px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
 </style>
 
@@ -133,6 +155,16 @@
   <p class="pagetag">SK자산연구소 달력</p>
 
   <header class="hero">
+    <svg class="heroline" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hlg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#3B6FF6" stop-opacity=".16"/>
+          <stop offset="100%" stop-color="#B8933C" stop-opacity=".22"/>
+        </linearGradient>
+      </defs>
+      <polyline points="0,100 40,92 80,104 120,78 160,86 200,55 240,66 280,40 320,50 360,28 400,38 440,20 480,30 520,12 560,22 600,8"
+        fill="none" stroke="url(#hlg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     <p class="eyebrow">SK 자산관리사무실 · Market Reference</p>
     <h1>주식시장을 움직이는 인자 &amp; 1년 레퍼런스 달력</h1>
     <p class="lede">주가를 흔드는 정례 이벤트·지표·심리·수급 인자를 한자리에. 아래 달력은 <b>2026년 7월부터 2027년 6월까지</b> 미리 정해진 일정을 영향도 색으로 보여주고, 매달 반복되는 지표는 각 칸 아래에 함께 담았습니다.</p>
@@ -149,7 +181,7 @@
   </div>
 
   <div class="sec-head"><span class="n">PART 1</span><h2>1년 레퍼런스 달력 · 2026.07 → 2027.06</h2></div>
-  <p class="sec-sub">왼쪽 색 막대 = 영향도(빨강 上 · 주황 中 · 초록 下). 초록 항목은 매달 반복되는 지표(고용·CPI·PCE·수출입·옵션만기)로, 각 달 날짜 목록 안에 다른 일정과 함께 표시됩니다. 2027년 韓 금통위는 공식일정 미발표라 예년 기준 '잠정'.</p>
+  <p class="sec-sub">왼쪽 색 막대 = 영향도(빨강 上 · 주황 中 · 초록 下). 초록 항목은 매달 반복되는 지표(고용·CPI·PCE·수출입·옵션만기)로, 각 달 날짜 목록 안에 다른 일정과 함께 표시됩니다. 색 라벨을 탭하면 해당 용어 설명이 바로 뜹니다. 2027년 韓 금통위는 공식일정 미발표라 예년 기준 '잠정'.</p>
 
   <div class="recur">
     <p class="rt">Every Month</p>
@@ -432,3 +464,64 @@
   </footer>
 
 </div>
+
+<script>
+(function(){
+  var GLOSS = {
+    "美 금리": "미국 기준금리(FOMC). 세계 증시 최대 변수 — 금리를 올리면 주식엔 역풍, 내리면 순풍입니다. 3·6·9·12월엔 향후 금리 전망을 담은 점도표도 함께 공개됩니다.",
+    "韓 금리": "한국 기준금리(금통위). 원화 가치와 국내 유동성을 좌우합니다. 한미 금리차가 벌어지면 외국인 자금이 빠져나갈 압력이 커집니다.",
+    "만기": "옵션·선물 만기일. 만기에는 프로그램 매물이 몰려 수급이 왜곡되고 변동성이 급증합니다. 분기 만기는 '네 마녀의 날'이라 부릅니다.",
+    "옵션만기": "매월 정기 옵션·선물 만기(보통 둘째 목요일). 프로그램 매매가 몰리며 단기 변동성이 커질 수 있는 날입니다.",
+    "실적": "어닝시즌(실적발표). 1·4·7·10월에 개별종목·지수가 실적에 따라 재평가됩니다. 어닝 서프라이즈/쇼크가 급등락을 유발합니다.",
+    "계절": "계절성. 1월 효과·'Sell in May'·9월 약세·산타랠리처럼 반복되는 통계적 경향이며, 확실한 법칙은 아닙니다.",
+    "수급": "지수 리밸런싱(MSCI·코스피200). 지수 편입/편출로 강제 매수·매도 수급이 발생하고, 편입 종목은 미리 강세를 보이는 경향이 있습니다.",
+    "이벤트": "예정된 굵직한 이벤트. 잭슨홀 심포지엄처럼 통화정책 힌트를 주는 자리이거나, 주총·배당 확정처럼 시장이 미리 반영하는 기업 일정을 가리킵니다.",
+    "美 고용": "미국 고용보고서(비농업). 경기 강도를 보여주는 지표로, 고용이 너무 뜨거우면 '금리를 더 오래 높게' 우려가 커져 주식엔 부담이 될 때도 있습니다.",
+    "美 CPI": "미국 CPI 소비자물가. 인플레이션 체온계로, 물가가 금리 방향을 정하고 금리가 다시 주가를 정하는 연쇄의 출발점입니다.",
+    "美 PCE": "미국 PCE 물가. 연준이 금리 결정 시 실제로 참고하는 물가 지표로, CPI와 다르게 나오면 금리 기대가 크게 출렁입니다.",
+    "韓 수출입": "한국 월간 수출입 동향. 반도체·자동차 등 주력 수출 실적이 국내 증시 방향과 원화 가치에 직접적인 영향을 줍니다."
+  };
+  var bubble = null;
+  function closeBubble(){
+    if(bubble){ bubble.remove(); bubble = null; }
+  }
+  function openBubble(target, text, term){
+    closeBubble();
+    bubble = document.createElement('div');
+    bubble.className = 'glossbubble';
+    bubble.innerHTML =
+      '<span class="gb-close" aria-label="닫기">×</span>' +
+      '<div class="gb-term">' + term + '</div>' +
+      '<div class="gb-desc"></div>';
+    bubble.querySelector('.gb-desc').textContent = text;
+    document.body.appendChild(bubble);
+    var r = target.getBoundingClientRect();
+    var bw = Math.min(280, window.innerWidth - 32);
+    bubble.style.width = bw + 'px';
+    var left = r.left + window.scrollX;
+    left = Math.max(16, Math.min(left, window.innerWidth - bw - 16 + window.scrollX));
+    var top = r.bottom + window.scrollY + 8;
+    bubble.style.left = left + 'px';
+    bubble.style.top = top + 'px';
+  }
+  document.addEventListener('click', function(e){
+    var closeBtn = e.target.closest('.gb-close');
+    if(closeBtn){ closeBubble(); return; }
+    var tag = e.target.closest('.ev .etag');
+    if(tag){
+      var term = tag.textContent.trim();
+      if(GLOSS[term]){
+        e.stopPropagation();
+        openBubble(tag, GLOSS[term], term);
+      }
+      return;
+    }
+    if(!e.target.closest('.glossbubble')){ closeBubble(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeBubble(); }
+  });
+  window.addEventListener('scroll', closeBubble, {passive:true});
+  window.addEventListener('resize', closeBubble);
+})();
+</script>
