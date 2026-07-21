@@ -24,6 +24,8 @@
     background-attachment:fixed;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   .wrap{max-width:1000px;margin:0 auto;padding:clamp(18px,4vw,44px)}
+  .pagetag{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint);
+    margin:0 0 10px;font-weight:600}
 
   .hero{background:linear-gradient(135deg,#ffffff 0%,#f3f7ff 100%);
     border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,38px);
@@ -94,7 +96,9 @@
   .evs{display:flex;flex-direction:column;padding:8px 0 4px}
   .ev{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
     padding:8px 18px 8px 15px;border-left:3px solid transparent}
-  .ev.h{border-left-color:var(--high)} .ev.m{border-left-color:var(--mid)} .ev.l{border-left-color:var(--low)}
+  .ev.h{border-left-color:var(--high);background:var(--high-tint)}
+  .ev.m{border-left-color:var(--mid)} .ev.l{border-left-color:var(--low)}
+  .ev.h .el{font-weight:800}
   .ev .ed{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;
     padding-top:1px;min-width:52px}
   .ev .eb{min-width:0}
@@ -104,11 +108,6 @@
   .ev.h .etag{background:var(--high-tint);color:var(--high)}
   .ev.m .etag{background:var(--mid-tint);color:#c67a05}
   .ev.l .etag{background:var(--low-tint);color:var(--low)}
-  .mfoot{margin-top:auto;padding:11px 18px;background:var(--surface2);border-top:1px dashed var(--line);
-    font-size:11px;color:var(--soft);line-height:1.5}
-  .mfoot b{color:var(--accent-ink);font-family:var(--mono);font-weight:700}
-  .mfoot .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--faint);font-weight:700;display:block;margin-bottom:3px}
 
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
   @media(max-width:640px){.legend{grid-template-columns:1fr}}
@@ -130,6 +129,8 @@
 
 <div class="wrap">
 
+  <p class="pagetag">SK자산연구소 달력</p>
+
   <header class="hero">
     <p class="eyebrow">SK 자산관리사무실 · Market Reference</p>
     <h1>주식시장을 움직이는 인자 &amp; 1년 레퍼런스 달력</h1>
@@ -142,7 +143,201 @@
     </div>
   </header>
 
-  <div class="sec-head"><span class="n">PART 1</span><h2>인자 사전 — 무엇이 주가를 움직이나</h2></div>
+  <div class="note">
+    <b>이 달력 쓰는 법.</b> '上(빨강)'이 몰린 주간이 변동성 큰 구간입니다 — 특히 <b>9·12·3·6월(만기+FOMC 겹침)</b>과 <b>금통위·FOMC 주간</b>. 가장 가까운 첫 관문은 <b>2026-07-29 美 FOMC</b>.
+  </div>
+
+  <div class="sec-head"><span class="n">PART 1</span><h2>1년 레퍼런스 달력 · 2026.07 → 2027.06</h2></div>
+  <p class="sec-sub">왼쪽 색 막대 = 영향도(빨강 上 · 주황 中 · 초록 下). 초록 항목은 매달 반복되는 지표(고용·CPI·PCE·수출입·옵션만기)로, 각 달 날짜 목록 안에 다른 일정과 함께 표시됩니다. 2027년 韓 금통위는 공식일정 미발표라 예년 기준 '잠정'.</p>
+
+  <div class="recur">
+    <p class="rt">Every Month</p>
+    <p class="rti">거의 매달 같은 시점에 발표되는 단골 지표들 — 아래 달력에도 각 날짜와 함께 표시됩니다</p>
+    <div class="rgrid">
+      <div class="rrow"><span class="rd"></span><div><div class="rl">美 고용보고서</div><div class="rw">매월 첫째 금요일</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">美 CPI 소비자물가</div><div class="rw">매월 중순</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">美 PCE 물가</div><div class="rw">매월 말</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">韓 수출입 동향</div><div class="rw">매월 1일</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">韓·美 옵션 만기</div><div class="rw">매월 둘째 목요일</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">VIX · 환율 · SOX</div><div class="rw">매일 장중 체크</div></div></div>
+    </div>
+  </div>
+
+  
+
+  <div class="cal">
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">07</span><span class="myr">2026</span></div><div class="mth">하반기 시작 · FOMC 관문</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">07.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">07.03</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev l"><span class="ed">07.09</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
+        <div class="ev m"><span class="ed">07.중</span><div class="eb"><div class="el">2분기 어닝시즌 본격화</div><span class="etag">실적</span></div></div>
+        <div class="ev l"><span class="ed">07.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">07.29</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
+        <div class="ev l"><span class="ed">07.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">08</span><span class="myr">2026</span></div><div class="mth">여름 비수기 · 잭슨홀</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">08.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">08.07</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev l"><span class="ed">08.13</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
+        <div class="ev l"><span class="ed">08.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">08.21</span><div class="eb"><div class="el">잭슨홀 심포지엄 · 연준 의장 연설</div><span class="etag">이벤트</span></div></div>
+        <div class="ev h"><span class="ed">08.27</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev l"><span class="ed">08.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">거래 한산 · 변동성 튀기 쉬움</div><span class="etag">계절</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">09</span><span class="myr">2026</span></div><div class="mth">9월 약세 · 만기 겹침</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">09.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">09.04</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev h"><span class="ed">09.10</span><div class="eb"><div class="el">韓 네 마녀의 날 (선물·옵션 동시만기)</div><span class="etag">만기</span></div></div>
+        <div class="ev l"><span class="ed">09.10</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
+        <div class="ev l"><span class="ed">09.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">09.16</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">09.18</span><div class="eb"><div class="el">美 쿼드러플 위칭 (4중 만기)</div><span class="etag">만기</span></div></div>
+        <div class="ev l"><span class="ed">09.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev m"><span class="ed">09.30</span><div class="eb"><div class="el">분기말 윈도드레싱</div><span class="etag">계절</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">10</span><span class="myr">2026</span></div><div class="mth">3분기 실적 개막</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">10.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">10.02</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev m"><span class="ed">10.08</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev h"><span class="ed">10.중</span><div class="eb"><div class="el">3분기 어닝시즌 시작 (美 은행주부터)</div><span class="etag">실적</span></div></div>
+        <div class="ev l"><span class="ed">10.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">10.22</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev h"><span class="ed">10.28</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
+        <div class="ev l"><span class="ed">10.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">11</span><span class="myr">2026</span></div><div class="mth">실적 마무리 · 연말 채비</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">11.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">11.06</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev m"><span class="ed">11.12</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
+        <div class="ev m"><span class="ed">11.중</span><div class="eb"><div class="el">MSCI 반기 리뷰 반영 (지수 편출입)</div><span class="etag">수급</span></div></div>
+        <div class="ev l"><span class="ed">11.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">11.26</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev l"><span class="ed">11.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">11~1월 연말 강세 경향</div><span class="etag">계절</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">12</span><span class="myr">2026</span></div><div class="mth">산타랠리 · 배당 · 만기</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">12.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">12.04</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev h"><span class="ed">12.09</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">12.10</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
+        <div class="ev l"><span class="ed">12.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">12.18</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
+        <div class="ev m"><span class="ed">12.28</span><div class="eb"><div class="el">韓 배당락일 · 폐장(30일)</div><span class="etag">계절</span></div></div>
+        <div class="ev l"><span class="ed">12.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">01</span><span class="myr">2027</span></div><div class="mth">1월 효과 · 4분기 실적</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">01.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">01.08</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev l"><span class="ed">01.14</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
+        <div class="ev h"><span class="ed">01.15</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정 · 예년 중순)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev h"><span class="ed">01.중</span><div class="eb"><div class="el">4분기 어닝시즌 시작</div><span class="etag">실적</span></div></div>
+        <div class="ev l"><span class="ed">01.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">01.27</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
+        <div class="ev l"><span class="ed">01.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">중소형주 1월 효과 경향</div><span class="etag">계절</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">02</span><span class="myr">2027</span></div><div class="mth">실적 마무리 · MSCI</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">02.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">02.05</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev m"><span class="ed">02.11</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
+        <div class="ev m"><span class="ed">02.중</span><div class="eb"><div class="el">MSCI 분기 리뷰</div><span class="etag">수급</span></div></div>
+        <div class="ev l"><span class="ed">02.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">02.하</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev l"><span class="ed">02.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">03</span><span class="myr">2027</span></div><div class="mth">만기 3종 · 주총·배당</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">03.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">03.05</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev h"><span class="ed">03.11</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
+        <div class="ev l"><span class="ed">03.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">03.17</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">03.19</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
+        <div class="ev m"><span class="ed">03.하</span><div class="eb"><div class="el">韓 12월 결산법인 주총·배당 확정</div><span class="etag">이벤트</span></div></div>
+        <div class="ev l"><span class="ed">03.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">04</span><span class="myr">2027</span></div><div class="mth">1분기 실적 개막</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">04.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">04.02</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev m"><span class="ed">04.08</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
+        <div class="ev h"><span class="ed">04.중</span><div class="eb"><div class="el">1분기 어닝시즌 시작</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">04.중</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev l"><span class="ed">04.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">04.28</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
+        <div class="ev l"><span class="ed">04.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">05</span><span class="myr">2027</span></div><div class="mth">Sell in May · MSCI 반기</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">05.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">05.07</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev m"><span class="ed">05.13</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
+        <div class="ev m"><span class="ed">05.중</span><div class="eb"><div class="el">MSCI 반기 리뷰</div><span class="etag">수급</span></div></div>
+        <div class="ev l"><span class="ed">05.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">05.하</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev l"><span class="ed">05.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">'Sell in May' 경계 구간</div><span class="etag">계절</span></div></div>
+      </div>
+    </div>
+
+    <div class="mo">
+      <div class="mh"><div class="mdate"><span class="mmo">06</span><span class="myr">2027</span></div><div class="mth">반기말 · 만기 3종</div></div>
+      <div class="evs">
+        <div class="ev l"><span class="ed">06.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
+        <div class="ev l"><span class="ed">06.04</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev h"><span class="ed">06.09</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">06.10</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
+        <div class="ev l"><span class="ed">06.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev h"><span class="ed">06.18</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
+        <div class="ev l"><span class="ed">06.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev m"><span class="ed">06.30</span><div class="eb"><div class="el">반기말 윈도드레싱</div><span class="etag">계절</span></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-head"><span class="n">PART 2</span><h2>인자 사전 — 무엇이 주가를 움직이나</h2></div>
   <p class="sec-sub">6개 갈래로 나눈 25개 핵심 인자. 파란 라벨은 발생 빈도입니다.</p>
 
   <div class="groups">
@@ -207,155 +402,7 @@
     </section>
   </div>
 
-  <div class="sec-head"><span class="n">PART 2</span><h2>매달 돌아오는 지표</h2></div>
-  <p class="sec-sub">매월 반복되는 지표입니다. 아래 달력의 각 달 칸 하단에도 똑같이 넣어 두었습니다.</p>
-  <div class="recur">
-    <p class="rt">Every Month</p>
-    <p class="rti">거의 매달 같은 시점에 발표되는 단골 지표들</p>
-    <div class="rgrid">
-      <div class="rrow"><span class="rd"></span><div><div class="rl">美 고용보고서</div><div class="rw">매월 첫째 금요일</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">美 CPI 소비자물가</div><div class="rw">매월 중순</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">美 PCE 물가</div><div class="rw">매월 말</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">韓 수출입 동향</div><div class="rw">매월 1일</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">韓·美 옵션 만기</div><div class="rw">매월 둘째 목요일</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">VIX · 환율 · SOX</div><div class="rw">매일 장중 체크</div></div></div>
-    </div>
-  </div>
-
-  <div class="sec-head"><span class="n">PART 3</span><h2>1년 레퍼런스 달력 · 2026.07 → 2027.06</h2></div>
-  <p class="sec-sub">왼쪽 색 막대 = 영향도(빨강 上 · 주황 中 · 초록 下). 각 칸 하단 회색 영역은 그 달에 반복되는 지표. 2027년 韓 금통위는 공식일정 미발표라 예년 기준 '잠정'.</p>
-
-  <div class="cal">
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">07</span><span class="myr">2026</span></div><div class="mth">하반기 시작 · FOMC 관문</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">07.29</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-        <div class="ev m"><span class="ed">07.중</span><div class="eb"><div class="el">2분기 어닝시즌 본격화</div><span class="etag">실적</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>07.03</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>07.01</b> · 옵션만기 <b>07.09</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">08</span><span class="myr">2026</span></div><div class="mth">여름 비수기 · 잭슨홀</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">08.21</span><div class="eb"><div class="el">잭슨홀 심포지엄 · 연준 의장 연설</div><span class="etag">이벤트</span></div></div>
-        <div class="ev h"><span class="ed">08.27</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">거래 한산 · 변동성 튀기 쉬움</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>08.07</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>08.01</b> · 옵션만기 <b>08.13</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">09</span><span class="myr">2026</span></div><div class="mth">9월 약세 · 만기 겹침</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">09.10</span><div class="eb"><div class="el">韓 네 마녀의 날 (선물·옵션 동시만기)</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">09.16</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
-        <div class="ev h"><span class="ed">09.18</span><div class="eb"><div class="el">美 쿼드러플 위칭 (4중 만기)</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">09.30</span><div class="eb"><div class="el">분기말 윈도드레싱</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>09.04</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>09.01</b> · 옵션만기 <b>09.10</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">10</span><span class="myr">2026</span></div><div class="mth">3분기 실적 개막</div></div>
-      <div class="evs">
-        <div class="ev m"><span class="ed">10.08</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">10.중</span><div class="eb"><div class="el">3분기 어닝시즌 시작 (美 은행주부터)</div><span class="etag">실적</span></div></div>
-        <div class="ev h"><span class="ed">10.22</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev h"><span class="ed">10.28</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>10.02</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>10.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">11</span><span class="myr">2026</span></div><div class="mth">실적 마무리 · 연말 채비</div></div>
-      <div class="evs">
-        <div class="ev m"><span class="ed">11.12</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">11.중</span><div class="eb"><div class="el">MSCI 반기 리뷰 반영 (지수 편출입)</div><span class="etag">수급</span></div></div>
-        <div class="ev h"><span class="ed">11.26</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">11~1월 연말 강세 경향</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>11.06</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>11.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">12</span><span class="myr">2026</span></div><div class="mth">산타랠리 · 배당 · 만기</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">12.09</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
-        <div class="ev h"><span class="ed">12.10</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">12.18</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">12.28</span><div class="eb"><div class="el">韓 배당락일 · 폐장(30일)</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>12.04</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>12.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">01</span><span class="myr">2027</span></div><div class="mth">1월 효과 · 4분기 실적</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">01.15</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정 · 예년 중순)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev h"><span class="ed">01.중</span><div class="eb"><div class="el">4분기 어닝시즌 시작</div><span class="etag">실적</span></div></div>
-        <div class="ev h"><span class="ed">01.27</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">중소형주 1월 효과 경향</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>01.08</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>01.01</b> · 옵션만기 <b>01.14</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">02</span><span class="myr">2027</span></div><div class="mth">실적 마무리 · MSCI</div></div>
-      <div class="evs">
-        <div class="ev m"><span class="ed">02.11</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">02.중</span><div class="eb"><div class="el">MSCI 분기 리뷰</div><span class="etag">수급</span></div></div>
-        <div class="ev h"><span class="ed">02.하</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>02.05</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>02.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">03</span><span class="myr">2027</span></div><div class="mth">만기 3종 · 주총·배당</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">03.11</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">03.17</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
-        <div class="ev h"><span class="ed">03.19</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">03.하</span><div class="eb"><div class="el">韓 12월 결산법인 주총·배당 확정</div><span class="etag">이벤트</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>03.05</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>03.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">04</span><span class="myr">2027</span></div><div class="mth">1분기 실적 개막</div></div>
-      <div class="evs">
-        <div class="ev m"><span class="ed">04.08</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">04.중</span><div class="eb"><div class="el">1분기 어닝시즌 시작</div><span class="etag">실적</span></div></div>
-        <div class="ev h"><span class="ed">04.중</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev h"><span class="ed">04.28</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>04.02</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>04.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">05</span><span class="myr">2027</span></div><div class="mth">Sell in May · MSCI 반기</div></div>
-      <div class="evs">
-        <div class="ev m"><span class="ed">05.13</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">05.중</span><div class="eb"><div class="el">MSCI 반기 리뷰</div><span class="etag">수급</span></div></div>
-        <div class="ev h"><span class="ed">05.하</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">'Sell in May' 경계 구간</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>05.07</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>05.01</b></div>
-    </div>
-
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">06</span><span class="myr">2027</span></div><div class="mth">반기말 · 만기 3종</div></div>
-      <div class="evs">
-        <div class="ev h"><span class="ed">06.09</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
-        <div class="ev h"><span class="ed">06.10</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">06.18</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">06.30</span><div class="eb"><div class="el">반기말 윈도드레싱</div><span class="etag">계절</span></div></div>
-      </div>
-      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>06.04</b>(첫 금) · CPI 중순 · PCE 말 · 韓 수출입 <b>06.01</b></div>
-    </div>
-
-  </div>
+  
 
   <div class="sec-head"><span class="n">KEY</span><h2>범례 &amp; 용어</h2></div>
   <div class="legend">
@@ -363,7 +410,7 @@
       <h4>영향도 (좌측 색 막대)</h4>
       <div class="lgrow"><span class="dot h"></span><span><b>上</b> — 지수를 크게 흔들 수 있는 핵심 일정</span></div>
       <div class="lgrow"><span class="dot m"></span><span><b>中</b> — 수급·심리에 영향, 주의 관찰</span></div>
-      <div class="lgrow"><span class="dot l"></span><span><b>下</b> — 참고용 경향·계절성</span></div>
+      <div class="lgrow"><span class="dot l"></span><span><b>下</b> — 참고용 경향·계절성 및 매달 반복되는 정기지표</span></div>
     </div>
     <div class="lg">
       <h4>꼭 알아둘 용어</h4>
@@ -376,10 +423,6 @@
         <dd>연준 위원 각자가 예상하는 <b>향후 기준금리 점을 찍은 표</b>. 앞으로 금리를 몇 번 올릴지/내릴지 시장이 읽는 핵심 힌트.</dd>
       </dl>
     </div>
-  </div>
-
-  <div class="note">
-    <b>이 달력 쓰는 법.</b> ‘上(빨강)’이 몰린 주간이 변동성 큰 구간입니다 — 특히 <b>9·12·3·6월(만기+FOMC 겹침)</b>과 <b>금통위·FOMC 주간</b>. 사장님 기조(‘실탄 확보 후 추세 확인 시 진입’)에 맞추면, 이 上 일정들이 <b>확인 신호가 켜지는 분기점</b>입니다. 가장 가까운 첫 관문은 <b>2026-07-29 美 FOMC</b>.
   </div>
 
   <footer>
