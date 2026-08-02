@@ -1,253 +1,224 @@
+<!-- @template name="Market Calendar" description="A dense market-reference page: live indicator dashboard with sparklines, a 12-month event calendar, a dated history timeline and a factor glossary" -->
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="./ds-base.js"></script>
 <title>시장 인자 & 1년 레퍼런스 달력 — 2026.07~2027.06</title>
 <style>
-  :root{
-    color-scheme:light;
-    --bg:#EEF3FB; --wash1:#F7FAFF; --wash2:#EAF0FC;
-    --surface:#FFFFFF; --surface2:#F4F7FD;
-    --ink:#16203A; --soft:#5A6784; --faint:#93A0BC; --line:#E2E9F5;
-    --accent:#3B6FF6; --accent-ink:#2451D6; --accent-tint:#E9F0FE; --accent-tint2:#DCE8FE;
-    --high:#EE4B54; --mid:#EE9611; --low:#12A66B; --ern:#7C5BD9;
-    --high-tint:#FDECEC; --mid-tint:#FDF2E0; --low-tint:#E3F6EE; --ern-tint:#F1EBFC;
-    --shadow-s:0 1px 2px rgba(23,40,80,.05);
-    --shadow-m:0 2px 4px rgba(23,40,80,.05),0 12px 28px rgba(23,40,80,.07);
-    --shadow-l:0 8px 20px rgba(35,70,160,.10),0 24px 48px rgba(35,70,160,.10);
-    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
-    --body:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  }
-  *{box-sizing:border-box}
-  html{background:var(--bg)}
-  body{margin:0;color:var(--ink);font-family:var(--body);line-height:1.5;
-    background:
-      radial-gradient(1300px 560px at 80% -8%, var(--wash1), transparent 60%),
-      radial-gradient(1000px 500px at 0% 2%, var(--wash2), transparent 55%),
-      var(--bg);
-    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .wrap{max-width:1560px;margin:0 auto;padding:clamp(16px,3vw,44px)}
-  .narrow{max-width:1180px;margin-left:auto;margin-right:auto}
-  .hero{background:linear-gradient(135deg,#ffffff 0%,#f3f7ff 100%);
-    border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3.4vw,40px);
-    box-shadow:var(--shadow-l);position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;
-    background:radial-gradient(closest-side,var(--accent-tint2),transparent);border-radius:50%}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-ink);margin:0 0 12px;font-weight:600}
-  h1{font-size:clamp(24px,4.2vw,46px);line-height:1.05;letter-spacing:-.025em;margin:0 0 14px;
-    text-wrap:balance;font-weight:800}
-  .lede{font-size:clamp(14px,1.6vw,17px);color:var(--soft);max-width:72ch;margin:0;position:relative}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative}
-  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.02em;padding:6px 12px;border-radius:999px;
-    background:#fff;border:1px solid var(--line);color:var(--soft);box-shadow:var(--shadow-s)}
-  .tag.k{background:var(--accent-tint);border-color:var(--accent-tint2);color:var(--accent-ink);font-weight:600}
-  h2{font-size:clamp(18px,2.2vw,24px);letter-spacing:-.015em;margin:0;font-weight:780}
-  .sec-head{display:flex;align-items:center;gap:12px;margin:50px 0 6px;flex-wrap:wrap}
-  .sec-head .n{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--accent);
-    padding:5px 10px;border-radius:8px;letter-spacing:.04em;box-shadow:0 3px 8px rgba(59,111,246,.28)}
-  .sec-sub{color:var(--soft);font-size:13.5px;margin:10px 0 18px;max-width:96ch}
-  .strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;
-    background:var(--surface);border:1px solid var(--line);border-radius:14px;
-    padding:12px 18px;box-shadow:var(--shadow-s);margin-bottom:20px;font-size:12.5px;color:var(--soft)}
-  .strip .si{display:flex;align-items:center;gap:7px;white-space:nowrap}
-  .strip b{color:var(--ink);font-weight:700}
-  .sw{width:12px;height:12px;border-radius:4px;flex:none}
-  .sw.h{background:var(--high)} .sw.m{background:var(--mid)}
-  .sw.e{background:var(--ern)} .sw.l{background:var(--low)}
-  .sw.d{background:#DDE4F0;border:1px solid var(--line)}
-  .cal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-  @media(max-width:1180px){.cal{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:800px){.cal{grid-template-columns:1fr}}
-  .mo{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-m);
-    overflow:hidden;display:flex;flex-direction:column}
-  .mo.now{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint2),var(--shadow-m)}
-  .mo.past .mh{background:linear-gradient(90deg,#EFF2F8,#fff)}
-  .mo.past .mh .mmo{color:var(--faint)}
-  .mh{padding:14px 17px 12px;background:linear-gradient(90deg,var(--accent-tint),#fff);
-    border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:8px}
-  .mh .mdate{display:flex;align-items:baseline;gap:8px}
-  .mh .mmo{font-size:25px;font-weight:850;letter-spacing:-.02em;font-family:var(--mono);color:var(--accent-ink)}
-  .mh .myr{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:600}
-  .mh .mth{font-size:11px;color:var(--soft);text-align:right;max-width:16ch;line-height:1.3;font-weight:650}
-  .nowbadge{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.06em;
-    background:var(--accent);color:#fff;padding:2px 6px;border-radius:5px;vertical-align:2px}
-  .pastbadge{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.06em;
-    background:#C9D3E4;color:#fff;padding:2px 6px;border-radius:5px;vertical-align:2px}
-  .evs{display:flex;flex-direction:column;padding:7px 0 4px}
-  .ev{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;
-    padding:7px 16px 7px 13px;border-left:3px solid transparent}
-  .ev.h{border-left-color:var(--high)} .ev.m{border-left-color:var(--mid)}
-  .ev.l{border-left-color:var(--low)} .ev.e{border-left-color:var(--ern)}
-  .ev .ed{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ink);white-space:nowrap;
-    padding-top:1px;min-width:52px}
-  .ev.done .ed{color:var(--faint)}
-  .ev.done{background:linear-gradient(90deg,#FAFBFE,transparent)}
-  .ev .eb{min-width:0}
-  .ev .el{font-size:13px;font-weight:650;line-height:1.35}
-  .ev .etag{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.02em;
-    padding:2px 6px;border-radius:5px;margin-top:4px}
-  .ev.h .etag{background:var(--high-tint);color:var(--high)}
-  .ev.m .etag{background:var(--mid-tint);color:#C67A05}
-  .ev.l .etag{background:var(--low-tint);color:var(--low)}
-  .ev.e .etag{background:var(--ern-tint);color:var(--ern)}
-  .res{margin-top:5px;padding:6px 9px;border-radius:7px;font-size:11px;line-height:1.5;
-    background:var(--surface2);color:var(--soft);border-left:2px solid var(--faint)}
-  .res b{font-weight:750}
-  .res.up{background:var(--low-tint);color:#0A7A52;border-left-color:var(--low)}
-  .res.up b{color:#076246}
-  .res.down{background:var(--high-tint);color:#BE2F38;border-left-color:var(--high)}
-  .res.down b{color:#9E2129}
-  .mfoot{margin-top:auto;padding:10px 17px;background:var(--surface2);border-top:1px dashed var(--line);
-    font-size:10.5px;color:var(--soft);line-height:1.5}
-  .mfoot b{color:var(--accent-ink);font-family:var(--mono);font-weight:700}
-  .mfoot .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--faint);font-weight:700;display:block;margin-bottom:3px}
-  .phase{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--accent-ink);
-    background:var(--accent-tint);border:1px solid var(--accent-tint2);border-radius:999px;
-    padding:5px 13px;display:inline-block;margin:22px 0 12px}
-  .tl{display:flex;flex-direction:column;gap:11px}
-  .tlrow{display:grid;grid-template-columns:112px 1fr;gap:18px;background:var(--surface);
-    border:1px solid var(--line);border-radius:14px;padding:14px 18px 14px 22px;
-    box-shadow:var(--shadow-s);position:relative;overflow:hidden}
-  .tlrow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
-  .tlrow.dn::before{background:var(--high)}
-  .tlrow.up::before{background:var(--low)}
-  .tlrow.nt::before{background:#C9D3E4}
-  .tlrow.big{box-shadow:0 0 0 2px var(--accent-tint2),var(--shadow-m)}
-  @media(max-width:640px){.tlrow{grid-template-columns:1fr;gap:6px}}
-  .tld{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--soft)}
-  .tlpct{font-family:var(--mono);font-size:21px;font-weight:800;letter-spacing:-.03em;margin-top:1px;line-height:1.1}
-  .tlrow.dn .tlpct{color:var(--high)}
-  .tlrow.up .tlpct{color:var(--low)}
-  .tlrow.nt .tlpct{color:var(--faint);font-size:13px;font-weight:700}
-  .tlt{font-size:15px;font-weight:760;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;line-height:1.3}
-  .mk{font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;
-    background:var(--surface2);color:var(--soft);border:1px solid var(--line);white-space:nowrap}
-  .mk.rec{background:#FFF4E5;border-color:#F5D9AC;color:#B4700A}
-  .tlw{font-size:13px;color:var(--soft);line-height:1.62}
-  .tlw b{color:var(--ink);font-weight:650}
-  .lesson{margin-top:9px;padding:8px 12px;background:var(--accent-tint);border-radius:9px;
-    font-size:12.5px;color:var(--accent-ink);line-height:1.55}
-  .lesson b{font-weight:780}
-  .types{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:8px}
-  .ty{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow-s)}
-  .ty h5{margin:0 0 6px;font-size:14.5px;font-weight:760;display:flex;align-items:center;gap:8px}
-  .ty .tn{font-family:var(--mono);font-size:11px;font-weight:800;color:#fff;background:var(--ink);
-    width:22px;height:22px;display:grid;place-items:center;border-radius:7px;flex:none}
-  .ty p{margin:0;font-size:12.5px;color:var(--soft);line-height:1.6}
-  .ty p b{color:var(--ink);font-weight:650}
-  .ty .ex{display:block;margin-top:6px;font-size:11.5px;color:var(--faint)}
-  .groups{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media(max-width:1180px){.groups{grid-template-columns:1fr}}
-  .group{background:var(--surface);border:1px solid var(--line);border-radius:18px;
-    box-shadow:var(--shadow-m);overflow:hidden}
-  .gh{display:flex;align-items:center;gap:11px;padding:14px 18px;
-    background:linear-gradient(90deg,var(--accent-tint),transparent)}
-  .gh .gi{font-family:var(--mono);font-size:13px;font-weight:800;color:#fff;
-    background:var(--accent);width:28px;height:28px;display:grid;place-items:center;border-radius:9px;
-    box-shadow:0 3px 8px rgba(59,111,246,.3)}
-  .gh h3{margin:0;font-size:15.5px;font-weight:750}
-  .gh .gsub{color:var(--soft);font-weight:500;font-size:12.5px}
-  .gitems{display:grid;grid-template-columns:1fr 1fr}
-  @media(max-width:700px){.gitems{grid-template-columns:1fr}}
-  .fi{padding:14px 17px;border-top:1px solid var(--line)}
-  .gitems .fi:nth-child(-n+2){border-top:none}
-  @media(max-width:700px){.gitems .fi:nth-child(2){border-top:1px solid var(--line)}}
-  .gitems .fi:nth-child(odd){border-right:1px solid var(--line)}
-  @media(max-width:700px){.gitems .fi:nth-child(odd){border-right:none}}
-  .fi .fn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:750;font-size:14px;margin-bottom:5px}
-  .fi .freq{font-family:var(--mono);font-size:10.5px;color:var(--accent-ink);background:var(--accent-tint);
-    padding:2px 7px;border-radius:6px;white-space:nowrap;font-weight:600}
-  .fi p{margin:0;font-size:12.5px;color:var(--soft);line-height:1.55}
-  .fi b{color:var(--ink);font-weight:650}
-  .recur{background:linear-gradient(120deg,var(--accent) 0%,#5a86ff 100%);color:#fff;
-    border-radius:18px;padding:20px 22px 10px;box-shadow:var(--shadow-l)}
-  .recur .rt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-    color:#dbe6ff;margin:0 0 4px;font-weight:600}
-  .recur .rti{font-size:14px;color:#eaf1ff;margin:0 0 16px}
-  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px 22px}
-  .rrow{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-top:1px solid rgba(255,255,255,.16)}
-  .rrow .rd{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:none;background:#fff;
-    box-shadow:0 0 0 3px rgba(255,255,255,.22)}
-  .rrow .rl{font-weight:650;font-size:13.5px}
-  .rrow .rw{font-family:var(--mono);font-size:11px;color:#cfdcff;margin-top:1px}
-  .legend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
-  @media(max-width:900px){.legend{grid-template-columns:1fr}}
-  .lg{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px 19px;box-shadow:var(--shadow-s)}
-  .lg h4{margin:0 0 12px;font-size:11.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
-  .lgrow{display:flex;align-items:baseline;gap:10px;font-size:13px;padding:5px 0;line-height:1.5}
-  .dot{width:11px;height:11px;border-radius:50%;flex:none;transform:translateY(2px)}
-  .dot.h{background:var(--high)} .dot.m{background:var(--mid)}
-  .dot.l{background:var(--low)} .dot.e{background:var(--ern)}
-  .lgrow b{font-weight:700}.lgrow span{color:var(--soft)}
-  .gloss dt{font-weight:750;font-size:13.5px;margin-top:10px}
-  .gloss dt:first-child{margin-top:0}
-  .gloss dd{margin:2px 0 0;font-size:12.5px;color:var(--soft);line-height:1.55}
-  .note{margin-top:22px;padding:18px 22px;background:linear-gradient(120deg,var(--accent-tint),#fff);
-    border:1px solid var(--accent-tint2);border-radius:16px;font-size:13.5px;color:var(--ink);line-height:1.65}
-  .note b{color:var(--accent-ink)}
-  /* dashboard */
-  .dash{background:var(--surface);border:1px solid var(--line);border-radius:20px;
-    padding:20px 22px 18px;box-shadow:var(--shadow-m)}
-  .dashtop{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-    flex-wrap:wrap;margin-bottom:15px}
-  .dashtop .dt{font-size:15.5px;font-weight:780}
-  .dashtop .ds{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.02em}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(236px,1fr));gap:14px}
-  .card{border:1px solid var(--line);border-radius:14px;padding:13px 15px 11px;
-    background:linear-gradient(180deg,#fff,#FAFCFF)}
-  .card .cl{font-size:12px;font-weight:750;color:var(--soft);display:flex;
-    align-items:center;justify-content:space-between;gap:6px}
-  .card .cl .cx{font-family:var(--mono);font-size:9px;color:var(--faint);
-    border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-weight:700}
-  .card .cv{font-family:var(--mono);font-size:25px;font-weight:850;letter-spacing:-.035em;
-    margin-top:5px;line-height:1.1;color:var(--ink)}
-  .card .cc{font-family:var(--mono);font-size:11.5px;font-weight:750;margin-top:3px}
-  .card .cc.up{color:var(--low)} .card .cc.dn{color:var(--high)} .card .cc.nt{color:var(--soft)}
-  .card .spark{width:100%;height:52px;display:block;margin-top:10px;overflow:visible}
-  .card.up .spark{color:var(--low)} .card.dn .spark{color:var(--high)} .card.nt .spark{color:#8FA0BE}
-  .card .spark polyline{fill:none;stroke:currentColor;stroke-width:1.6;
-    stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
-  .card .spark polygon{fill:currentColor;opacity:.11;stroke:none}
-  .card .spark circle{fill:currentColor;stroke:#fff;stroke-width:1.2;vector-effect:non-scaling-stroke}
-  .card .cm{font-size:10.5px;color:var(--faint);margin-top:6px;line-height:1.45}
-  .card .cm b{color:var(--soft);font-weight:750}
-  /* d-day strip */
-  .dday{margin-top:17px;border-top:1px dashed var(--line);padding-top:14px}
-  .ddl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--faint);font-weight:700;display:block;margin-bottom:10px}
-  .ddrow{display:flex;flex-wrap:wrap;gap:9px}
-  .ddi{display:flex;align-items:baseline;gap:9px;border:1px solid var(--line);
-    border-radius:10px;padding:8px 13px;background:var(--surface2)}
-  .ddi .ddn{font-family:var(--mono);font-size:13px;font-weight:850;color:var(--accent-ink);letter-spacing:-.01em}
-  .ddi .ddt{font-size:12px;font-weight:650;color:var(--soft);white-space:nowrap}
-  .ddi.hot{background:linear-gradient(100deg,var(--accent),#5a86ff);border-color:transparent;
-    box-shadow:0 3px 10px rgba(59,111,246,.28)}
-  .ddi.hot .ddn,.ddi.hot .ddt{color:#fff}
-  /* provider banner */
-  .banner{background:linear-gradient(100deg,#131C33 0%,#22315A 52%,#2A57DA 100%);
-    color:#fff;border-radius:16px;padding:16px clamp(18px,2.4vw,30px);
-    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
-    box-shadow:var(--shadow-m)}
-  .banner .bl{font-family:var(--mono);font-size:clamp(13px,1.45vw,18px);font-weight:800;
-    letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:12px;line-height:1.25}
-  .banner .bl .mark{width:10px;height:10px;border-radius:3px;background:#7FA5FF;flex:none;
-    box-shadow:0 0 0 4px rgba(127,165,255,.22)}
-  .banner .bl .lt{color:#AFC4F5;font-weight:700}
-  .banner .br{font-family:var(--mono);display:flex;align-items:baseline;gap:9px;white-space:nowrap}
-  .banner .br .rl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#AFC4F5;font-weight:700}
-  .banner .br .rd{font-size:clamp(15px,1.5vw,19px);font-weight:850;letter-spacing:.02em;color:#fff}
-  .banner.top{margin-bottom:20px}
-  .banner.bottom{margin-top:30px}
-  .banner.bottom{justify-content:center;text-align:center}
-  .banner.bottom .bl{justify-content:center}
-  footer{margin-top:18px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap');
+:root{
+  /* page-local type: humanist, warmer and clearer in Korean than the system's
+     Archivo, which has no Hangul and falls back mid-sentence */
+  --font-heading:"IBM Plex Sans KR",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans KR",system-ui,sans-serif;
+  --font-heading-weight:700;
+  --soft:var(--color-neutral-700); --faint:var(--color-neutral-500);
+  --line:var(--color-divider); --hair:var(--color-neutral-300);
+  --accent:var(--color-accent); --accent-ink:var(--color-accent-700);
+  --up:oklch(0.55 0.14 152); --up-tint:oklch(0.96 0.03 152); --dn:var(--color-accent);
+  --num:var(--font-body);
+}
+*{box-sizing:border-box}
+html{background:var(--color-bg)}
+body{margin:0;color:var(--color-text);font-family:var(--font-body);line-height:1.55;background:var(--color-bg);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+b,strong{font-weight:700}
+.wrap{max-width:1560px;margin:0 auto;padding:clamp(16px,3vw,44px)}
+.narrow{max-width:1180px;margin-left:auto;margin-right:auto}
+.num,.mmo,.myr,.ed,.tld,.tlpct,.cv,.cc,.ddn,.mk,.eyebrow,.tag,.ds,.cx,.lbl,.ddl,.rt,.rw,.freq,.etag,.n,.gi,.tn,.rl,.rd,.lg h4{font-variant-numeric:tabular-nums}
+
+/* — hero — */
+.hero{background:var(--color-bg);border:0;border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);padding:var(--space-8) 0 var(--space-6);position:relative}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 var(--space-3);font-weight:700}
+h1{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(28px,4.4vw,54px);line-height:1.14;letter-spacing:-.018em;margin:0 0 var(--space-4);max-width:22ch}
+.lede{font-size:clamp(14px,1.5vw,17px);color:var(--soft);max-width:76ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-6)}
+.tag{font-size:11px;letter-spacing:.02em;padding:4px 10px;border-radius:0;background:transparent;border:1px solid var(--line);color:var(--soft);font-weight:600}
+.tag.k{background:var(--color-accent);border-color:var(--color-accent);color:var(--color-bg)}
+
+/* — section heads — */
+h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(19px,2.2vw,26px);letter-spacing:-.012em;margin:0}
+.sec-head{display:flex;align-items:center;gap:var(--space-3);margin:var(--space-8) 0 var(--space-2);padding-top:var(--space-4);border-top:2px solid var(--color-divider);flex-wrap:wrap}
+.sec-head .n{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--color-bg);background:var(--color-accent);padding:5px 9px}
+.sec-sub{color:var(--soft);font-size:13.5px;margin:var(--space-2) 0 var(--space-4);max-width:96ch}
+.strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;background:var(--color-surface);border:1px solid var(--line);padding:10px 16px;margin-bottom:var(--space-4);font-size:12.5px;color:var(--soft)}
+.strip .si{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.strip b{color:var(--color-text);font-weight:700}
+.sw{width:11px;height:11px;flex:none}
+.sw.h{background:var(--color-accent)} .sw.m{background:var(--color-neutral-600)}
+.sw.e{background:var(--color-neutral-900)} .sw.l{background:var(--color-neutral-400)}
+.sw.d{background:var(--color-neutral-200);border:1px solid var(--hair)}
+
+/* — calendar — */
+.cal{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);align-items:start}
+@media(max-width:1180px){.cal{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.cal{grid-template-columns:1fr}}
+.mo{background:var(--color-surface);border:1px solid var(--line);display:flex;flex-direction:column}
+.mo.now{border:2px solid var(--color-accent)}
+.mo.past{background:var(--color-bg)}
+.mo.past .mh .mmo{color:var(--faint)}
+.mh{padding:12px 16px 10px;border-bottom:2px solid var(--color-divider);display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.mh .mdate{display:flex;align-items:baseline;gap:8px}
+.mh .mmo{font-family:var(--font-heading);font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--color-text)}
+.mo.now .mh .mmo{color:var(--color-accent)}
+.mh .myr{font-size:12px;color:var(--faint);font-weight:700}
+.mh .mth{font-size:11px;color:var(--soft);text-align:right;max-width:16ch;line-height:1.3;font-weight:600}
+.nowbadge,.pastbadge{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.08em;padding:2px 6px;vertical-align:2px;text-transform:uppercase}
+.nowbadge{background:var(--color-accent);color:var(--color-bg)}
+.pastbadge{background:var(--color-neutral-400);color:var(--color-bg)}
+.evs{display:flex;flex-direction:column;padding:4px 0}
+.ev{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:8px 16px 8px 13px;border-left:3px solid transparent;border-top:1px solid var(--hair)}
+.evs .ev:first-child{border-top:0}
+.ev.h{border-left-color:var(--color-accent)} .ev.m{border-left-color:var(--color-neutral-600)}
+.ev.l{border-left-color:var(--color-neutral-400)} .ev.e{border-left-color:var(--color-neutral-900)}
+.ev .ed{font-size:11.5px;font-weight:700;color:var(--color-text);white-space:nowrap;padding-top:1px;min-width:54px}
+.ev.done .ed{color:var(--faint)}
+.ev .eb{min-width:0}
+.ev .el{font-size:13px;font-weight:600;line-height:1.35}
+.ev .etag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:2px 6px;margin-top:4px;border:1px solid var(--hair);color:var(--soft)}
+.ev.h .etag{border-color:var(--color-accent);color:var(--color-accent)}
+.ev.e .etag{border-color:var(--color-neutral-800);color:var(--color-neutral-800)}
+.res{margin-top:6px;padding:6px 9px;font-size:11px;line-height:1.5;background:var(--color-neutral-100);color:var(--soft);border-left:2px solid var(--hair)}
+.res b{font-weight:700;color:var(--color-text)}
+.res.up{background:var(--up-tint);border-left-color:var(--up);color:var(--up)}
+.res.up b{color:var(--up)}
+.res.down{background:var(--color-accent-100);border-left-color:var(--color-accent);color:var(--color-accent-800)}
+.res.down b{color:var(--color-accent-800)}
+.mfoot{margin-top:auto;padding:10px 16px;border-top:2px solid var(--color-divider);font-size:10.5px;color:var(--soft);line-height:1.5}
+.mfoot b{color:var(--color-text);font-weight:700}
+.mfoot .lbl,.ddl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:700;display:block;margin-bottom:4px}
+
+/* — history timeline — */
+.phase{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-bg);background:var(--color-text);padding:5px 12px;display:inline-block;margin:var(--space-6) 0 var(--space-3)}
+.tl{display:flex;flex-direction:column;gap:var(--space-3)}
+.tlrow{display:grid;grid-template-columns:118px 1fr;gap:var(--space-4);background:var(--color-surface);border:1px solid var(--line);padding:14px 18px 14px 22px;position:relative}
+.tlrow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+.tlrow.dn::before{background:var(--color-accent)}
+.tlrow.up::before{background:var(--up)}
+.tlrow.nt::before{background:var(--color-neutral-400)}
+.tlrow.big{border:2px solid var(--color-accent)}
+@media(max-width:640px){.tlrow{grid-template-columns:1fr;gap:6px}}
+.tld{font-size:11.5px;font-weight:700;color:var(--soft)}
+.tlpct{font-family:var(--font-heading);font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:2px;line-height:1.15}
+.tlrow.dn .tlpct{color:var(--color-accent)}
+.tlrow.up .tlpct{color:var(--up)}
+.tlrow.nt .tlpct{color:var(--faint);font-size:14px}
+.tlt{font-family:var(--font-heading);font-weight:800;font-size:15.5px;margin-bottom:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;line-height:1.25;letter-spacing:-.01em}
+.mk{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 7px;background:transparent;color:var(--soft);border:1px solid var(--hair);white-space:nowrap}
+.mk.rec{border-color:var(--color-accent);color:var(--color-accent)}
+.tlw{font-size:13px;color:var(--soft);line-height:1.62}
+.tlw b{color:var(--color-text);font-weight:700}
+.lesson{margin-top:10px;padding:8px 12px;background:var(--color-bg);border-left:3px solid var(--color-accent);font-size:12.5px;color:var(--color-text);line-height:1.55}
+.lesson b{font-weight:800}
+
+/* — factor types & groups — */
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:var(--space-3);margin-top:var(--space-2)}
+.ty{background:var(--color-surface);border:1px solid var(--line);padding:15px 17px}
+.ty h5{font-family:var(--font-heading);margin:0 0 6px;font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:8px}
+.ty .tn{font-size:11px;font-weight:800;color:var(--color-bg);background:var(--color-text);width:22px;height:22px;display:grid;place-items:center;flex:none}
+.ty p{margin:0;font-size:12.5px;color:var(--soft);line-height:1.6}
+.ty p b{color:var(--color-text);font-weight:700}
+.ty .ex{display:block;margin-top:6px;font-size:11.5px;color:var(--faint)}
+.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
+@media(max-width:1180px){.groups{grid-template-columns:1fr}}
+.group{background:var(--color-surface);border:1px solid var(--line)}
+.gh{display:flex;align-items:center;gap:11px;padding:13px 18px;border-bottom:2px solid var(--color-divider)}
+.gh .gi{font-size:13px;font-weight:800;color:var(--color-bg);background:var(--color-accent);width:26px;height:26px;display:grid;place-items:center}
+.gh h3{font-family:var(--font-heading);margin:0;font-size:15.5px;font-weight:800}
+.gh .gsub{color:var(--soft);font-weight:400;font-size:12.5px}
+.gitems{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:700px){.gitems{grid-template-columns:1fr}}
+.fi{padding:14px 17px;border-top:1px solid var(--hair)}
+.gitems .fi:nth-child(-n+2){border-top:none}
+@media(max-width:700px){.gitems .fi:nth-child(2){border-top:1px solid var(--hair)}}
+.gitems .fi:nth-child(odd){border-right:1px solid var(--hair)}
+@media(max-width:700px){.gitems .fi:nth-child(odd){border-right:none}}
+.fi .fn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:800;font-family:var(--font-heading);font-size:14px;margin-bottom:5px}
+.fi .freq{font-size:10.5px;color:var(--accent);border:1px solid var(--color-accent);padding:1px 6px;white-space:nowrap;font-weight:700}
+.fi p{margin:0;font-size:12.5px;color:var(--soft);line-height:1.55}
+.fi b{color:var(--color-text);font-weight:700}
+
+/* — recurring poster block (the red field) — */
+.recur{background:var(--color-accent);color:var(--color-bg);padding:22px 24px 12px}
+.recur .rt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-200);margin:0 0 6px;font-weight:700}
+.recur .rti{font-size:14px;color:var(--color-accent-100);margin:0 0 var(--space-4)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 24px}
+.rrow{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-top:1px solid color-mix(in srgb,#fff 40%,transparent)}
+.rrow .rd{width:8px;height:8px;margin-top:6px;flex:none;background:var(--color-bg)}
+.rrow .rl{font-weight:700;font-size:13.5px}
+.rrow .rw{font-size:11px;color:var(--color-accent-200);margin-top:1px}
+
+/* — legend / glossary / note — */
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-top:var(--space-2)}
+@media(max-width:900px){.legend{grid-template-columns:1fr}}
+.lg{background:var(--color-surface);border:1px solid var(--line);padding:17px 19px}
+.lg h4{margin:0 0 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.lgrow{display:flex;align-items:baseline;gap:10px;font-size:13px;padding:5px 0;line-height:1.5}
+.dot{width:10px;height:10px;flex:none;transform:translateY(2px)}
+.dot.h{background:var(--color-accent)} .dot.m{background:var(--color-neutral-600)}
+.dot.l{background:var(--color-neutral-400)} .dot.e{background:var(--color-neutral-900)}
+.lgrow b{font-weight:700}.lgrow span{color:var(--soft)}
+.gloss dt{font-family:var(--font-heading);font-weight:800;font-size:13.5px;margin-top:10px}
+.gloss dt:first-child{margin-top:0}
+.gloss dd{margin:2px 0 0;font-size:12.5px;color:var(--soft);line-height:1.55}
+.note{margin-top:var(--space-6);padding:18px 22px;background:var(--color-surface);border-left:5px solid var(--color-accent);font-size:13.5px;line-height:1.65}
+.note b{color:var(--color-accent-700)}
+
+/* — dashboard — */
+.dash{background:var(--color-surface);border:1px solid var(--line);padding:20px 22px 18px}
+.dashtop{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:var(--space-4);padding-bottom:var(--space-2);border-bottom:2px solid var(--color-divider)}
+.dashtop .dt{font-family:var(--font-heading);font-size:16px;font-weight:800}
+.dashtop .ds{font-size:11px;color:var(--faint);letter-spacing:.06em}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(236px,1fr));gap:var(--space-3)}
+.card{border:1px solid var(--line);padding:13px 15px 11px;background:var(--color-bg);gap:0}
+.card .cl{font-size:12px;font-weight:700;color:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.card .cl .cx{font-size:9px;color:var(--faint);border:1px solid var(--hair);padding:1px 5px;font-weight:700;letter-spacing:.06em}
+.card .cv{font-family:var(--font-heading);font-size:27px;font-weight:700;letter-spacing:-.025em;margin-top:6px;line-height:1.15;color:var(--color-text)}
+.card .cc{font-size:11.5px;font-weight:700;margin-top:3px}
+.card .cc.up{color:var(--up)} .card .cc.dn{color:var(--color-accent)} .card .cc.nt{color:var(--soft)}
+.card .spark{width:100%;height:52px;display:block;margin-top:10px;overflow:visible}
+.card.up .spark{color:var(--up)} .card.dn .spark{color:var(--color-accent)} .card.nt .spark{color:var(--color-neutral-500)}
+.card .spark polyline{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.card .spark polygon{fill:currentColor;opacity:.1;stroke:none}
+.card .spark circle{fill:currentColor;stroke:var(--color-bg);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.card .sax{position:relative;height:15px;margin-top:5px;border-top:1px solid var(--hair)}
+.card .sax span{position:absolute;top:6px;transform:translateX(-50%);white-space:nowrap;font-size:9px;letter-spacing:.06em;color:var(--faint);font-weight:600;font-variant-numeric:tabular-nums}
+.card .sax span.first{transform:none}
+.card .sax span.last{transform:translateX(-100%)}
+.card .sax span::before{content:"";position:absolute;left:50%;top:-6px;width:1px;height:4px;background:var(--color-neutral-400)}
+.card .sax span.first::before{left:0}
+.card .sax span.last::before{left:auto;right:0}
+.card .cm{font-size:10.5px;color:var(--faint);margin-top:7px;line-height:1.45}
+.card .cm b{color:var(--soft);font-weight:700}
+
+/* — d-day strip — */
+.dday{margin-top:var(--space-4);border-top:1px solid var(--hair);padding-top:14px}
+.ddrow{display:flex;flex-wrap:wrap;gap:8px}
+.ddi{display:flex;align-items:baseline;gap:9px;border:1px solid var(--line);padding:7px 12px;background:var(--color-bg)}
+.ddi .ddn{font-family:var(--font-heading);font-size:13px;font-weight:800;color:var(--color-accent);letter-spacing:-.01em}
+.ddi .ddt{font-size:12px;font-weight:600;color:var(--soft);white-space:nowrap}
+.ddi.hot{background:var(--color-accent);border-color:var(--color-accent)}
+.ddi.hot .ddn,.ddi.hot .ddt{color:var(--color-bg)}
+
+/* — provider banner — */
+.banner{background:var(--color-text);color:var(--color-bg);padding:14px clamp(16px,2.4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.banner .bl{font-size:clamp(12px,1.4vw,16px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px;line-height:1.25}
+.banner .bl .mark{width:10px;height:10px;background:var(--color-accent);flex:none}
+.banner .bl .lt{color:var(--color-neutral-400);font-weight:700}
+.banner .br{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.banner .br .rl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-400);font-weight:700}
+.banner .br .rd{font-size:clamp(14px,1.5vw,18px);font-weight:800;letter-spacing:.02em;color:var(--color-bg)}
+.banner.top{margin-bottom:var(--space-6)}
+.banner.bottom{margin-top:var(--space-8);justify-content:center;text-align:center}
+.banner.bottom .bl{justify-content:center}
+a{color:var(--color-accent)}
+a:hover{color:var(--color-accent-700)}
+footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--hair);font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
 </style></head><body>
 
 <div class="wrap">
 
   <div class="banner top">
-    <div class="bl"><span class="mark"></span><span><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="bl"><span class="mark"></span><span style="color:#FA0909"><span class="lt">Provided by</span> SK Asset Management Office</span></div>
     <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.02</span></div>
   </div>
 
@@ -264,77 +235,15 @@
   </header>
 
   <div class="sec-head"><span class="n">NOW</span><h2>시장 현황 — 지금 어디에 있나</h2></div>
-  <p class="sec-sub">마지막 거래일 <b>2026년 7월 31일(금)</b> 종가 기준. 미니 그래프는 <b>최근 1개월 흐름</b>입니다. 색은 전일 대비 방향(오름 초록·내림 빨강)이며, 공포지수·환율은 방향이 곧 좋고 나쁨을 뜻하지 않아 회색으로 표시했습니다.</p>
+  <p class="sec-sub">마지막 거래일 <b>2026년 7월 31일(금)</b> 종가 기준. 미니 그래프는 <b>최근 3개월 흐름</b>입니다. 색은 전일 대비 방향(오름 초록·내림 빨강)이며, 환율·유가·금은 방향이 곧 좋고 나쁨을 뜻하지 않아 회색으로 표시했습니다.</p>
 
   <section class="dash">
     <div class="dashtop">
-      <div class="dt">주요 지표 5종</div>
-      <div class="ds">2026.07.31 CLOSE · 1M TREND</div>
+      <div class="dt">주요 지표 8종</div>
+      <div class="ds">2026.07.31 CLOSE · 3M TREND</div>
     </div>
 
-    <div class="cards">
-
-      <div class="card up">
-        <div class="cl"><span>코스피</span><span class="cx">KOSPI</span></div>
-        <div class="cv">6,595.45</div>
-        <div class="cc up">▲ 1,001.89 (+17.91%)</div>
-        <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none">
-          <polygon points="0,28 0,4 4.76,9.32 9.52,5.75 14.29,6.05 19.05,9.25 23.81,12.58 28.57,12.21 33.33,10.72 38.1,16.15 42.86,15.74 47.62,12.27 52.38,16.04 57.14,18.51 61.9,16.63 66.67,16.22 71.43,13.8 76.19,17.09 80.95,16.56 85.71,22.51 90.48,25.43 95.24,26 100,17.87 100,28"/>
-          <polyline points="0,4 4.76,9.32 9.52,5.75 14.29,6.05 19.05,9.25 23.81,12.58 28.57,12.21 33.33,10.72 38.1,16.15 42.86,15.74 47.62,12.27 52.38,16.04 57.14,18.51 61.9,16.63 66.67,16.22 71.43,13.8 76.19,17.09 80.95,16.56 85.71,22.51 90.48,25.43 95.24,26 100,17.87"/>
-          <circle cx="100" cy="17.87" r="2"/>
-        </svg>
-        <div class="cm">1개월 <b>-20.6%</b> · 역대 최대 상승률로 마감</div>
-      </div>
-
-      <div class="card up">
-        <div class="cl"><span>나스닥</span><span class="cx">IXIC</span></div>
-        <div class="cv">25,373.85</div>
-        <div class="cc up">▲ 251.67 (+1.00%)</div>
-        <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none">
-          <polygon points="0,28 0,6.89 4.76,9.37 9.52,5.92 14.29,9.54 19.05,8.92 23.81,4.89 28.57,4 33.33,8.89 38.1,6.09 42.86,4.15 47.62,8.78 52.38,13.11 57.14,13.26 61.9,9.32 66.67,11.07 71.43,17.69 76.19,19.62 80.95,20.15 85.71,20.81 90.48,26 95.24,17.87 100,14.86 100,28"/>
-          <polyline points="0,6.89 4.76,9.37 9.52,5.92 14.29,9.54 19.05,8.92 23.81,4.89 28.57,4 33.33,8.89 38.1,6.09 42.86,4.15 47.62,8.78 52.38,13.11 57.14,13.26 61.9,9.32 66.67,11.07 71.43,17.69 76.19,19.62 80.95,20.15 85.71,20.81 90.48,26 95.24,17.87 100,14.86"/>
-          <circle cx="100" cy="14.86" r="2"/>
-        </svg>
-        <div class="cm">1개월 <b>-2.6%</b> · 직전일(현지 7/30) +2.78% 급등</div>
-      </div>
-
-      <div class="card up">
-        <div class="cl"><span>필라델피아 반도체</span><span class="cx">SOX</span></div>
-        <div class="cv">11,311.08</div>
-        <div class="cc up">▲ 8.09 (+0.07%)</div>
-        <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none">
-          <polygon points="0,28 0,4 4.76,9.5 9.52,7.43 14.29,11.97 19.05,9.89 23.81,6.98 28.57,6.92 33.33,11.61 38.1,9.23 42.86,11.23 47.62,15.25 52.38,16.71 57.14,16.19 61.9,11.55 66.67,11.14 71.43,11.64 76.19,15.62 80.95,17.62 85.71,21.55 90.48,26 95.24,19.52 100,19.46 100,28"/>
-          <polyline points="0,4 4.76,9.5 9.52,7.43 14.29,11.97 19.05,9.89 23.81,6.98 28.57,6.92 33.33,11.61 38.1,9.23 42.86,11.23 47.62,15.25 52.38,16.71 57.14,16.19 61.9,11.55 66.67,11.14 71.43,11.64 76.19,15.62 80.95,17.62 85.71,21.55 90.48,26 95.24,19.52 100,19.46"/>
-          <circle cx="100" cy="19.46" r="2"/>
-        </svg>
-        <div class="cm">1개월 <b>-15.3%</b> · 7/29 저점에서 이틀 만에 +8% 반등</div>
-      </div>
-
-      <div class="card nt">
-        <div class="cl"><span>공포지수</span><span class="cx">VIX</span></div>
-        <div class="cv">15.99</div>
-        <div class="cc nt">▼ 1.10 (-6.44%)</div>
-        <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none">
-          <polygon points="0,28 0,20.45 4.55,19.9 9.09,21.62 13.64,23.89 18.18,21.7 22.73,18.69 27.27,22.83 31.82,26 36.36,17.68 40.91,20.26 45.45,23.5 50,19.36 54.55,11.39 59.09,11.85 63.64,18.11 68.18,19.71 72.73,11.66 77.27,12.13 81.82,11.78 86.36,13.57 90.91,4 95.45,17.95 100,22.25 100,28"/>
-          <polyline points="0,20.45 4.55,19.9 9.09,21.62 13.64,23.89 18.18,21.7 22.73,18.69 27.27,22.83 31.82,26 36.36,17.68 40.91,20.26 45.45,23.5 50,19.36 54.55,11.39 59.09,11.85 63.64,18.11 68.18,19.71 72.73,11.66 77.27,12.13 81.82,11.78 86.36,13.57 90.91,4 95.45,17.95 100,22.25"/>
-          <circle cx="100" cy="22.25" r="2"/>
-        </svg>
-        <div class="cm"><b>20 아래 = 안정 구간.</b> 7/29 20.66(공포) → 급속 진정</div>
-      </div>
-
-      <div class="card nt">
-        <div class="cl"><span>원/달러</span><span class="cx">USD/KRW</span></div>
-        <div class="cv">1,420.60</div>
-        <div class="cc nt">▼ 21.68 (-1.50%)</div>
-        <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none">
-          <polygon points="0,28 0,5.69 4.35,4.54 8.7,4 13.04,5.62 17.39,7.49 21.74,7.86 26.09,9.36 30.43,12.13 34.78,11.7 39.13,12.94 43.48,13.07 47.83,14.72 52.17,15 56.52,16.23 60.87,14.8 65.22,16.88 69.57,16.09 73.91,16.77 78.26,17.04 82.61,19.73 86.96,18.65 91.3,20.54 95.65,22.36 100,26 100,28"/>
-          <polyline points="0,5.69 4.35,4.54 8.7,4 13.04,5.62 17.39,7.49 21.74,7.86 26.09,9.36 30.43,12.13 34.78,11.7 39.13,12.94 43.48,13.07 47.83,14.72 52.17,15 56.52,16.23 60.87,14.8 65.22,16.88 69.57,16.09 73.91,16.77 78.26,17.04 82.61,19.73 86.96,18.65 91.3,20.54 95.65,22.36 100,26"/>
-          <circle cx="100" cy="26" r="2"/>
-        </svg>
-        <div class="cm">1개월 <b>-7.9%</b> · 숫자가 내리면 <b>원화 강세</b>(외국인 유입)</div>
-      </div>
-
-    </div>
+    <div class="cards" id="cards"></div>
 
     <div class="dday">
       <span class="ddl">다음 관문 · 2026.08.02 기준</span>
@@ -567,20 +476,20 @@
 
       <div class="tlrow nt">
         <div><div class="tld">2026.06.19</div><div class="tlpct">고점</div></div>
-        <div><div class="tlt">코스피 9,385 — 사상 최고권<span class="mk">🇰🇷 한국</span></div>
+        <div><div class="tlt">코스피 9,385 — 사상 최고권<span class="mk">KR 한국</span></div>
           <div class="tlw">AI·반도체 랠리가 정점을 찍은 날. 이후 <b>3주 만에 -22.8%</b>까지 밀리며 조정 국면으로 전환. 이번 사이클의 <b>기준 고점</b>입니다.</div></div>
       </div>
 
       <div class="tlrow up">
         <div><div class="tld">2026.07.07</div><div class="tlpct">서프라이즈</div></div>
-        <div><div class="tlt">삼성전자 2Q 잠정 — 영업이익 89.4조 역대 최대<span class="mk">🇰🇷 한국</span></div>
+        <div><div class="tlt">삼성전자 2Q 잠정 — 영업이익 89.4조 역대 최대<span class="mk">KR 한국</span></div>
           <div class="tlw">매출 171조, 영업이익 <b>89.4조</b>로 컨센(85~86조)을 크게 웃돈 어닝 서프라이즈. 그런데 <b>6거래일 뒤 시장은 -8.95% 폭락</b>했습니다.</div>
           <div class="lesson"><b>배운 것 ·</b> 개별 기업 실적이 아무리 좋아도 <b>업종 전체의 밸류에이션·수급이 무너지면 못 버팁니다.</b> 좋은 실적 ≠ 주가 상승.</div></div>
       </div>
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.13 (월)</div><div class="tlpct">-8.95%</div></div>
-        <div><div class="tlt">'검은 월요일' — 서킷브레이커 발동<span class="mk">🇰🇷 한국</span></div>
+        <div><div class="tlt">'검은 월요일' — 서킷브레이커 발동<span class="mk">KR 한국</span></div>
           <div class="tlw">코스피 6,806.93. SK하이닉스 <b>-15.4%</b>, 삼성전자 <b>-10.7%</b>. 코스닥도 -4.55%.<br>
           <b>왜 —</b> ① 미국에서 마이클 버리가 <b>나스닥100·SOXX·마이크론 숏 포지션</b>을 공시 ② 반도체지수 PER 74배·BofA 버블지표 0.91로 <b>과열 경고가 누적</b>돼 있던 상태 ③ 매도가 매도를 부르는 투매가 겹침.</div>
           <div class="lesson"><b>배운 것 ·</b> 과열 지표가 쌓여 있을 땐 <b>작은 촉매 하나로 한 방에 무너집니다.</b> 경고는 대개 미리 쌓여 있습니다.</div></div>
@@ -588,20 +497,20 @@
 
       <div class="tlrow up">
         <div><div class="tld">2026.07.14 (화)</div><div class="tlpct">+0.73%</div></div>
-        <div><div class="tlt">美 6월 CPI 예상 하회 → 안도 반등<span class="mk">🇺🇸 미국</span><span class="mk">🇰🇷 한국</span></div>
+        <div><div class="tlt">美 6월 CPI 예상 하회 → 안도 반등<span class="mk">US 미국</span><span class="mk">KR 한국</span></div>
           <div class="tlw">헤드라인 <b>+3.5%</b>(예상 3.8%), 근원 2.6%로 6년 만의 최대 둔화폭. S&amp;P500 +0.6%, 코스피 +0.73%, 금·은 동반 급등.</div>
           <div class="lesson"><b>배운 것 ·</b> 이 반등은 <b>하루짜리였습니다.</b> 지표 하나에 튀어오른 날을 추세 전환으로 착각하면 안 됩니다.</div></div>
       </div>
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.15</div><div class="tlpct">유가 +9%</div></div>
-        <div><div class="tlt">중동 호르무즈 긴장 → 유가 급등<span class="mk">🌍 글로벌</span></div>
+        <div><div class="tlt">중동 호르무즈 긴장 → 유가 급등<span class="mk">GL 글로벌</span></div>
           <div class="tlw">WTI 하루 +9%(주간 +11%). <b>왜 위험한가 —</b> 유가 ↑ → 물가 ↑ → 금리 인하 기대 후퇴 → 주식엔 역풍. 애써 좋아진 CPI 효과를 되돌릴 수 있는 경로입니다.</div></div>
       </div>
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.17 (금)</div><div class="tlpct">SOX -5.5%</div></div>
-        <div><div class="tlt">中 Kimi K3 공개 — 'DeepSeek 쇼크 시즌2'<span class="mk">🇺🇸 미국</span><span class="mk">🌍 글로벌</span></div>
+        <div><div class="tlt">中 Kimi K3 공개 — 'DeepSeek 쇼크 시즌2'<span class="mk">US 미국</span><span class="mk">GL 글로벌</span></div>
           <div class="tlw">중국 Moonshot AI가 2.8조 파라미터 오픈웨이트 모델을 <b>토큰당 $3</b>(경쟁 모델 $10)에 공개. 필라델피아 반도체지수 주간 <b>-5.46%</b>, 니케이 -4.03%.<br>
           <b>왜 —</b> "미국 AI 우위가 흔들리고, 비싼 GPU를 그렇게 많이 안 사도 되는 것 아니냐"는 의심이 AI 밸류체인 전체를 때림.</div>
           <div class="lesson"><b>배운 것 ·</b> 이 사이클의 최대 리스크는 금리가 아니라 <b>AI 경쟁 구도 뉴스</b>였습니다.</div></div>
@@ -609,14 +518,14 @@
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.20 (월)</div><div class="tlpct">-4.46%</div></div>
-        <div><div class="tlt">국내 투매 지속 — 코스닥 연중 최저<span class="mk">🇰🇷 한국</span></div>
+        <div><div class="tlt">국내 투매 지속 — 코스닥 연중 최저<span class="mk">KR 한국</span></div>
           <div class="tlw">코스피 6,516, 코스닥 <b>-5.33%</b>. 오른 종목 1 : 내린 종목 8의 무차별 투매.<br>
           <b>특징 —</b> 아침엔 -0.5%로 조용했는데 <b>장중에 낙폭이 확대</b>됐습니다. 오전 시세만 보고 판단하면 안 되는 이유.</div></div>
       </div>
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.22~23</div><div class="tlpct">셀 더 뉴스</div></div>
-        <div><div class="tlt">알파벳 2Q 실적 — 좋은데 떨어졌다<span class="mk">🇺🇸 미국</span></div>
+        <div><div class="tlt">알파벳 2Q 실적 — 좋은데 떨어졌다<span class="mk">US 미국</span></div>
           <div class="tlw">실적 자체는 무난. 그런데 <b>AI 설비투자(캡엑스) 대폭 확대</b> 가이던스에 "돈을 그렇게 쓰면 이익은?"이라는 반응으로 하락.<br>
           <b>맥락 —</b> 빅테크 4사의 2026년 캡엑스 합계가 약 <b>7,250억 달러</b>. 시장은 실적 숫자보다 이 계획에 더 민감해졌습니다.</div>
           <div class="lesson"><b>배운 것 ·</b> 실적 발표는 <b>숫자보다 가이던스</b>. 기대가 이미 주가에 반영돼 있으면 좋은 뉴스에도 떨어집니다.</div></div>
@@ -624,13 +533,13 @@
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.24 (금)</div><div class="tlpct">-5.72%</div></div>
-        <div><div class="tlt">'검은 금요일' — 메모리 동반 급락<span class="mk">🇰🇷 한국</span><span class="mk">🇺🇸 미국</span></div>
+        <div><div class="tlt">'검은 금요일' — 메모리 동반 급락<span class="mk">KR 한국</span><span class="mk">US 미국</span></div>
           <div class="tlw">코스피 6,690.62. 마이크론 <b>-6.99%</b>, 샌디스크 <b>-10.79%</b>. 7/22 반등이 <b>데드캣(잠깐 튄 것)이었음이 확인</b>된 날.</div></div>
       </div>
 
       <div class="tlrow dn big">
         <div><div class="tld">2026.07.28 (화)</div><div class="tlpct">-10.84%</div></div>
-        <div><div class="tlt">사이드카 → 서킷브레이커, 올해 8번째<span class="mk">🇰🇷 한국</span><span class="mk rec">역대급</span></div>
+        <div><div class="tlt">사이드카 → 서킷브레이커, 올해 8번째<span class="mk">KR 한국</span><span class="mk rec">역대급</span></div>
           <div class="tlw">코스피 6,023.66. 09:06 매도 사이드카, 10:13 <b>서킷브레이커</b> 발동. 7/13(-8.95%)보다 큰 낙폭.<br>
           <b>왜 —</b> ① 중국 <b>CXMT(창신메모리) 상장</b>으로 중국 반도체 굴기가 부각 ② 미국에서 <b>엔비디아·AI 기업 순환출자 의혹</b>이 제기되며 반도체주 급락 ③ 삼성전자·SK하이닉스 <b>단일종목 레버리지 상품</b>에 자금이 쏠려 있어 하락이 증폭 ④ 외국인 매도.</div>
           <div class="lesson"><b>배운 것 ·</b> <b>레버리지가 몰린 시장은 하락도 증폭</b>됩니다. 같은 악재라도 수급 구조가 나쁘면 낙폭이 2배가 됩니다.</div></div>
@@ -638,7 +547,7 @@
 
       <div class="tlrow dn">
         <div><div class="tld">2026.07.29 (수)</div><div class="tlpct">-5.98%</div></div>
-        <div><div class="tlt">FOMC 동결 + 하이닉스 사상 최대 실적, 그래도 하락<span class="mk">🇰🇷 한국</span><span class="mk">🇺🇸 미국</span></div>
+        <div><div class="tlt">FOMC 동결 + 하이닉스 사상 최대 실적, 그래도 하락<span class="mk">KR 한국</span><span class="mk">US 미국</span></div>
           <div class="tlw">연준은 기준금리를 <b>3.50~3.75%로 5회 연속 동결</b>(9:3). 워시 의장은 "인플레를 잡는 데 주저하지 않겠다"고 발언.<br>
           같은 날 SK하이닉스는 2분기 매출 79.3조 · <b>영업이익 60.5조(전년비 +557%, 영업이익률 76%)</b>로 <b>분기 사상 최대</b>를 발표. 그런데도 시장 기대치(64~70조)에 못 미쳐 주가는 하락. 코스피는 장중 5,262까지 밀림.</div>
           <div class="lesson"><b>배운 것 ·</b> 사상 최대 실적도 <b>'기대치 대비'로 평가</b>됩니다. 절대 숫자가 아니라 컨센서스와의 격차가 주가를 정합니다.</div></div>
@@ -646,7 +555,7 @@
 
       <div class="tlrow up big">
         <div><div class="tld">2026.07.31 (금)</div><div class="tlpct">+17.91%</div></div>
-        <div><div class="tlt">역대 최대 폭등 — 하루 만에 1,000포인트<span class="mk">🇰🇷 한국</span><span class="mk rec">사상 최대</span></div>
+        <div><div class="tlt">역대 최대 폭등 — 하루 만에 1,000포인트<span class="mk">KR 한국</span><span class="mk rec">사상 최대</span></div>
           <div class="tlw">코스피 6,595.45(+1,001.89p). <b>상승률·상승폭 모두 역대 최대.</b> 삼성전자 <b>+26.81%</b>, SK하이닉스 <b>+29.95% 상한가</b>(사상 첫 상한가). 상승 775 : 하락 127, 상한가 12종목.<br>
           <b>왜 —</b> ① 전날 <b>마이크로소프트 깜짝 실적</b>(Azure +43%)으로 "AI 투자가 실제 돈이 된다"가 확인되며 미국 반도체 폭등 ② 아마존 <b>AWS +37%</b>(18분기 만 최고), 애플 매출 1,094억 달러로 역대 최대 → 나스닥 +2.78% ③ <b>외국인이 역대 최대 7조 원 순매수</b> ④ "7월의 공포가 과도했다"는 인식 확산.</div>
           <div class="lesson"><b>배운 것 ·</b> 7/14·7/22 반등은 지표·기대에 기댄 <b>데드캣</b>이었지만, 7/31 반등은 <b>실적이라는 근거</b>가 있었습니다. 반등을 볼 때는 크기보다 <b>"무엇이 근거인가"</b>를 봐야 합니다.</div></div>
@@ -656,7 +565,7 @@
 
     <div class="tlrow nt" style="margin-top:14px">
       <div><div class="tld">사이클 요약</div><div class="tlpct">6/19~7/31</div></div>
-      <div><div class="tlt">6주 동안 벌어진 일<span class="mk">🇰🇷 한국</span></div>
+      <div><div class="tlt">6주 동안 벌어진 일<span class="mk">KR 한국</span></div>
         <div class="tlw">고점 <b>9,385</b>(6/19) → 저점 <b>5,593</b>(7/30) → <b>6,595</b>(7/31). 고점 대비 최대 <b>-40%</b>까지 빠졌다가 마지막 하루에 <b>+17.9%</b>를 회복했습니다. 이 6주 안에 서킷브레이커가 세 번(7/13·7/28 등) 발동됐고, 사상 최대 폭락일과 사상 최대 폭등일이 <b>사흘 간격</b>으로 나왔습니다.<br>
         <b>관통한 질문 하나 —</b> "AI에 쏟아붓는 돈이 실제 이익으로 돌아오는가?" 7월 내내 <b>아니다</b> 쪽에 베팅했다가, 마지막 주 빅테크 실적으로 <b>그렇다</b> 쪽으로 급선회한 한 달이었습니다.</div></div>
     </div>
@@ -767,9 +676,9 @@
     <div class="lg">
       <h4>표기 규칙</h4>
       <div class="lgrow"><span class="dot h"></span><span><b>빨강</b> — 금리 결정·급등락 등 지수를 크게 흔든 일정</span></div>
-      <div class="lgrow"><span class="dot m"></span><span><b>주황</b> — 만기·수급·계절 이벤트(변동성 주의)</span></div>
-      <div class="lgrow"><span class="dot e"></span><span><b>보라</b> — 실적발표</span></div>
-      <div class="lgrow"><span class="dot l"></span><span><b>초록</b> — 참고용 경향</span></div>
+      <div class="lgrow"><span class="dot m"></span><span><b>진회색</b> — 만기·수급·계절 이벤트(변동성 주의)</span></div>
+      <div class="lgrow"><span class="dot e"></span><span><b>검정</b> — 실적발표</span></div>
+      <div class="lgrow"><span class="dot l"></span><span><b>연회색</b> — 참고용 경향</span></div>
       <div class="lgrow"><span style="width:11px;flex:none"></span><span><b>≈</b> — 예년 패턴 기반 <b>추정일</b>(확정 발표 시 갱신)</span></div>
       <div class="lgrow"><span style="width:11px;flex:none"></span><span><b>회색 줄 + ✓상자</b> — 이미 지난 일정과 그 결과</span></div>
     </div>
@@ -795,7 +704,7 @@
   </div>
 
   <div class="note">
-    <b>이 자료 쓰는 법.</b> 빨강·보라가 몰린 주간이 변동성 큰 구간입니다 — 특히 <b>9·12·3·6월(만기+FOMC 겹침)</b>과 <b>실적 슈퍼위크(7·10·1·4월 말)</b>. 2026년 7월이 보여줬듯, 이 구간엔 <b>사상 최대 폭락과 사상 최대 폭등이 며칠 간격으로</b> 나올 수도 있습니다. 다가오는 가장 큰 관문은 <b>8/21 잭슨홀</b>과 <b>8/26 엔비디아 실적</b>입니다.
+    <b>이 자료 쓰는 법.</b> 빨강·검정 표시가 몰린 주간이 변동성 큰 구간입니다 — 특히 <b>9·12·3·6월(만기+FOMC 겹침)</b>과 <b>실적 슈퍼위크(7·10·1·4월 말)</b>. 2026년 7월이 보여줬듯, 이 구간엔 <b>사상 최대 폭락과 사상 최대 폭등이 며칠 간격으로</b> 나올 수도 있습니다. 다가오는 가장 큰 관문은 <b>8/21 잭슨홀</b>과 <b>8/26 엔비디아 실적</b>입니다.
   </div>
 
   <footer>
@@ -809,4 +718,52 @@
   </div>
 
 </div>
+
+<script>
+/* 지표 카드 렌더러 — indicators.json 의 asOf / months / ticks / items 만 갈아끼우면
+   그래프와 가로축 눈금이 함께 다시 그려집니다. 각 series 는 asOf 기준 과거 months 개월을
+   균등 간격으로 나눈 값의 배열(개수는 자유). */
+function renderIndicators(D){
+  var end=new Date(D.asOf+'T00:00:00');
+  var start=new Date(end); start.setMonth(start.getMonth()-(D.months||3));
+  var span=end-start, nT=Math.max(2,D.ticks||4);
+  function md(dt){var m=('0'+(dt.getMonth()+1)).slice(-2),d=('0'+dt.getDate()).slice(-2);return m+'.'+d;}
+  var ticks=[];
+  for(var i=0;i<nT;i++){var f=i/(nT-1);ticks.push({f:f,label:md(new Date(start.getTime()+span*f))});}
+  var axis=ticks.map(function(t,i){
+    var cls=i===0?' first':(i===nT-1?' last':'');
+    return '<span class="t'+cls+'" style="left:'+(t.f*100).toFixed(1)+'%">'+t.label+'</span>';
+  }).join('');
+  document.getElementById('cards').innerHTML=D.items.map(function(it){
+    var s=it.series||it.s,mn=Math.min.apply(null,s),mx=Math.max.apply(null,s),r=(mx-mn)||1;
+    var pts=s.map(function(v,i){
+      return (i*(100/(s.length-1))).toFixed(2)+','+(26-((v-mn)/r)*22).toFixed(2);
+    });
+    var last=pts[pts.length-1].split(',');
+    return '<div class="card '+it.dir+'">'
+      +'<div class="cl"><span>'+it.name+'</span><span class="cx">'+it.code+'</span></div>'
+      +'<div class="cv">'+it.value+'</div>'
+      +'<div class="cc '+it.dir+'">'+it.change+'</div>'
+      +'<svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none">'
+      +'<polygon points="0,28 '+pts.join(' ')+' 100,28"/>'
+      +'<polyline points="'+pts.join(' ')+'"/>'
+      +'<circle cx="'+last[0]+'" cy="'+last[1]+'" r="2"/></svg>'
+      +'<div class="sax">'+axis+'</div>'
+      +'<div class="cm">'+D.months+'개월 흐름 · '+it.note+'</div>'
+      +'</div>';
+  }).join('');
+  var ds=document.querySelector('.dashtop .ds');
+  if(ds) ds.textContent=D.asOf.replace(/-/g,'.')+' CLOSE · '+D.months+'M TREND';
+  var sub=document.querySelector('.dash-asof');
+  if(sub) sub.textContent=D.asOf.replace(/-/g,'.');
+}
+fetch('indicators.json',{cache:'no-store'}).then(function(r){return r.json();}).then(renderIndicators)
+  .catch(function(e){
+    document.getElementById('cards').innerHTML=
+      '<div class="card nt" style="grid-column:1/-1"><div class="cl"><span>데이터를 불러오지 못했습니다</span></div>'
+      +'<div class="cm">indicators.json 을 읽을 수 없습니다. 이 페이지는 웹서버(예: GitHub Pages)에서 열어야 합니다 — '
+      +'로컬 파일로 직접 열면 브라우저가 fetch 를 차단합니다.</div></div>';
+    console.error(e);
+  });
+</script>
 </body></html>
