@@ -167,7 +167,10 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .dashtop{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:var(--space-4);padding-bottom:var(--space-2);border-bottom:2px solid var(--color-divider)}
 .dashtop .dt{font-family:var(--font-heading);font-size:16px;font-weight:800}
 .dashtop .ds{font-size:11px;color:var(--faint);letter-spacing:.06em}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:var(--space-3)}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-3)}
+@media(max-width:1240px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cards{grid-template-columns:1fr}}
 .card{border:1px solid var(--line);padding:13px 15px 11px;background:var(--color-bg);gap:0}
 .card .cl{font-size:12px;font-weight:700;color:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:6px}
 .card .cl .cx{font-size:9px;color:var(--faint);border:1px solid var(--hair);padding:1px 5px;font-weight:700;letter-spacing:.06em}
@@ -248,12 +251,12 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
   </header>
 
   <div class="sec-head"><span class="n">NOW</span><h2>시장 현황 — 지금 어디에 있나</h2></div>
-  <p class="sec-sub">마지막 거래일 <b>2026년 7월 31일(금)</b> 종가 기준. 카드마다 그래프가 두 개입니다 — 왼쪽 회색 <b>1Y</b>는 1년 큰 흐름, 오른쪽 진한 <b>3M</b>은 최근 3개월 흐름. 두 그래프는 <b>각자 자기 구간의 최고·최저에 맞춰 그려지므로</b> 높낮이를 서로 비교하지 마시고 모양만 보십시오. 색은 전일 대비 방향(오름 초록·내림 빨강)이며, 금리·공포지수·환율·유가·금은 방향이 곧 좋고 나쁨을 뜻하지 않아 회색으로 표시했습니다.</p>
+  <p class="sec-sub">마지막 거래일 <b>2026년 7월 31일(금)</b> 종가 기준. 카드마다 그래프가 두 개입니다 — 왼쪽 회색 <b>1Y</b>는 1년 큰 흐름, 오른쪽 진한 <b>1M</b>은 최근 <b>1개월을 하루 단위로</b> 그린 정밀 흐름. 두 그래프는 <b>각자 자기 구간의 최고·최저에 맞춰 그려지므로</b> 높낮이를 서로 비교하지 마시고 모양만 보십시오. 색은 전일 대비 방향(오름 초록·내림 빨강)이며, 금리·공포지수·환율·유가·금은 방향이 곧 좋고 나쁨을 뜻하지 않아 회색으로 표시했습니다.</p>
 
   <section class="dash">
     <div class="dashtop">
       <div class="dt">주요 지표 10종</div>
-      <div class="ds">2026.07.31 CLOSE · 3M TREND</div>
+      <div class="ds">2026.07.31 CLOSE · 1Y + 1M(DAILY)</div>
     </div>
 
     <div class="cards" id="cards"></div>
@@ -760,18 +763,18 @@ function renderIndicators(D){
       +'<polyline points="'+p.join(' ')+'"/>'
       +'<circle cx="'+last[0]+'" cy="'+last[1]+'" r="2.2"/></svg></div>';
   }
-  var yM=D.yearMonths||12, qM=D.quarterMonths||3;
+  var yM=D.yearMonths||12, qM=D.recentMonths||1;
   document.getElementById('cards').innerHTML=D.items.map(function(it){
     return '<div class="card '+it.dir+'">'
       +'<div class="cl"><span>'+it.name+'</span><span class="cx">'+it.code+'</span></div>'
       +'<div class="cv">'+it.value+'</div>'
       +'<div class="cc '+it.dir+'">'+it.change+'</div>'
-      +'<div class="mini">'+chart(it.y,'yr','1Y',range(yM,true))+chart(it.q,'qt','3M',range(qM,false))+'</div>'
+      +'<div class="mini">'+chart(it.y,'yr','1Y',range(yM,true))+chart(it.q,'qt','1M',range(qM,false))+'</div>'
       +'<div class="cm">'+it.note+'</div>'
       +'</div>';
   }).join('');
   var ds=document.querySelector('.dashtop .ds');
-  if(ds) ds.textContent=D.asOf.replace(/-/g,'.')+' CLOSE · 1Y + 3M';
+  if(ds) ds.textContent=D.asOf.replace(/-/g,'.')+' CLOSE · 1Y + 1M(DAILY)';
   var sub=document.querySelector('.dash-asof');
   if(sub) sub.textContent=D.asOf.replace(/-/g,'.');
 }
