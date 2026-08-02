@@ -1,376 +1,569 @@
-<title>시장 인자 & 1년 레퍼런스 달력</title>
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>시장 인자 & 1년 레퍼런스 달력 — 2026.07~2027.06</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
   :root{
     color-scheme:light;
-    --bg:#FAF3E4; --wash1:#FFFBF3; --wash2:#F6E9CC;
-    --surface:#FFFFFF; --surface2:#FBF5E8;
-    --ink:#16203A; --soft:#5A6784; --faint:#93A0BC; --line:#ECE0C2;
+    --bg:#EEF3FB; --wash1:#F7FAFF; --wash2:#EAF0FC;
+    --surface:#FFFFFF; --surface2:#F4F7FD;
+    --ink:#16203A; --soft:#5A6784; --faint:#93A0BC; --line:#E2E9F5;
     --accent:#3B6FF6; --accent-ink:#2451D6; --accent-tint:#E9F0FE; --accent-tint2:#DCE8FE;
-    --high:#EE4B54; --mid:#EE9611; --low:#12A66B;
-    --high-tint:#FDECEC; --mid-tint:#FDF2E0; --low-tint:#E3F6EE;
-    --gold:#B8933C; --gold-ink:#8C6D26; --gold-tint:#F8F0DC; --gold-light:#E9CE84;
+    --high:#EE4B54; --mid:#EE9611; --low:#12A66B; --ern:#7C5BD9;
+    --high-tint:#FDECEC; --mid-tint:#FDF2E0; --low-tint:#E3F6EE; --ern-tint:#F1EBFC;
     --shadow-s:0 1px 2px rgba(23,40,80,.05);
     --shadow-m:0 2px 4px rgba(23,40,80,.05),0 12px 28px rgba(23,40,80,.07);
     --shadow-l:0 8px 20px rgba(35,70,160,.10),0 24px 48px rgba(35,70,160,.10);
     --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
     --body:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-    --display:"Fraunces","Apple SD Gothic Neo",serif;
   }
   *{box-sizing:border-box}
   html{background:var(--bg)}
   body{margin:0;color:var(--ink);font-family:var(--body);line-height:1.5;
     background:
-      radial-gradient(1100px 520px at 78% -8%, var(--wash1), transparent 60%),
-      radial-gradient(900px 480px at 0% 2%, var(--wash2), transparent 55%),
+      radial-gradient(1300px 560px at 80% -8%, var(--wash1), transparent 60%),
+      radial-gradient(1000px 500px at 0% 2%, var(--wash2), transparent 55%),
       var(--bg);
-    background-attachment:fixed;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .wrap{max-width:1440px;margin:0 auto;padding:clamp(18px,4vw,44px)}
-  .pagetag{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint);
-    margin:0 0 10px;font-weight:600}
-
-  .hero{background:linear-gradient(135deg,#ffffff 0%,#fdf6e6 100%);
-    border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,38px);
+  .wrap{max-width:1560px;margin:0 auto;padding:clamp(16px,3vw,44px)}
+  .narrow{max-width:1180px;margin-left:auto;margin-right:auto}
+  .hero{background:linear-gradient(135deg,#ffffff 0%,#f3f7ff 100%);
+    border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3.4vw,40px);
     box-shadow:var(--shadow-l);position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;
-    background:radial-gradient(closest-side,var(--gold-tint),transparent);border-radius:50%}
-  .heroline{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;pointer-events:none}
+  .hero::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;
+    background:radial-gradient(closest-side,var(--accent-tint2),transparent);border-radius:50%}
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-ink);margin:0 0 12px;font-weight:600;position:relative;z-index:1}
-  h1{font-family:var(--display);font-size:clamp(29px,5.6vw,47px);line-height:1.08;letter-spacing:-.01em;margin:0 0 14px;
-    text-wrap:balance;font-weight:600;position:relative;z-index:1}
-  .lede{font-size:clamp(15px,2.1vw,17px);color:var(--soft);max-width:62ch;margin:0;position:relative;z-index:1}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative;z-index:1}
-  .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;padding:6px 12px;border-radius:999px;
+    color:var(--accent-ink);margin:0 0 12px;font-weight:600}
+  h1{font-size:clamp(24px,4.2vw,46px);line-height:1.05;letter-spacing:-.025em;margin:0 0 14px;
+    text-wrap:balance;font-weight:800}
+  .lede{font-size:clamp(14px,1.6vw,17px);color:var(--soft);max-width:72ch;margin:0;position:relative}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.02em;padding:6px 12px;border-radius:999px;
     background:#fff;border:1px solid var(--line);color:var(--soft);box-shadow:var(--shadow-s)}
   .tag.k{background:var(--accent-tint);border-color:var(--accent-tint2);color:var(--accent-ink);font-weight:600}
-
-  h2{font-family:var(--display);font-size:clamp(20px,3.1vw,25px);letter-spacing:-.01em;margin:0;font-weight:600}
-  .sec-head{display:flex;align-items:center;gap:13px;margin:52px 0 6px;position:relative}
-  .sec-head::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:1px;
-    background:linear-gradient(90deg,var(--gold),transparent)}
+  h2{font-size:clamp(18px,2.2vw,24px);letter-spacing:-.015em;margin:0;font-weight:780}
+  .sec-head{display:flex;align-items:center;gap:12px;margin:50px 0 6px;flex-wrap:wrap}
   .sec-head .n{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--accent);
-    padding:5px 10px;border-radius:8px;letter-spacing:.04em;
-    box-shadow:0 3px 8px rgba(59,111,246,.28),0 0 0 1px rgba(184,147,60,.35) inset}
-  .sec-sub{color:var(--soft);font-size:14px;margin:10px 0 22px;max-width:70ch}
-
-  .groups{display:grid;gap:18px}
+    padding:5px 10px;border-radius:8px;letter-spacing:.04em;box-shadow:0 3px 8px rgba(59,111,246,.28)}
+  .sec-sub{color:var(--soft);font-size:13.5px;margin:10px 0 18px;max-width:96ch}
+  .strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:12px 18px;box-shadow:var(--shadow-s);margin-bottom:20px;font-size:12.5px;color:var(--soft)}
+  .strip .si{display:flex;align-items:center;gap:7px;white-space:nowrap}
+  .strip b{color:var(--ink);font-weight:700}
+  .sw{width:12px;height:12px;border-radius:4px;flex:none}
+  .sw.h{background:var(--high)} .sw.m{background:var(--mid)}
+  .sw.e{background:var(--ern)} .sw.l{background:var(--low)}
+  .sw.d{background:#DDE4F0;border:1px solid var(--line)}
+  .cal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+  @media(max-width:1180px){.cal{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:800px){.cal{grid-template-columns:1fr}}
+  .mo{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-m);
+    overflow:hidden;display:flex;flex-direction:column}
+  .mo.now{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint2),var(--shadow-m)}
+  .mo.past .mh{background:linear-gradient(90deg,#EFF2F8,#fff)}
+  .mo.past .mh .mmo{color:var(--faint)}
+  .mh{padding:14px 17px 12px;background:linear-gradient(90deg,var(--accent-tint),#fff);
+    border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .mh .mdate{display:flex;align-items:baseline;gap:8px}
+  .mh .mmo{font-size:25px;font-weight:850;letter-spacing:-.02em;font-family:var(--mono);color:var(--accent-ink)}
+  .mh .myr{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:600}
+  .mh .mth{font-size:11px;color:var(--soft);text-align:right;max-width:16ch;line-height:1.3;font-weight:650}
+  .nowbadge{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.06em;
+    background:var(--accent);color:#fff;padding:2px 6px;border-radius:5px;vertical-align:2px}
+  .pastbadge{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.06em;
+    background:#C9D3E4;color:#fff;padding:2px 6px;border-radius:5px;vertical-align:2px}
+  .evs{display:flex;flex-direction:column;padding:7px 0 4px}
+  .ev{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;
+    padding:7px 16px 7px 13px;border-left:3px solid transparent}
+  .ev.h{border-left-color:var(--high)} .ev.m{border-left-color:var(--mid)}
+  .ev.l{border-left-color:var(--low)} .ev.e{border-left-color:var(--ern)}
+  .ev .ed{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ink);white-space:nowrap;
+    padding-top:1px;min-width:52px}
+  .ev.done .ed{color:var(--faint)}
+  .ev.done{background:linear-gradient(90deg,#FAFBFE,transparent)}
+  .ev .eb{min-width:0}
+  .ev .el{font-size:13px;font-weight:650;line-height:1.35}
+  .ev .etag{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.02em;
+    padding:2px 6px;border-radius:5px;margin-top:4px}
+  .ev.h .etag{background:var(--high-tint);color:var(--high)}
+  .ev.m .etag{background:var(--mid-tint);color:#C67A05}
+  .ev.l .etag{background:var(--low-tint);color:var(--low)}
+  .ev.e .etag{background:var(--ern-tint);color:var(--ern)}
+  .res{margin-top:5px;padding:6px 9px;border-radius:7px;font-size:11px;line-height:1.5;
+    background:var(--surface2);color:var(--soft);border-left:2px solid var(--faint)}
+  .res b{font-weight:750}
+  .res.up{background:var(--low-tint);color:#0A7A52;border-left-color:var(--low)}
+  .res.up b{color:#076246}
+  .res.down{background:var(--high-tint);color:#BE2F38;border-left-color:var(--high)}
+  .res.down b{color:#9E2129}
+  .mfoot{margin-top:auto;padding:10px 17px;background:var(--surface2);border-top:1px dashed var(--line);
+    font-size:10.5px;color:var(--soft);line-height:1.5}
+  .mfoot b{color:var(--accent-ink);font-family:var(--mono);font-weight:700}
+  .mfoot .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--faint);font-weight:700;display:block;margin-bottom:3px}
+  .phase{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--accent-ink);
+    background:var(--accent-tint);border:1px solid var(--accent-tint2);border-radius:999px;
+    padding:5px 13px;display:inline-block;margin:22px 0 12px}
+  .tl{display:flex;flex-direction:column;gap:11px}
+  .tlrow{display:grid;grid-template-columns:112px 1fr;gap:18px;background:var(--surface);
+    border:1px solid var(--line);border-radius:14px;padding:14px 18px 14px 22px;
+    box-shadow:var(--shadow-s);position:relative;overflow:hidden}
+  .tlrow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+  .tlrow.dn::before{background:var(--high)}
+  .tlrow.up::before{background:var(--low)}
+  .tlrow.nt::before{background:#C9D3E4}
+  .tlrow.big{box-shadow:0 0 0 2px var(--accent-tint2),var(--shadow-m)}
+  @media(max-width:640px){.tlrow{grid-template-columns:1fr;gap:6px}}
+  .tld{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--soft)}
+  .tlpct{font-family:var(--mono);font-size:21px;font-weight:800;letter-spacing:-.03em;margin-top:1px;line-height:1.1}
+  .tlrow.dn .tlpct{color:var(--high)}
+  .tlrow.up .tlpct{color:var(--low)}
+  .tlrow.nt .tlpct{color:var(--faint);font-size:13px;font-weight:700}
+  .tlt{font-size:15px;font-weight:760;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;line-height:1.3}
+  .mk{font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;
+    background:var(--surface2);color:var(--soft);border:1px solid var(--line);white-space:nowrap}
+  .mk.rec{background:#FFF4E5;border-color:#F5D9AC;color:#B4700A}
+  .tlw{font-size:13px;color:var(--soft);line-height:1.62}
+  .tlw b{color:var(--ink);font-weight:650}
+  .lesson{margin-top:9px;padding:8px 12px;background:var(--accent-tint);border-radius:9px;
+    font-size:12.5px;color:var(--accent-ink);line-height:1.55}
+  .lesson b{font-weight:780}
+  .types{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:8px}
+  .ty{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow-s)}
+  .ty h5{margin:0 0 6px;font-size:14.5px;font-weight:760;display:flex;align-items:center;gap:8px}
+  .ty .tn{font-family:var(--mono);font-size:11px;font-weight:800;color:#fff;background:var(--ink);
+    width:22px;height:22px;display:grid;place-items:center;border-radius:7px;flex:none}
+  .ty p{margin:0;font-size:12.5px;color:var(--soft);line-height:1.6}
+  .ty p b{color:var(--ink);font-weight:650}
+  .ty .ex{display:block;margin-top:6px;font-size:11.5px;color:var(--faint)}
+  .groups{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:1180px){.groups{grid-template-columns:1fr}}
   .group{background:var(--surface);border:1px solid var(--line);border-radius:18px;
     box-shadow:var(--shadow-m);overflow:hidden}
-  .gh{display:flex;align-items:center;gap:11px;padding:15px 18px;
+  .gh{display:flex;align-items:center;gap:11px;padding:14px 18px;
     background:linear-gradient(90deg,var(--accent-tint),transparent)}
   .gh .gi{font-family:var(--mono);font-size:13px;font-weight:800;color:#fff;
     background:var(--accent);width:28px;height:28px;display:grid;place-items:center;border-radius:9px;
     box-shadow:0 3px 8px rgba(59,111,246,.3)}
-  .gh h3{margin:0;font-size:16px;font-weight:750}
-  .gh .gsub{color:var(--soft);font-weight:500;font-size:13px}
+  .gh h3{margin:0;font-size:15.5px;font-weight:750}
+  .gh .gsub{color:var(--soft);font-weight:500;font-size:12.5px}
   .gitems{display:grid;grid-template-columns:1fr 1fr}
-  @media(max-width:640px){.gitems{grid-template-columns:1fr}}
-  .fi{padding:15px 18px;border-top:1px solid var(--line)}
+  @media(max-width:700px){.gitems{grid-template-columns:1fr}}
+  .fi{padding:14px 17px;border-top:1px solid var(--line)}
   .gitems .fi:nth-child(-n+2){border-top:none}
-  @media(max-width:640px){.gitems .fi:nth-child(2){border-top:1px solid var(--line)}}
+  @media(max-width:700px){.gitems .fi:nth-child(2){border-top:1px solid var(--line)}}
   .gitems .fi:nth-child(odd){border-right:1px solid var(--line)}
-  @media(max-width:640px){.gitems .fi:nth-child(odd){border-right:none}}
-  .fi .fn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:750;font-size:14.5px;margin-bottom:5px}
+  @media(max-width:700px){.gitems .fi:nth-child(odd){border-right:none}}
+  .fi .fn{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:750;font-size:14px;margin-bottom:5px}
   .fi .freq{font-family:var(--mono);font-size:10.5px;color:var(--accent-ink);background:var(--accent-tint);
     padding:2px 7px;border-radius:6px;white-space:nowrap;font-weight:600}
-  .fi p{margin:0;font-size:13px;color:var(--soft);line-height:1.55}
+  .fi p{margin:0;font-size:12.5px;color:var(--soft);line-height:1.55}
   .fi b{color:var(--ink);font-weight:650}
-
   .recur{background:linear-gradient(120deg,var(--accent) 0%,#5a86ff 100%);color:#fff;
     border-radius:18px;padding:20px 22px 10px;box-shadow:var(--shadow-l)}
   .recur .rt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
     color:#dbe6ff;margin:0 0 4px;font-weight:600}
   .recur .rti{font-size:14px;color:#eaf1ff;margin:0 0 16px}
-  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:2px 20px}
+  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px 22px}
   .rrow{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-top:1px solid rgba(255,255,255,.16)}
   .rrow .rd{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:none;background:#fff;
     box-shadow:0 0 0 3px rgba(255,255,255,.22)}
   .rrow .rl{font-weight:650;font-size:13.5px}
   .rrow .rw{font-family:var(--mono);font-size:11px;color:#cfdcff;margin-top:1px}
-
-  .cal{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media(max-width:700px){.cal{grid-template-columns:1fr}}
-  @media(min-width:1300px){.cal{grid-template-columns:repeat(3,1fr)} .groups{grid-template-columns:repeat(2,1fr)}}
-  .mo{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-m);
-    overflow:hidden;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
-  .mo:hover{transform:translateY(-3px);box-shadow:var(--shadow-l)}
-  @media(prefers-reduced-motion:reduce){.mo{transition:none}.mo:hover{transform:none}}
-  .mh{padding:15px 18px 13px;background:linear-gradient(90deg,var(--accent-tint),#fff);
-    border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-  .mh .mdate{display:flex;align-items:baseline;gap:9px}
-  .mh .mmo{font-size:26px;font-weight:850;letter-spacing:-.02em;font-family:var(--mono);color:var(--accent-ink)}
-  .mh .myr{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:600}
-  .mh .mth{font-size:11.5px;color:var(--soft);text-align:right;max-width:17ch;line-height:1.3;font-weight:650}
-  .evs{display:flex;flex-direction:column;padding:8px 0 4px}
-  .ev{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
-    padding:8px 18px 8px 15px;border-left:3px solid transparent}
-  .ev.h{border-left-color:var(--high);background:var(--high-tint)}
-  .ev.m{border-left-color:var(--mid)} .ev.l{border-left-color:var(--low)}
-  .ev.h .el{font-weight:800}
-  .ev .ed{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;
-    padding-top:1px;min-width:52px}
-  .ev .eb{min-width:0}
-  .ev .el{font-size:13.5px;font-weight:650;line-height:1.32}
-  .ev .etag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.02em;
-    padding:2px 7px;border-radius:6px;margin-top:5px;cursor:pointer;
-    box-shadow:0 0 0 1px rgba(0,0,0,0);transition:box-shadow .15s ease}
-  .ev .etag:hover,.ev .etag:focus-visible{box-shadow:0 0 0 1px currentColor}
-  .ev.h .etag{background:var(--high-tint);color:var(--high)}
-  .ev.m .etag{background:var(--mid-tint);color:#c67a05}
-  .ev.l .etag{background:var(--low-tint);color:var(--low)}
-
-  .glossbubble{position:absolute;z-index:80;max-width:280px;background:var(--ink);color:#EAF0FF;
-    padding:13px 15px;border-radius:12px;box-shadow:var(--shadow-l);border-top:3px solid var(--gold);
-    animation:gbpop .16s ease}
-  .glossbubble .gb-term{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--gold-light);
-    font-weight:700}
-  .glossbubble .gb-desc{font-size:12.5px;line-height:1.55;margin-top:5px}
-  .glossbubble .gb-close{position:absolute;top:8px;right:10px;font-family:var(--mono);font-size:13px;
-    color:#7f8bab;cursor:pointer;line-height:1}
-  @keyframes gbpop{from{opacity:0;transform:scale(.94) translateY(-4px)}to{opacity:1;transform:scale(1) translateY(0)}}
-  @media(prefers-reduced-motion:reduce){.glossbubble{animation:none}}
-
   .legend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
-  @media(max-width:640px){.legend{grid-template-columns:1fr}}
+  @media(max-width:900px){.legend{grid-template-columns:1fr}}
   .lg{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px 19px;box-shadow:var(--shadow-s)}
   .lg h4{margin:0 0 12px;font-size:11.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
   .lgrow{display:flex;align-items:baseline;gap:10px;font-size:13px;padding:5px 0;line-height:1.5}
   .dot{width:11px;height:11px;border-radius:50%;flex:none;transform:translateY(2px)}
-  .dot.h{background:var(--high)} .dot.m{background:var(--mid)} .dot.l{background:var(--low)}
+  .dot.h{background:var(--high)} .dot.m{background:var(--mid)}
+  .dot.l{background:var(--low)} .dot.e{background:var(--ern)}
   .lgrow b{font-weight:700}.lgrow span{color:var(--soft)}
   .gloss dt{font-weight:750;font-size:13.5px;margin-top:10px}
   .gloss dt:first-child{margin-top:0}
   .gloss dd{margin:2px 0 0;font-size:12.5px;color:var(--soft);line-height:1.55}
-
-  .note{margin-top:22px;padding:18px 20px;background:linear-gradient(120deg,var(--gold-tint),#fff);
-    border:1px solid #EAD9A8;border-radius:16px;font-size:13px;color:var(--ink);line-height:1.65}
-  .note b{color:var(--gold-ink)}
-  footer{margin-top:26px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
-</style>
+  .note{margin-top:22px;padding:18px 22px;background:linear-gradient(120deg,var(--accent-tint),#fff);
+    border:1px solid var(--accent-tint2);border-radius:16px;font-size:13.5px;color:var(--ink);line-height:1.65}
+  .note b{color:var(--accent-ink)}
+  /* provider banner */
+  .banner{background:linear-gradient(100deg,#131C33 0%,#22315A 52%,#2A57DA 100%);
+    color:#fff;border-radius:16px;padding:16px clamp(18px,2.4vw,30px);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    box-shadow:var(--shadow-m)}
+  .banner .bl{font-family:var(--mono);font-size:clamp(13px,1.45vw,18px);font-weight:800;
+    letter-spacing:.13em;text-transform:uppercase;display:flex;align-items:center;gap:12px;line-height:1.25}
+  .banner .bl .mark{width:10px;height:10px;border-radius:3px;background:#7FA5FF;flex:none;
+    box-shadow:0 0 0 4px rgba(127,165,255,.22)}
+  .banner .bl .lt{color:#AFC4F5;font-weight:700}
+  .banner .br{font-family:var(--mono);display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+  .banner .br .rl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#AFC4F5;font-weight:700}
+  .banner .br .rd{font-size:clamp(15px,1.5vw,19px);font-weight:850;letter-spacing:.02em;color:#fff}
+  .banner.top{margin-bottom:20px}
+  .banner.bottom{margin-top:30px}
+  .banner.bottom{justify-content:center;text-align:center}
+  .banner.bottom .bl{justify-content:center}
+  footer{margin-top:18px;font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
+</style></head><body>
 
 <div class="wrap">
 
-  <p class="pagetag">SK자산연구소 달력</p>
+  <div class="banner top">
+    <div class="bl"><span class="mark"></span><span><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.02</span></div>
+  </div>
 
   <header class="hero">
-    <svg class="heroline" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <linearGradient id="hlg" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#3B6FF6" stop-opacity=".16"/>
-          <stop offset="100%" stop-color="#B8933C" stop-opacity=".22"/>
-        </linearGradient>
-      </defs>
-      <polyline points="0,100 40,92 80,104 120,78 160,86 200,55 240,66 280,40 320,50 360,28 400,38 440,20 480,30 520,12 560,22 600,8"
-        fill="none" stroke="url(#hlg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <p class="eyebrow">SK 자산관리사무실 · Market Reference</p>
+    <p class="eyebrow">Market Reference · 한국 · 미국 시장</p>
     <h1>주식시장을 움직이는 인자 &amp; 1년 레퍼런스 달력</h1>
-    <p class="lede">주가를 흔드는 정례 이벤트·지표·심리·수급 인자를 한자리에. 아래 달력은 <b>2026년 7월부터 2027년 6월까지</b> 미리 정해진 일정을 영향도 색으로 보여주고, 매달 반복되는 지표는 각 칸 아래에 함께 담았습니다.</p>
+    <p class="lede">위에는 <b>2026년 7월 → 2027년 6월 달력</b>(금리 결정·선물옵션 만기·주요 기업 실적발표), 가운데는 <b>실제로 크게 오르내렸던 날과 그 이유를 모은 히스토리</b>, 아래는 <b>인자 설명</b>입니다. 이미 지난 일정에는 결과를 그 자리에 함께 적었습니다.</p>
     <div class="meta">
-      <span class="tag k">기준 2026.07.20</span>
-      <span class="tag">美 FOMC · 韓 금통위 확정</span>
-      <span class="tag">선물옵션 만기 확정</span>
-      <span class="tag">반복 지표 = 통상 시점</span>
+      <span class="tag k">2026.07 → 2027.06</span>
+      <span class="tag">한국 · 미국</span>
+      <span class="tag">급등·급락 히스토리</span>
+      <span class="tag">공개 참고자료</span>
     </div>
   </header>
 
-  <div class="note">
-    <b>이 달력 쓰는 법.</b> '上(빨강)'이 몰린 주간이 변동성 큰 구간입니다 — 특히 <b>9·12·3·6월(만기+FOMC 겹침)</b>과 <b>금통위·FOMC 주간</b>. 가장 가까운 첫 관문은 <b>2026-07-29 美 FOMC</b>.
-  </div>
-
   <div class="sec-head"><span class="n">PART 1</span><h2>1년 레퍼런스 달력 · 2026.07 → 2027.06</h2></div>
-  <p class="sec-sub">왼쪽 색 막대 = 영향도(빨강 上 · 주황 中 · 초록 下). 초록 항목은 매달 반복되는 지표(고용·CPI·PCE·수출입·옵션만기)로, 각 달 날짜 목록 안에 다른 일정과 함께 표시됩니다. 색 라벨을 탭하면 해당 용어 설명이 바로 뜹니다. 2027년 韓 금통위는 공식일정 미발표라 예년 기준 '잠정'.</p>
+  <p class="sec-sub">한 줄에 세 달씩. <b>회색 배경 + 흐린 날짜</b>는 이미 지난 일정이고 바로 아래 상자가 <b>실제 결과</b>입니다. <b>≈</b>는 예년 패턴 기반 추정일(확정되면 갱신). 美 기업 실적은 현지 발표일 기준이라 한국은 다음 날 새벽에 반영됩니다.</p>
 
-  <div class="recur">
-    <p class="rt">Every Month</p>
-    <p class="rti">거의 매달 같은 시점에 발표되는 단골 지표들 — 아래 달력에도 각 날짜와 함께 표시됩니다</p>
-    <div class="rgrid">
-      <div class="rrow"><span class="rd"></span><div><div class="rl">美 고용보고서</div><div class="rw">매월 첫째 금요일</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">美 CPI 소비자물가</div><div class="rw">매월 중순</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">美 PCE 물가</div><div class="rw">매월 말</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">韓 수출입 동향</div><div class="rw">매월 1일</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">韓·美 옵션 만기</div><div class="rw">매월 둘째 목요일</div></div></div>
-      <div class="rrow"><span class="rd"></span><div><div class="rl">VIX · 환율 · SOX</div><div class="rw">매일 장중 체크</div></div></div>
-    </div>
+  <div class="strip">
+    <span class="si"><span class="sw h"></span><b>금리·급등락</b></span>
+    <span class="si"><span class="sw m"></span><b>만기·수급·계절</b></span>
+    <span class="si"><span class="sw e"></span><b>실적발표</b></span>
+    <span class="si"><span class="sw l"></span><b>참고 경향</b></span>
+    <span class="si"><span class="sw d"></span><b>회색 줄</b> = 지난 일정 + ✓결과</span>
+    <span class="si"><b>≈</b> = 추정일</span>
   </div>
-
-  
 
   <div class="cal">
 
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">07</span><span class="myr">2026</span></div><div class="mth">하반기 시작 · FOMC 관문</div></div>
+    <div class="mo past">
+      <div class="mh"><div class="mdate"><span class="mmo">07</span><span class="myr">2026</span><span class="pastbadge">종료</span></div><div class="mth">폭락 4회 → 역대 최대 폭등</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">07.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">07.03</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev l"><span class="ed">07.09</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
-        <div class="ev m"><span class="ed">07.중</span><div class="eb"><div class="el">2분기 어닝시즌 본격화</div><span class="etag">실적</span></div></div>
-        <div class="ev l"><span class="ed">07.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
-        <div class="ev h"><span class="ed">07.29</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-        <div class="ev l"><span class="ed">07.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e done"><span class="ed">07.07</span><div class="eb"><div class="el">삼성전자 2Q 잠정실적</div><span class="etag">실적</span>
+          <div class="res up">✓ 매출 171조 · <b>영업이익 89.4조 역대 최대</b>. 컨센(85~86조) 상회 서프라이즈.</div></div></div>
+        <div class="ev h done"><span class="ed">07.13</span><div class="eb"><div class="el">코스피 '검은 월요일'</div><span class="etag">급락</span>
+          <div class="res down">✓ <b>-8.95%</b> 서킷브레이커. SK하이닉스 -15.4%, 삼성전자 -10.7%.</div></div></div>
+        <div class="ev h done"><span class="ed">07.14</span><div class="eb"><div class="el">美 6월 CPI 발표</div><span class="etag">지표</span>
+          <div class="res up">✓ <b>+3.5%</b>(예상 3.8% 하회)·근원 2.6%. 물가 안정에 <b>하루 반등</b>.</div></div></div>
+        <div class="ev h done"><span class="ed">07.17</span><div class="eb"><div class="el">中 Kimi K3 AI모델 공개</div><span class="etag">쇼크</span>
+          <div class="res down">✓ 글로벌 AI·반도체 급락. <b>SOX 주간 -5.5%</b>, 니케이 -4.0%.</div></div></div>
+        <div class="ev h done"><span class="ed">07.20</span><div class="eb"><div class="el">국내 투매 지속</div><span class="etag">급락</span>
+          <div class="res down">✓ 코스피 <b>-4.46%</b>, 코스닥 <b>-5.33%</b>(연중 최저).</div></div></div>
+        <div class="ev e done"><span class="ed">07.22</span><div class="eb"><div class="el">알파벳 2Q 실적</div><span class="etag">실적</span>
+          <div class="res down">✓ 실적은 무난했으나 <b>AI 캡엑스 확대</b>에 '셀 더 뉴스'.</div></div></div>
+        <div class="ev h done"><span class="ed">07.24</span><div class="eb"><div class="el">'검은 금요일' 메모리 급락</div><span class="etag">급락</span>
+          <div class="res down">✓ 코스피 <b>-5.72%</b>. 마이크론 -6.99%, 샌디스크 -10.79%.</div></div></div>
+        <div class="ev h done"><span class="ed">07.28</span><div class="eb"><div class="el">사이드카 → 서킷브레이커</div><span class="etag">급락</span>
+          <div class="res down">✓ 코스피 <b>-10.84%</b>(6,023). 中 CXMT 상장·엔비디아 순환출자 의혹 + 레버리지 쏠림.</div></div></div>
+        <div class="ev h done"><span class="ed">07.29</span><div class="eb"><div class="el">美 FOMC ＋ SK하이닉스 2Q</div><span class="etag">금리＋실적</span>
+          <div class="res down">✓ 금리 <b>3.50~3.75% 동결</b>(5연속·9:3). 하이닉스 영업익 <b>60.5조 사상 최대</b>였지만 기대(64~70조) 하회 → 코스피 <b>-5.98%</b>.</div></div></div>
+        <div class="ev e done"><span class="ed">07.30</span><div class="eb"><div class="el">마이크로소프트 · 메타 · 삼성전자(확정)</div><span class="etag">실적</span>
+          <div class="res">✓ <b>MS +15% 급등</b>(Azure +43%, AI 수익화 입증) / <b>메타 -9% 급락</b>(비용이 매출 증가 추월). 코스피는 -1.23%로 바닥(5,593).</div></div></div>
+        <div class="ev e done"><span class="ed">07.31</span><div class="eb"><div class="el">아마존 · 애플 → 역대 최대 폭등</div><span class="etag">실적</span>
+          <div class="res up">✓ 아마존 AWS <b>+37%</b>(18분기 만 최고), 애플 매출 1,094억달러 최대. 나스닥 +2.78%, <b>코스피 +17.91%(역대 최대)</b>.</div></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표 (완료)</span>韓 수출입 <b>07.01</b> · 美 고용 <b>07.03</b> · CPI <b>07.14</b> · 옵션만기 <b>07.09</b> · PCE 말</div>
     </div>
 
-    <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">08</span><span class="myr">2026</span></div><div class="mth">여름 비수기 · 잭슨홀</div></div>
+    <div class="mo now">
+      <div class="mh"><div class="mdate"><span class="mmo">08</span><span class="myr">2026</span><span class="nowbadge">이번 달</span></div><div class="mth">잭슨홀 · 엔비디아</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">08.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">08.07</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev l"><span class="ed">08.13</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
-        <div class="ev l"><span class="ed">08.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
-        <div class="ev h"><span class="ed">08.21</span><div class="eb"><div class="el">잭슨홀 심포지엄 · 연준 의장 연설</div><span class="etag">이벤트</span></div></div>
+        <div class="ev e"><span class="ed">08.05</span><div class="eb"><div class="el">샌디스크 4Q · AMD</div><span class="etag">실적</span>
+          <div class="res">7월 급등락의 진원지였던 <b>메모리 업황</b>을 실적으로 확인하는 자리.</div></div></div>
+        <div class="ev e"><span class="ed">≈08.초</span><div class="eb"><div class="el">NAVER · 한미반도체 2Q</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">08.13</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈08.13</span><div class="eb"><div class="el">어플라이드 머티리얼즈(AMAT)</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">≈08.21</span><div class="eb"><div class="el">잭슨홀 심포지엄 · 연준 의장 연설</div><span class="etag">이벤트</span>
+          <div class="res">7/29 동결 뒤 <b>인하 시점</b>에 대한 힌트가 나올 자리.</div></div></div>
+        <div class="ev e"><span class="ed">08.26</span><div class="eb"><div class="el">엔비디아 2Q(FY27) 실적</div><span class="etag">실적</span>
+          <div class="res">확정일(장 마감 후). <b>AI 사이클 전체의 체온계</b> — 이번 달 최대 이벤트.</div></div></div>
         <div class="ev h"><span class="ed">08.27</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">08.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
-        <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">거래 한산 · 변동성 튀기 쉬움</div><span class="etag">계절</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>08.07</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>08.01</b> · 옵션만기 <b>08.13</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">09</span><span class="myr">2026</span></div><div class="mth">9월 약세 · 만기 겹침</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">09</span><span class="myr">2026</span></div><div class="mth">9월 약세 · 만기 3종</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">09.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">09.04</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev h"><span class="ed">09.10</span><div class="eb"><div class="el">韓 네 마녀의 날 (선물·옵션 동시만기)</div><span class="etag">만기</span></div></div>
-        <div class="ev l"><span class="ed">09.10</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
-        <div class="ev l"><span class="ed">09.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
-        <div class="ev h"><span class="ed">09.16</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">09.10</span><div class="eb"><div class="el">韓 네 마녀의 날 (동시만기)</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈09.10</span><div class="eb"><div class="el">브로드컴(AVGO)</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">09.16</span><div class="eb"><div class="el">美 FOMC + 점도표</div><span class="etag">美 금리</span></div></div>
         <div class="ev h"><span class="ed">09.18</span><div class="eb"><div class="el">美 쿼드러플 위칭 (4중 만기)</div><span class="etag">만기</span></div></div>
-        <div class="ev l"><span class="ed">09.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">09.23</span><div class="eb"><div class="el">마이크론 4Q(FY26)</div><span class="etag">실적</span>
+          <div class="res">메모리 업황의 <b>공식 성적표</b>.</div></div></div>
         <div class="ev m"><span class="ed">09.30</span><div class="eb"><div class="el">분기말 윈도드레싱</div><span class="etag">계절</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>09.04</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>09.01</b> · 옵션만기 <b>09.10</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">10</span><span class="myr">2026</span></div><div class="mth">3분기 실적 개막</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">10</span><span class="myr">2026</span></div><div class="mth">3분기 어닝 · 금리 2연타</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">10.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">10.02</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
+        <div class="ev e"><span class="ed">≈10.08</span><div class="eb"><div class="el">삼성전자 3Q 잠정실적</div><span class="etag">실적</span></div></div>
         <div class="ev m"><span class="ed">10.08</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">10.중</span><div class="eb"><div class="el">3분기 어닝시즌 시작 (美 은행주부터)</div><span class="etag">실적</span></div></div>
-        <div class="ev l"><span class="ed">10.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev e"><span class="ed">≈10.14</span><div class="eb"><div class="el">ASML · TSMC(대만)</div><span class="etag">실적</span>
+          <div class="res">장비·파운드리 1위. <b>업황 선행 지표</b> 첫 타자.</div></div></div>
+        <div class="ev e"><span class="ed">≈10.21</span><div class="eb"><div class="el">테슬라 · 인텔</div><span class="etag">실적</span></div></div>
         <div class="ev h"><span class="ed">10.22</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev e"><span class="ed">≈10.27</span><div class="eb"><div class="el">알파벳 · 마이크로소프트</div><span class="etag">실적</span></div></div>
         <div class="ev h"><span class="ed">10.28</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-        <div class="ev l"><span class="ed">10.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈10.28</span><div class="eb"><div class="el">메타 · 샌디스크 · SK하이닉스 3Q</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈10.29</span><div class="eb"><div class="el">아마존 · 애플 · 삼성전자(확정)</div><span class="etag">실적</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>10.02</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>10.01</b> · 옵션만기 <b>10.08</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">11</span><span class="myr">2026</span></div><div class="mth">실적 마무리 · 연말 채비</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">11</span><span class="myr">2026</span></div><div class="mth">엔비디아 · MSCI · 연말 채비</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">11.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">11.06</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev m"><span class="ed">11.12</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">11.중</span><div class="eb"><div class="el">MSCI 반기 리뷰 반영 (지수 편출입)</div><span class="etag">수급</span></div></div>
-        <div class="ev l"><span class="ed">11.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev e"><span class="ed">≈11.초</span><div class="eb"><div class="el">NAVER · 한미반도체 3Q</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">11.12</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈11.12</span><div class="eb"><div class="el">어플라이드 머티리얼즈(AMAT)</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">11.중</span><div class="eb"><div class="el">MSCI 반기 리뷰 (지수 편출입)</div><span class="etag">수급</span></div></div>
+        <div class="ev e"><span class="ed">≈11.18</span><div class="eb"><div class="el">엔비디아 3Q(FY27) 실적</div><span class="etag">실적</span>
+          <div class="res">이 하나로 <b>연말 장세 방향</b>이 갈리는 경우가 많음.</div></div></div>
         <div class="ev h"><span class="ed">11.26</span><div class="eb"><div class="el">韓 기준금리 결정 (금통위)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">11.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
         <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">11~1월 연말 강세 경향</div><span class="etag">계절</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>11.06</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>11.01</b> · 옵션만기 <b>11.12</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">12</span><span class="myr">2026</span></div><div class="mth">산타랠리 · 배당 · 만기</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">12</span><span class="myr">2026</span></div><div class="mth">산타랠리 · 배당 · 만기 3종</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">12.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">12.04</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev h"><span class="ed">12.09</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">12.09</span><div class="eb"><div class="el">美 FOMC + 점도표</div><span class="etag">美 금리</span></div></div>
         <div class="ev h"><span class="ed">12.10</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
-        <div class="ev l"><span class="ed">12.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev e"><span class="ed">≈12.10</span><div class="eb"><div class="el">브로드컴(AVGO)</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈12.16</span><div class="eb"><div class="el">마이크론 1Q(FY27)</div><span class="etag">실적</span></div></div>
         <div class="ev h"><span class="ed">12.18</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">12.28</span><div class="eb"><div class="el">韓 배당락일 · 폐장(30일)</div><span class="etag">계절</span></div></div>
-        <div class="ev l"><span class="ed">12.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev m"><span class="ed">≈12.28</span><div class="eb"><div class="el">韓 배당락일 · 폐장(12.30)</div><span class="etag">계절</span>
+          <div class="res">배당 권리가 사라지는 날이라 <b>그만큼 지수가 기술적으로 하락</b>합니다.</div></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>12.04</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>12.01</b> · 옵션만기 <b>12.10</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">01</span><span class="myr">2027</span></div><div class="mth">1월 효과 · 4분기 실적</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">01</span><span class="myr">2027</span></div><div class="mth">1월 효과 · 4분기 어닝</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">01.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">01.08</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev l"><span class="ed">01.14</span><div class="eb"><div class="el">韓·美 옵션 만기 (둘째 목)</div><span class="etag">옵션만기</span></div></div>
-        <div class="ev h"><span class="ed">01.15</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정 · 예년 중순)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev h"><span class="ed">01.중</span><div class="eb"><div class="el">4분기 어닝시즌 시작</div><span class="etag">실적</span></div></div>
-        <div class="ev l"><span class="ed">01.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev e"><span class="ed">≈01.08</span><div class="eb"><div class="el">삼성전자 4Q 잠정실적</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">01.14</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈01.14</span><div class="eb"><div class="el">TSMC(대만)</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">≈01.15</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev e"><span class="ed">≈01.26</span><div class="eb"><div class="el">마이크로소프트</div><span class="etag">실적</span></div></div>
         <div class="ev h"><span class="ed">01.27</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-        <div class="ev l"><span class="ed">01.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈01.27</span><div class="eb"><div class="el">메타 · 테슬라 · ASML · 샌디스크</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈01.28</span><div class="eb"><div class="el">애플 · SK하이닉스 4Q · 삼성전자(확정)</div><span class="etag">실적</span></div></div>
         <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">중소형주 1월 효과 경향</div><span class="etag">계절</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>01.08</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>01.01</b> · 옵션만기 <b>01.14</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">02</span><span class="myr">2027</span></div><div class="mth">실적 마무리 · MSCI</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">02</span><span class="myr">2027</span></div><div class="mth">빅테크 마무리 · MSCI</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">02.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">02.05</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev m"><span class="ed">02.11</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈02.03</span><div class="eb"><div class="el">알파벳</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈02.04</span><div class="eb"><div class="el">아마존 · NAVER 4Q</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">02.11</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈02.중</span><div class="eb"><div class="el">한미반도체 4Q</div><span class="etag">실적</span></div></div>
         <div class="ev m"><span class="ed">02.중</span><div class="eb"><div class="el">MSCI 분기 리뷰</div><span class="etag">수급</span></div></div>
-        <div class="ev l"><span class="ed">02.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
-        <div class="ev h"><span class="ed">02.하</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">02.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈02.24</span><div class="eb"><div class="el">엔비디아 4Q(FY27) 실적</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">≈02.25</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>02.05</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>02.01</b> · 옵션만기 <b>02.11</b></div>
     </div>
 
     <div class="mo">
       <div class="mh"><div class="mdate"><span class="mmo">03</span><span class="myr">2027</span></div><div class="mth">만기 3종 · 주총·배당</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">03.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">03.05</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
         <div class="ev h"><span class="ed">03.11</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
-        <div class="ev l"><span class="ed">03.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
-        <div class="ev h"><span class="ed">03.17</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev e"><span class="ed">≈03.11</span><div class="eb"><div class="el">브로드컴(AVGO)</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">03.17</span><div class="eb"><div class="el">美 FOMC + 점도표</div><span class="etag">美 금리</span></div></div>
         <div class="ev h"><span class="ed">03.19</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
-        <div class="ev m"><span class="ed">03.하</span><div class="eb"><div class="el">韓 12월 결산법인 주총·배당 확정</div><span class="etag">이벤트</span></div></div>
-        <div class="ev l"><span class="ed">03.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈03.24</span><div class="eb"><div class="el">마이크론 2Q(FY27)</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">03.하</span><div class="eb"><div class="el">韓 12월 결산법인 주총 · 배당 확정</div><span class="etag">이벤트</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>03.05</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>03.01</b> · 옵션만기 <b>03.11</b></div>
     </div>
 
     <div class="mo">
-      <div class="mh"><div class="mdate"><span class="mmo">04</span><span class="myr">2027</span></div><div class="mth">1분기 실적 개막</div></div>
+      <div class="mh"><div class="mdate"><span class="mmo">04</span><span class="myr">2027</span></div><div class="mth">1분기 어닝 · 금리</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">04.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">04.02</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev m"><span class="ed">04.08</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
-        <div class="ev h"><span class="ed">04.중</span><div class="eb"><div class="el">1분기 어닝시즌 시작</div><span class="etag">실적</span></div></div>
-        <div class="ev h"><span class="ed">04.중</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">04.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev e"><span class="ed">≈04.07</span><div class="eb"><div class="el">삼성전자 1Q 잠정실적</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">04.08</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev h"><span class="ed">≈04.09</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
+        <div class="ev e"><span class="ed">≈04.15</span><div class="eb"><div class="el">ASML · TSMC(대만)</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈04.21</span><div class="eb"><div class="el">테슬라 · 인텔</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈04.23</span><div class="eb"><div class="el">SK하이닉스 1Q</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈04.27</span><div class="eb"><div class="el">알파벳 · 마이크로소프트</div><span class="etag">실적</span></div></div>
         <div class="ev h"><span class="ed">04.28</span><div class="eb"><div class="el">美 FOMC 금리결정</div><span class="etag">美 금리</span></div></div>
-        <div class="ev l"><span class="ed">04.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈04.29</span><div class="eb"><div class="el">아마존 · 애플 · 삼성전자(확정) · 샌디스크</div><span class="etag">실적</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>04.02</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>04.01</b> · 옵션만기 <b>04.08</b></div>
     </div>
 
     <div class="mo">
       <div class="mh"><div class="mdate"><span class="mmo">05</span><span class="myr">2027</span></div><div class="mth">Sell in May · MSCI 반기</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">05.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">05.07</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev m"><span class="ed">05.13</span><div class="eb"><div class="el">韓 옵션 만기</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈05.04</span><div class="eb"><div class="el">AMD · NAVER 1Q</div><span class="etag">실적</span></div></div>
+        <div class="ev e"><span class="ed">≈05.중</span><div class="eb"><div class="el">한미반도체 1Q</div><span class="etag">실적</span></div></div>
+        <div class="ev m"><span class="ed">05.13</span><div class="eb"><div class="el">韓 옵션 만기 (둘째 목)</div><span class="etag">만기</span></div></div>
+        <div class="ev e"><span class="ed">≈05.13</span><div class="eb"><div class="el">어플라이드 머티리얼즈(AMAT)</div><span class="etag">실적</span></div></div>
         <div class="ev m"><span class="ed">05.중</span><div class="eb"><div class="el">MSCI 반기 리뷰</div><span class="etag">수급</span></div></div>
-        <div class="ev l"><span class="ed">05.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
-        <div class="ev h"><span class="ed">05.하</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
-        <div class="ev l"><span class="ed">05.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈05.26</span><div class="eb"><div class="el">엔비디아 1Q(FY28) 실적</div><span class="etag">실적</span></div></div>
+        <div class="ev h"><span class="ed">≈05.27</span><div class="eb"><div class="el">韓 기준금리 결정 (잠정)</div><span class="etag">韓 금리</span></div></div>
         <div class="ev l"><span class="ed">월중</span><div class="eb"><div class="el">'Sell in May' 경계 구간</div><span class="etag">계절</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>05.07</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>05.01</b> · 옵션만기 <b>05.13</b></div>
     </div>
 
     <div class="mo">
       <div class="mh"><div class="mdate"><span class="mmo">06</span><span class="myr">2027</span></div><div class="mth">반기말 · 만기 3종</div></div>
       <div class="evs">
-        <div class="ev l"><span class="ed">06.01</span><div class="eb"><div class="el">韓 수출입 동향 발표</div><span class="etag">韓 수출입</span></div></div>
-        <div class="ev l"><span class="ed">06.04</span><div class="eb"><div class="el">美 고용보고서 (첫 금)</div><span class="etag">美 고용</span></div></div>
-        <div class="ev h"><span class="ed">06.09</span><div class="eb"><div class="el">美 FOMC 금리결정 + 점도표</div><span class="etag">美 금리</span></div></div>
+        <div class="ev h"><span class="ed">06.09</span><div class="eb"><div class="el">美 FOMC + 점도표</div><span class="etag">美 금리</span></div></div>
         <div class="ev h"><span class="ed">06.10</span><div class="eb"><div class="el">韓 네 마녀의 날</div><span class="etag">만기</span></div></div>
-        <div class="ev l"><span class="ed">06.중</span><div class="eb"><div class="el">美 CPI 소비자물가 발표</div><span class="etag">美 CPI</span></div></div>
+        <div class="ev e"><span class="ed">≈06.10</span><div class="eb"><div class="el">브로드컴(AVGO)</div><span class="etag">실적</span></div></div>
         <div class="ev h"><span class="ed">06.18</span><div class="eb"><div class="el">美 쿼드러플 위칭</div><span class="etag">만기</span></div></div>
-        <div class="ev l"><span class="ed">06.말</span><div class="eb"><div class="el">美 PCE 물가지수 발표</div><span class="etag">美 PCE</span></div></div>
+        <div class="ev e"><span class="ed">≈06.23</span><div class="eb"><div class="el">마이크론 3Q(FY27)</div><span class="etag">실적</span></div></div>
         <div class="ev m"><span class="ed">06.30</span><div class="eb"><div class="el">반기말 윈도드레싱</div><span class="etag">계절</span></div></div>
       </div>
+      <div class="mfoot"><span class="lbl">이 달 반복 지표</span>美 고용 <b>06.04</b> · CPI 중순 · PCE 말 · 韓 수출입 <b>06.01</b> · 옵션만기 <b>06.10</b></div>
     </div>
 
   </div>
 
-  <div class="sec-head"><span class="n">PART 2</span><h2>인자 사전 — 무엇이 주가를 움직이나</h2></div>
+  <div class="narrow">
+    <div class="sec-head"><span class="n">PART 2</span><h2>급등·급락 히스토리 — 그날 왜 그렇게 움직였나</h2></div>
+    <p class="sec-sub">크게 오르내린 날과 <b>그 이유</b>를 시간순으로 쌓아둡니다. 다음에 비슷한 장면이 왔을 때 "이건 그때 그 유형"이라고 알아보기 위한 기록입니다.</p>
+
+    <span class="phase">2026년 6~7월 · AI·반도체 대조정과 V자 반전</span>
+    <div class="tl">
+
+      <div class="tlrow nt">
+        <div><div class="tld">2026.06.19</div><div class="tlpct">고점</div></div>
+        <div><div class="tlt">코스피 9,385 — 사상 최고권<span class="mk">🇰🇷 한국</span></div>
+          <div class="tlw">AI·반도체 랠리가 정점을 찍은 날. 이후 <b>3주 만에 -22.8%</b>까지 밀리며 조정 국면으로 전환. 이번 사이클의 <b>기준 고점</b>입니다.</div></div>
+      </div>
+
+      <div class="tlrow up">
+        <div><div class="tld">2026.07.07</div><div class="tlpct">서프라이즈</div></div>
+        <div><div class="tlt">삼성전자 2Q 잠정 — 영업이익 89.4조 역대 최대<span class="mk">🇰🇷 한국</span></div>
+          <div class="tlw">매출 171조, 영업이익 <b>89.4조</b>로 컨센(85~86조)을 크게 웃돈 어닝 서프라이즈. 그런데 <b>6거래일 뒤 시장은 -8.95% 폭락</b>했습니다.</div>
+          <div class="lesson"><b>배운 것 ·</b> 개별 기업 실적이 아무리 좋아도 <b>업종 전체의 밸류에이션·수급이 무너지면 못 버팁니다.</b> 좋은 실적 ≠ 주가 상승.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.13 (월)</div><div class="tlpct">-8.95%</div></div>
+        <div><div class="tlt">'검은 월요일' — 서킷브레이커 발동<span class="mk">🇰🇷 한국</span></div>
+          <div class="tlw">코스피 6,806.93. SK하이닉스 <b>-15.4%</b>, 삼성전자 <b>-10.7%</b>. 코스닥도 -4.55%.<br>
+          <b>왜 —</b> ① 미국에서 마이클 버리가 <b>나스닥100·SOXX·마이크론 숏 포지션</b>을 공시 ② 반도체지수 PER 74배·BofA 버블지표 0.91로 <b>과열 경고가 누적</b>돼 있던 상태 ③ 매도가 매도를 부르는 투매가 겹침.</div>
+          <div class="lesson"><b>배운 것 ·</b> 과열 지표가 쌓여 있을 땐 <b>작은 촉매 하나로 한 방에 무너집니다.</b> 경고는 대개 미리 쌓여 있습니다.</div></div>
+      </div>
+
+      <div class="tlrow up">
+        <div><div class="tld">2026.07.14 (화)</div><div class="tlpct">+0.73%</div></div>
+        <div><div class="tlt">美 6월 CPI 예상 하회 → 안도 반등<span class="mk">🇺🇸 미국</span><span class="mk">🇰🇷 한국</span></div>
+          <div class="tlw">헤드라인 <b>+3.5%</b>(예상 3.8%), 근원 2.6%로 6년 만의 최대 둔화폭. S&amp;P500 +0.6%, 코스피 +0.73%, 금·은 동반 급등.</div>
+          <div class="lesson"><b>배운 것 ·</b> 이 반등은 <b>하루짜리였습니다.</b> 지표 하나에 튀어오른 날을 추세 전환으로 착각하면 안 됩니다.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.15</div><div class="tlpct">유가 +9%</div></div>
+        <div><div class="tlt">중동 호르무즈 긴장 → 유가 급등<span class="mk">🌍 글로벌</span></div>
+          <div class="tlw">WTI 하루 +9%(주간 +11%). <b>왜 위험한가 —</b> 유가 ↑ → 물가 ↑ → 금리 인하 기대 후퇴 → 주식엔 역풍. 애써 좋아진 CPI 효과를 되돌릴 수 있는 경로입니다.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.17 (금)</div><div class="tlpct">SOX -5.5%</div></div>
+        <div><div class="tlt">中 Kimi K3 공개 — 'DeepSeek 쇼크 시즌2'<span class="mk">🇺🇸 미국</span><span class="mk">🌍 글로벌</span></div>
+          <div class="tlw">중국 Moonshot AI가 2.8조 파라미터 오픈웨이트 모델을 <b>토큰당 $3</b>(경쟁 모델 $10)에 공개. 필라델피아 반도체지수 주간 <b>-5.46%</b>, 니케이 -4.03%.<br>
+          <b>왜 —</b> "미국 AI 우위가 흔들리고, 비싼 GPU를 그렇게 많이 안 사도 되는 것 아니냐"는 의심이 AI 밸류체인 전체를 때림.</div>
+          <div class="lesson"><b>배운 것 ·</b> 이 사이클의 최대 리스크는 금리가 아니라 <b>AI 경쟁 구도 뉴스</b>였습니다.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.20 (월)</div><div class="tlpct">-4.46%</div></div>
+        <div><div class="tlt">국내 투매 지속 — 코스닥 연중 최저<span class="mk">🇰🇷 한국</span></div>
+          <div class="tlw">코스피 6,516, 코스닥 <b>-5.33%</b>. 오른 종목 1 : 내린 종목 8의 무차별 투매.<br>
+          <b>특징 —</b> 아침엔 -0.5%로 조용했는데 <b>장중에 낙폭이 확대</b>됐습니다. 오전 시세만 보고 판단하면 안 되는 이유.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.22~23</div><div class="tlpct">셀 더 뉴스</div></div>
+        <div><div class="tlt">알파벳 2Q 실적 — 좋은데 떨어졌다<span class="mk">🇺🇸 미국</span></div>
+          <div class="tlw">실적 자체는 무난. 그런데 <b>AI 설비투자(캡엑스) 대폭 확대</b> 가이던스에 "돈을 그렇게 쓰면 이익은?"이라는 반응으로 하락.<br>
+          <b>맥락 —</b> 빅테크 4사의 2026년 캡엑스 합계가 약 <b>7,250억 달러</b>. 시장은 실적 숫자보다 이 계획에 더 민감해졌습니다.</div>
+          <div class="lesson"><b>배운 것 ·</b> 실적 발표는 <b>숫자보다 가이던스</b>. 기대가 이미 주가에 반영돼 있으면 좋은 뉴스에도 떨어집니다.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.24 (금)</div><div class="tlpct">-5.72%</div></div>
+        <div><div class="tlt">'검은 금요일' — 메모리 동반 급락<span class="mk">🇰🇷 한국</span><span class="mk">🇺🇸 미국</span></div>
+          <div class="tlw">코스피 6,690.62. 마이크론 <b>-6.99%</b>, 샌디스크 <b>-10.79%</b>. 7/22 반등이 <b>데드캣(잠깐 튄 것)이었음이 확인</b>된 날.</div></div>
+      </div>
+
+      <div class="tlrow dn big">
+        <div><div class="tld">2026.07.28 (화)</div><div class="tlpct">-10.84%</div></div>
+        <div><div class="tlt">사이드카 → 서킷브레이커, 올해 8번째<span class="mk">🇰🇷 한국</span><span class="mk rec">역대급</span></div>
+          <div class="tlw">코스피 6,023.66. 09:06 매도 사이드카, 10:13 <b>서킷브레이커</b> 발동. 7/13(-8.95%)보다 큰 낙폭.<br>
+          <b>왜 —</b> ① 중국 <b>CXMT(창신메모리) 상장</b>으로 중국 반도체 굴기가 부각 ② 미국에서 <b>엔비디아·AI 기업 순환출자 의혹</b>이 제기되며 반도체주 급락 ③ 삼성전자·SK하이닉스 <b>단일종목 레버리지 상품</b>에 자금이 쏠려 있어 하락이 증폭 ④ 외국인 매도.</div>
+          <div class="lesson"><b>배운 것 ·</b> <b>레버리지가 몰린 시장은 하락도 증폭</b>됩니다. 같은 악재라도 수급 구조가 나쁘면 낙폭이 2배가 됩니다.</div></div>
+      </div>
+
+      <div class="tlrow dn">
+        <div><div class="tld">2026.07.29 (수)</div><div class="tlpct">-5.98%</div></div>
+        <div><div class="tlt">FOMC 동결 + 하이닉스 사상 최대 실적, 그래도 하락<span class="mk">🇰🇷 한국</span><span class="mk">🇺🇸 미국</span></div>
+          <div class="tlw">연준은 기준금리를 <b>3.50~3.75%로 5회 연속 동결</b>(9:3). 워시 의장은 "인플레를 잡는 데 주저하지 않겠다"고 발언.<br>
+          같은 날 SK하이닉스는 2분기 매출 79.3조 · <b>영업이익 60.5조(전년비 +557%, 영업이익률 76%)</b>로 <b>분기 사상 최대</b>를 발표. 그런데도 시장 기대치(64~70조)에 못 미쳐 주가는 하락. 코스피는 장중 5,262까지 밀림.</div>
+          <div class="lesson"><b>배운 것 ·</b> 사상 최대 실적도 <b>'기대치 대비'로 평가</b>됩니다. 절대 숫자가 아니라 컨센서스와의 격차가 주가를 정합니다.</div></div>
+      </div>
+
+      <div class="tlrow up big">
+        <div><div class="tld">2026.07.31 (금)</div><div class="tlpct">+17.91%</div></div>
+        <div><div class="tlt">역대 최대 폭등 — 하루 만에 1,000포인트<span class="mk">🇰🇷 한국</span><span class="mk rec">사상 최대</span></div>
+          <div class="tlw">코스피 6,595.45(+1,001.89p). <b>상승률·상승폭 모두 역대 최대.</b> 삼성전자 <b>+26.81%</b>, SK하이닉스 <b>+29.95% 상한가</b>(사상 첫 상한가). 상승 775 : 하락 127, 상한가 12종목.<br>
+          <b>왜 —</b> ① 전날 <b>마이크로소프트 깜짝 실적</b>(Azure +43%)으로 "AI 투자가 실제 돈이 된다"가 확인되며 미국 반도체 폭등 ② 아마존 <b>AWS +37%</b>(18분기 만 최고), 애플 매출 1,094억 달러로 역대 최대 → 나스닥 +2.78% ③ <b>외국인이 역대 최대 7조 원 순매수</b> ④ "7월의 공포가 과도했다"는 인식 확산.</div>
+          <div class="lesson"><b>배운 것 ·</b> 7/14·7/22 반등은 지표·기대에 기댄 <b>데드캣</b>이었지만, 7/31 반등은 <b>실적이라는 근거</b>가 있었습니다. 반등을 볼 때는 크기보다 <b>"무엇이 근거인가"</b>를 봐야 합니다.</div></div>
+      </div>
+
+    </div>
+
+    <div class="tlrow nt" style="margin-top:14px">
+      <div><div class="tld">사이클 요약</div><div class="tlpct">6/19~7/31</div></div>
+      <div><div class="tlt">6주 동안 벌어진 일<span class="mk">🇰🇷 한국</span></div>
+        <div class="tlw">고점 <b>9,385</b>(6/19) → 저점 <b>5,593</b>(7/30) → <b>6,595</b>(7/31). 고점 대비 최대 <b>-40%</b>까지 빠졌다가 마지막 하루에 <b>+17.9%</b>를 회복했습니다. 이 6주 안에 서킷브레이커가 세 번(7/13·7/28 등) 발동됐고, 사상 최대 폭락일과 사상 최대 폭등일이 <b>사흘 간격</b>으로 나왔습니다.<br>
+        <b>관통한 질문 하나 —</b> "AI에 쏟아붓는 돈이 실제 이익으로 돌아오는가?" 7월 내내 <b>아니다</b> 쪽에 베팅했다가, 마지막 주 빅테크 실적으로 <b>그렇다</b> 쪽으로 급선회한 한 달이었습니다.</div></div>
+    </div>
+
+    <div class="sec-head" style="margin-top:44px"><span class="n">TYPE</span><h2>반복되는 급등락 6가지 유형</h2></div>
+    <p class="sec-sub">위 사건들을 유형으로 묶으면 다음번에 알아보기 쉽습니다.</p>
+    <div class="types">
+      <div class="ty"><h5><span class="tn">1</span>AI 경쟁 쇼크형</h5>
+        <p>중국·경쟁사가 <b>더 싸고 좋은 AI</b>나 <b>새 메모리 공급</b>을 내놓으면 "우위가 흔들린다"는 공포로 반도체 전체가 급락.
+        <span class="ex">사례 · 7/17 Kimi K3(SOX -5.5%) · 7/28 CXMT 상장(-10.84%)</span></p></div>
+      <div class="ty"><h5><span class="tn">2</span>물가·금리형</h5>
+        <p>CPI·고용이 <b>예상보다 낮으면 반등, 높으면 급락</b>. 금리 결정 자체보다 <b>의장의 말</b>이 더 크게 움직이기도.
+        <span class="ex">사례 · 7/14 CPI 하회 반등 · 7/29 FOMC 동결에도 하락</span></p></div>
+      <div class="ty"><h5><span class="tn">3</span>실적·가이던스형</h5>
+        <p>절대 숫자보다 <b>컨센서스 대비</b>와 <b>앞으로의 계획</b>에 반응. 사상 최대 실적도 기대에 못 미치면 떨어집니다.
+        <span class="ex">사례 · 7/22 알파벳 셀더뉴스 · 7/29 하이닉스 60.5조인데 하락 · 7/30 MS +15% / 메타 -9%</span></p></div>
+      <div class="ty"><h5><span class="tn">4</span>과열·포지션형</h5>
+        <p>PER·버블지표가 쌓이고 <b>큰손의 숏 공시</b> 같은 촉매가 붙으면 한 번에 무너짐. <b>레버리지 쏠림</b>은 낙폭을 배로 키웁니다.
+        <span class="ex">사례 · 7/13 검은 월요일 · 7/28 단일종목 레버리지 증폭</span></p></div>
+      <div class="ty"><h5><span class="tn">5</span>지정학·유가형</h5>
+        <p>전쟁·해협 봉쇄로 <b>유가 급등 → 물가 → 금리</b>로 이어지는 간접 경로. 즉시가 아니라 <b>몇 주 뒤</b> 나타나기도.
+        <span class="ex">사례 · 7/15 호르무즈(WTI +9%)</span></p></div>
+      <div class="ty"><h5><span class="tn">6</span>공포 과잉 되돌림(V자)형</h5>
+        <p>펀더멘털이 멀쩡한데 공포로만 빠진 구간에 <b>확실한 증거</b>가 나오면 되돌림이 하락보다 빠릅니다. <b>외국인 대량 순매수</b>가 동반되는 게 특징.
+        <span class="ex">사례 · 7/31 +17.91%(역대 최대, 외국인 7조 순매수)</span></p></div>
+      <div class="ty"><h5><span class="tn">＋</span>반등을 구분하는 법</h5>
+        <p>모든 반등이 같지 않습니다. <b>7/14·7/22</b>는 지표·기대에 기댄 하루짜리(데드캣)였고, <b>7/31</b>은 실적이라는 근거가 있었습니다. 크기보다 <b>근거가 무엇인지</b>, 그리고 <b>수급(외국인·기관)이 따라붙는지</b>를 함께 보면 구분됩니다.</p></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="n">PART 3</span><h2>인자 사전 — 무엇이 주가를 움직이나</h2></div>
   <p class="sec-sub">6개 갈래로 나눈 25개 핵심 인자. 파란 라벨은 발생 빈도입니다.</p>
 
   <div class="groups">
@@ -383,7 +576,6 @@
         <div class="fi"><div class="fn">미 10년물 국채금리<span class="freq">상시</span></div><p>모든 주식 밸류의 <b>할인율</b>. 금리 급등 = 성장주(기술·AI) 밸류 부담 확대.</p></div>
       </div>
     </section>
-
     <section class="group">
       <div class="gh"><span class="gi">B</span><h3>경제지표 <span class="gsub">— 금리의 재료</span></h3></div>
       <div class="gitems">
@@ -393,135 +585,104 @@
         <div class="fi"><div class="fn">GDP · PMI<span class="freq">분기·매월</span></div><p>경기 확장/수축. PMI 50 위=확장, 아래=수축. 침체 신호는 위험자산 회피로.</p></div>
       </div>
     </section>
-
     <section class="group">
       <div class="gh"><span class="gi">C</span><h3>시장심리 <span class="gsub">— 분위기 계기판</span></h3></div>
       <div class="gitems">
-        <div class="fi"><div class="fn">공포지수(VIX)<span class="freq">상시</span></div><p><b>20 넘으면 공포, 아래면 안정.</b> 급등하면 투매 신호. '하루 반등에 안 흔들리기'의 핵심 계기판.</p></div>
+        <div class="fi"><div class="fn">공포지수(VIX)<span class="freq">상시</span></div><p><b>20 넘으면 공포, 아래면 안정.</b> 급등하면 투매 신호. '하루 반등에 흔들리지 않기'의 핵심 계기판.</p></div>
         <div class="fi"><div class="fn">공포·탐욕 지수<span class="freq">상시</span></div><p>0(극도의 공포)~100(극도의 탐욕). <b>바닥권 공포 = 역발상 매수</b> 참고 지표.</p></div>
         <div class="fi"><div class="fn">풋/콜 비율<span class="freq">상시</span></div><p>하락 베팅 vs 상승 베팅의 비율. 지나친 쏠림은 반대로 튈 신호가 되기도.</p></div>
-        <div class="fi"><div class="fn">예탁금 · 신용융자<span class="freq">상시</span></div><p>대기 매수세(예탁금)와 빚투(신용). <b>신용 과열은 하락 시 반대매매 위험.</b></p></div>
+        <div class="fi"><div class="fn">예탁금 · 신용융자 · 레버리지<span class="freq">상시</span></div><p>대기 매수세와 빚투 규모. <b>레버리지 쏠림은 하락을 증폭</b>시킵니다(7/28 사례).</p></div>
       </div>
     </section>
-
     <section class="group">
       <div class="gh"><span class="gi">D</span><h3>수급 · 기술적 <span class="gsub">— 돈의 흐름과 파동</span></h3></div>
       <div class="gitems">
-        <div class="fi"><div class="fn">반도체지수(필라델피아 SOX)<span class="freq">상시</span></div><p>AI·기술주 바로미터. <b>코스피·삼성전자·SK하이닉스를 선행</b>하는 경향. 사장님 포트 직결.</p></div>
+        <div class="fi"><div class="fn">반도체지수(필라델피아 SOX)<span class="freq">상시</span></div><p>AI·기술주 바로미터. <b>코스피·삼성전자·SK하이닉스를 선행</b>하는 경향.</p></div>
         <div class="fi"><div class="fn">옵션·선물 만기일<span class="freq">매월 2목</span></div><p>만기에 프로그램 매물이 몰려 <b>수급이 왜곡되고 변동성 급증</b>. 분기는 '네 마녀의 날'.</p></div>
-        <div class="fi"><div class="fn">파동이론(엘리엇)·추세<span class="freq">해석용</span></div><p>상승 5파-하락 3파 리듬, 이동평균선·추세선. <b>단정보다 참고</b>. '추세 확인 후 진입'의 근거.</p></div>
-        <div class="fi"><div class="fn">외국인 · 기관 수급<span class="freq">상시</span></div><p>국내 증시 방향을 사실상 좌우. 프로그램 매매·차익거래(베이시스)도 단기 수급을 흔듦.</p></div>
+        <div class="fi"><div class="fn">파동이론(엘리엇)·추세<span class="freq">해석용</span></div><p>상승 5파-하락 3파 리듬, 이동평균선·추세선. <b>단정보다 참고</b>. 추세 확인 후 진입의 근거.</p></div>
+        <div class="fi"><div class="fn">외국인 · 기관 수급<span class="freq">상시</span></div><p>국내 증시 방향을 사실상 좌우. <b>외국인 대량 순매수는 V자 반등의 신호</b>가 되기도(7/31 7조 순매수).</p></div>
       </div>
     </section>
-
     <section class="group">
       <div class="gh"><span class="gi">E</span><h3>이벤트 · 실적 <span class="gsub">— 재평가의 순간</span></h3></div>
       <div class="gitems">
-        <div class="fi"><div class="fn">어닝시즌(실적발표)<span class="freq">분기</span></div><p>1·4·7·10월. 개별종목·지수가 <b>실적에 따라 재평가</b>. 어닝 서프라이즈/쇼크가 급등락 유발.</p></div>
+        <div class="fi"><div class="fn">어닝시즌(실적발표)<span class="freq">분기</span></div><p>1·4·7·10월. <b>절대 숫자보다 컨센서스 대비</b>로 평가됩니다. 사상 최대 실적도 기대에 못 미치면 하락.</p></div>
+        <div class="fi"><div class="fn">빅테크 CAPEX·수익화<span class="freq">분기</span></div><p>이익보다 <b>AI 설비투자 계획과 그 회수 여부</b>에 시장이 반응. 4사 2026년 캡엑스 합계 약 7,250억달러.</p></div>
         <div class="fi"><div class="fn">잭슨홀 · 주요 연설<span class="freq">8월 등</span></div><p>연준 의장이 <b>통화정책 방향 힌트</b>를 주는 자리. 한마디에 글로벌 증시가 출렁.</p></div>
-        <div class="fi"><div class="fn">배당락일<span class="freq">연말·분기</span></div><p>배당 받을 권리가 사라지는 날. 그만큼 <b>지수·주가가 기술적으로 하락</b>.</p></div>
-        <div class="fi"><div class="fn">지수 리밸런싱(MSCI·코스피200)<span class="freq">분기·반기</span></div><p>지수 편입/편출로 <b>강제 매수·매도 수급</b> 발생. 편입 종목은 미리 강세.</p></div>
+        <div class="fi"><div class="fn">배당락 · 지수 리밸런싱<span class="freq">분기·반기</span></div><p>배당 권리 소멸일엔 기술적 하락. MSCI·코스피200 편출입은 <b>강제 매수·매도 수급</b> 유발.</p></div>
       </div>
     </section>
-
     <section class="group">
       <div class="gh"><span class="gi">F</span><h3>거시 · 지정학 · 계절성 <span class="gsub">— 판 전체의 바람</span></h3></div>
       <div class="gitems">
-        <div class="fi"><div class="fn">환율(원/달러)<span class="freq">상시</span></div><p>외국인 자금·수출주 손익. <b>보유 미국자산은 환율 오르면 환차익</b> 방향(원화 약세).</p></div>
+        <div class="fi"><div class="fn">환율(원/달러)<span class="freq">상시</span></div><p>외국인 자금·수출주 손익에 직결. 원화 약세는 해외자산 보유자에겐 환차익 방향.</p></div>
         <div class="fi"><div class="fn">유가 · 원자재<span class="freq">상시</span></div><p>유가 급등 = 물가·비용 자극 → 금리 재상승 경로. 구리는 경기, 금은 안전자산 신호.</p></div>
-        <div class="fi"><div class="fn">지정학 리스크<span class="freq">비정기</span></div><p>전쟁·관세·선거·규제. <b>예고 없이 터지는 변수</b>라 현금(실탄)이 방어막.</p></div>
+        <div class="fi"><div class="fn">지정학 리스크<span class="freq">비정기</span></div><p>전쟁·관세·선거·규제. <b>예고 없이 터지는 변수</b>라 현금 비중이 방어막.</p></div>
         <div class="fi"><div class="fn">계절성<span class="freq">월별 경향</span></div><p>1월 효과·'Sell in May'·9월 약세·산타랠리. <b>확실한 법칙 아닌 통계적 경향</b>.</p></div>
       </div>
     </section>
   </div>
 
-  
+  <div class="sec-head"><span class="n">PART 4</span><h2>매달 돌아오는 지표</h2></div>
+  <p class="sec-sub">매월 반복되는 지표입니다. 위 달력의 각 달 칸 하단에도 똑같이 넣어 두었습니다.</p>
+  <div class="recur">
+    <p class="rt">Every Month</p>
+    <p class="rti">거의 매달 같은 시점에 발표되는 단골 지표들</p>
+    <div class="rgrid">
+      <div class="rrow"><span class="rd"></span><div><div class="rl">美 고용보고서</div><div class="rw">매월 첫째 금요일</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">美 CPI 소비자물가</div><div class="rw">매월 중순</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">美 PCE 물가</div><div class="rw">매월 말</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">韓 수출입 동향</div><div class="rw">매월 1일</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">韓·美 옵션 만기</div><div class="rw">매월 둘째 목요일</div></div></div>
+      <div class="rrow"><span class="rd"></span><div><div class="rl">VIX · 환율 · SOX</div><div class="rw">매일 장중 체크</div></div></div>
+    </div>
+  </div>
 
   <div class="sec-head"><span class="n">KEY</span><h2>범례 &amp; 용어</h2></div>
   <div class="legend">
     <div class="lg">
-      <h4>영향도 (좌측 색 막대)</h4>
-      <div class="lgrow"><span class="dot h"></span><span><b>上</b> — 지수를 크게 흔들 수 있는 핵심 일정</span></div>
-      <div class="lgrow"><span class="dot m"></span><span><b>中</b> — 수급·심리에 영향, 주의 관찰</span></div>
-      <div class="lgrow"><span class="dot l"></span><span><b>下</b> — 참고용 경향·계절성 및 매달 반복되는 정기지표</span></div>
+      <h4>표기 규칙</h4>
+      <div class="lgrow"><span class="dot h"></span><span><b>빨강</b> — 금리 결정·급등락 등 지수를 크게 흔든 일정</span></div>
+      <div class="lgrow"><span class="dot m"></span><span><b>주황</b> — 만기·수급·계절 이벤트(변동성 주의)</span></div>
+      <div class="lgrow"><span class="dot e"></span><span><b>보라</b> — 실적발표</span></div>
+      <div class="lgrow"><span class="dot l"></span><span><b>초록</b> — 참고용 경향</span></div>
+      <div class="lgrow"><span style="width:11px;flex:none"></span><span><b>≈</b> — 예년 패턴 기반 <b>추정일</b>(확정 발표 시 갱신)</span></div>
+      <div class="lgrow"><span style="width:11px;flex:none"></span><span><b>회색 줄 + ✓상자</b> — 이미 지난 일정과 그 결과</span></div>
     </div>
     <div class="lg">
       <h4>꼭 알아둘 용어</h4>
       <dl class="gloss">
+        <dt>서킷브레이커 · 사이드카</dt>
+        <dd><b>사이드카</b>는 선물이 급변할 때 프로그램 매매를 5분 멈추는 장치, <b>서킷브레이커</b>는 지수가 8%·15%·20% 급락하면 시장 전체를 20분간 멈추는 장치입니다. 2026년 7월엔 한 달에 세 번 발동됐습니다.</dd>
         <dt>윈도드레싱 (Window Dressing)</dt>
-        <dd>분기·반기 말에 펀드·기관이 <b>성과가 좋아 보이도록 포트폴리오를 단장</b>하는 매매. 많이 오른 인기 종목은 사서 채우고 부진한 종목은 파는 식이라, 월말·분기말 지수가 실제 방향과 다르게 왜곡되기도 합니다.</dd>
+        <dd>분기·반기 말에 펀드·기관이 <b>성과가 좋아 보이도록 포트폴리오를 단장</b>하는 매매. 월말·분기말 지수가 실제 방향과 다르게 왜곡되기도 합니다.</dd>
         <dt>네 마녀의 날 (쿼드러플 위칭)</dt>
         <dd>주가지수 선물·옵션, 개별주식 선물·옵션 <b>4가지가 한날 동시에 만기</b>가 되는 날(분기별). 프로그램 매물이 몰려 변동성이 큽니다.</dd>
         <dt>점도표 (Dot Plot / SEP)</dt>
-        <dd>연준 위원 각자가 예상하는 <b>향후 기준금리 점을 찍은 표</b>. 앞으로 금리를 몇 번 올릴지/내릴지 시장이 읽는 핵심 힌트.</dd>
+        <dd>연준 위원 각자가 예상하는 <b>향후 기준금리 점을 찍은 표</b>. 앞으로 금리를 몇 번 올릴지·내릴지 시장이 읽는 핵심 힌트.</dd>
+        <dt>잠정실적 vs 확정실적</dt>
+        <dd>삼성전자는 분기가 끝나자마자 <b>매출·영업이익만 먼저(잠정)</b> 발표하고, 3주쯤 뒤 사업부별 상세와 전망을 <b>확정실적·컨퍼런스콜</b>에서 공개합니다. 주가는 두 번 다 움직입니다.</dd>
+        <dt>셀 더 뉴스 (Sell the News)</dt>
+        <dd>좋은 실적이 나와도 <b>이미 기대가 주가에 반영</b>돼 있으면 발표 직후 오히려 떨어지는 현상.</dd>
+        <dt>데드캣 바운스</dt>
+        <dd>크게 떨어진 뒤 <b>잠깐 튀어오르는 반등</b>. 추세 전환처럼 보이지만 곧 다시 떨어집니다. 2026년 7월엔 두 번(7/14·7/22) 있었습니다.</dd>
       </dl>
     </div>
   </div>
 
+  <div class="note">
+    <b>이 자료 쓰는 법.</b> 빨강·보라가 몰린 주간이 변동성 큰 구간입니다 — 특히 <b>9·12·3·6월(만기+FOMC 겹침)</b>과 <b>실적 슈퍼위크(7·10·1·4월 말)</b>. 2026년 7월이 보여줬듯, 이 구간엔 <b>사상 최대 폭락과 사상 최대 폭등이 며칠 간격으로</b> 나올 수도 있습니다. 다가오는 가장 큰 관문은 <b>8/21 잭슨홀</b>과 <b>8/26 엔비디아 실적</b>입니다.
+  </div>
+
   <footer>
-    美 FOMC·韓 금통위·선물옵션 만기는 공식 확정 일정, 반복 지표·계절성은 통상 시점입니다. 2027년 韓 금통위 날짜는 한국은행 연말 발표 후 확정됩니다.<br>
-    참고용 자료이며 투자자문이 아닙니다 · SK 자산관리사무실
+    美 FOMC·韓 금통위·선물옵션 만기와 확정 표기된 실적일은 공식 일정, <b>≈</b>는 예년 패턴 기반 추정입니다. 2027년 韓 금통위 날짜는 한국은행 연말 발표 후 확정됩니다.<br>
+    히스토리의 지수·실적 수치는 공개 보도와 거래소 데이터를 정리한 개산치입니다. <b>본 자료는 시장 이해를 돕기 위한 공개 참고자료이며, 특정 종목의 매수·매도를 권유하지 않습니다.</b> 투자 판단과 그 결과의 책임은 투자자 본인에게 있습니다.
   </footer>
 
-</div>
+  <div class="banner bottom">
+    <div class="bl"><span class="mark"></span><span><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.02</span></div>
+  </div>
 
-<script>
-(function(){
-  var GLOSS = {
-    "美 금리": "미국 기준금리(FOMC). 세계 증시 최대 변수 — 금리를 올리면 주식엔 역풍, 내리면 순풍입니다. 3·6·9·12월엔 향후 금리 전망을 담은 점도표도 함께 공개됩니다.",
-    "韓 금리": "한국 기준금리(금통위). 원화 가치와 국내 유동성을 좌우합니다. 한미 금리차가 벌어지면 외국인 자금이 빠져나갈 압력이 커집니다.",
-    "만기": "옵션·선물 만기일. 만기에는 프로그램 매물이 몰려 수급이 왜곡되고 변동성이 급증합니다. 분기 만기는 '네 마녀의 날'이라 부릅니다.",
-    "옵션만기": "매월 정기 옵션·선물 만기(보통 둘째 목요일). 프로그램 매매가 몰리며 단기 변동성이 커질 수 있는 날입니다.",
-    "실적": "어닝시즌(실적발표). 1·4·7·10월에 개별종목·지수가 실적에 따라 재평가됩니다. 어닝 서프라이즈/쇼크가 급등락을 유발합니다.",
-    "계절": "계절성. 1월 효과·'Sell in May'·9월 약세·산타랠리처럼 반복되는 통계적 경향이며, 확실한 법칙은 아닙니다.",
-    "수급": "지수 리밸런싱(MSCI·코스피200). 지수 편입/편출로 강제 매수·매도 수급이 발생하고, 편입 종목은 미리 강세를 보이는 경향이 있습니다.",
-    "이벤트": "예정된 굵직한 이벤트. 잭슨홀 심포지엄처럼 통화정책 힌트를 주는 자리이거나, 주총·배당 확정처럼 시장이 미리 반영하는 기업 일정을 가리킵니다.",
-    "美 고용": "미국 고용보고서(비농업). 경기 강도를 보여주는 지표로, 고용이 너무 뜨거우면 '금리를 더 오래 높게' 우려가 커져 주식엔 부담이 될 때도 있습니다.",
-    "美 CPI": "미국 CPI 소비자물가. 인플레이션 체온계로, 물가가 금리 방향을 정하고 금리가 다시 주가를 정하는 연쇄의 출발점입니다.",
-    "美 PCE": "미국 PCE 물가. 연준이 금리 결정 시 실제로 참고하는 물가 지표로, CPI와 다르게 나오면 금리 기대가 크게 출렁입니다.",
-    "韓 수출입": "한국 월간 수출입 동향. 반도체·자동차 등 주력 수출 실적이 국내 증시 방향과 원화 가치에 직접적인 영향을 줍니다."
-  };
-  var bubble = null;
-  function closeBubble(){
-    if(bubble){ bubble.remove(); bubble = null; }
-  }
-  function openBubble(target, text, term){
-    closeBubble();
-    bubble = document.createElement('div');
-    bubble.className = 'glossbubble';
-    bubble.innerHTML =
-      '<span class="gb-close" aria-label="닫기">×</span>' +
-      '<div class="gb-term">' + term + '</div>' +
-      '<div class="gb-desc"></div>';
-    bubble.querySelector('.gb-desc').textContent = text;
-    document.body.appendChild(bubble);
-    var r = target.getBoundingClientRect();
-    var bw = Math.min(280, window.innerWidth - 32);
-    bubble.style.width = bw + 'px';
-    var left = r.left + window.scrollX;
-    left = Math.max(16, Math.min(left, window.innerWidth - bw - 16 + window.scrollX));
-    var top = r.bottom + window.scrollY + 8;
-    bubble.style.left = left + 'px';
-    bubble.style.top = top + 'px';
-  }
-  document.addEventListener('click', function(e){
-    var closeBtn = e.target.closest('.gb-close');
-    if(closeBtn){ closeBubble(); return; }
-    var tag = e.target.closest('.ev .etag');
-    if(tag){
-      var term = tag.textContent.trim();
-      if(GLOSS[term]){
-        e.stopPropagation();
-        openBubble(tag, GLOSS[term], term);
-      }
-      return;
-    }
-    if(!e.target.closest('.glossbubble')){ closeBubble(); }
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeBubble(); }
-  });
-  window.addEventListener('scroll', closeBubble, {passive:true});
-  window.addEventListener('resize', closeBubble);
-})();
-</script>
+</div>
+</body></html>
