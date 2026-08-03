@@ -14,7 +14,8 @@
   --soft:var(--color-neutral-700); --faint:var(--color-neutral-500);
   --line:var(--color-divider); --hair:var(--color-neutral-300);
   --accent:var(--color-accent); --accent-ink:var(--color-accent-700);
-  --up:oklch(0.55 0.14 152); --up-tint:oklch(0.96 0.03 152); --dn:var(--color-accent);
+  --up:var(--color-accent); --up-tint:var(--color-accent-100); --up-ink:var(--color-accent-800);
+  --dn:oklch(0.5 0.16 255); --dn-tint:oklch(0.95 0.02 255); --dn-ink:oklch(0.32 0.13 255);
   --num:var(--font-body);
 }
 *{box-sizing:border-box}
@@ -80,25 +81,25 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .res b{font-weight:700;color:var(--color-text)}
 .res.up{background:var(--up-tint);border-left-color:var(--up);color:var(--up)}
 .res.up b{color:var(--up)}
-.res.down{background:var(--color-accent-100);border-left-color:var(--color-accent);color:var(--color-accent-800)}
-.res.down b{color:var(--color-accent-800)}
+.res.down{background:var(--dn-tint);border-left-color:var(--dn);color:var(--dn-ink)}
+.res.down b{color:var(--dn-ink)}
 .mfoot{margin-top:auto;padding:10px 16px;border-top:2px solid var(--color-divider);font-size:10.5px;color:var(--soft);line-height:1.5}
 .mfoot b{color:var(--color-text);font-weight:700}
 .mfoot .lbl,.ddl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:700;display:block;margin-bottom:4px}
 
 /* — history timeline — */
 .phase{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--color-bg);background:var(--color-text);padding:5px 12px;display:inline-block;margin:var(--space-6) 0 var(--space-3)}
-.tl{display:flex;flex-direction:column;gap:var(--space-3)}
+.tl{display:flex;flex-direction:column-reverse;gap:var(--space-3)}
 .tlrow{display:grid;grid-template-columns:118px 1fr;gap:var(--space-4);background:var(--color-surface);border:1px solid var(--line);padding:14px 18px 14px 22px;position:relative}
 .tlrow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
-.tlrow.dn::before{background:var(--color-accent)}
+.tlrow.dn::before{background:var(--dn)}
 .tlrow.up::before{background:var(--up)}
 .tlrow.nt::before{background:var(--color-neutral-400)}
 .tlrow.big{border:2px solid var(--color-accent)}
 @media(max-width:640px){.tlrow{grid-template-columns:1fr;gap:6px}}
 .tld{font-size:11.5px;font-weight:700;color:var(--soft)}
 .tlpct{font-family:var(--font-heading);font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:2px;line-height:1.15}
-.tlrow.dn .tlpct{color:var(--color-accent)}
+.tlrow.dn .tlpct{color:var(--dn)}
 .tlrow.up .tlpct{color:var(--up)}
 .tlrow.nt .tlpct{color:var(--faint);font-size:14px}
 .tlt{font-family:var(--font-heading);font-weight:800;font-size:15.5px;margin-bottom:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;line-height:1.25;letter-spacing:-.01em}
@@ -173,12 +174,14 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 @media(max-width:600px){.cards{grid-template-columns:1fr}}
 .card{border:1px solid var(--line);padding:13px 15px 11px;background:var(--color-bg);gap:0}
 .card .cl{font-size:12px;font-weight:700;color:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.card .ath{font-size:9.5px;color:var(--faint);margin-top:2px;font-variant-numeric:tabular-nums}
+.card .ath b{color:var(--soft);font-weight:700}
 .card .cl .cx{font-size:9px;color:var(--faint);border:1px solid var(--hair);padding:1px 5px;font-weight:700;letter-spacing:.06em}
 .card .cv{font-family:var(--font-heading);font-size:27px;font-weight:700;letter-spacing:-.025em;margin-top:6px;line-height:1.15;color:var(--color-text)}
 .card .cc{font-size:11.5px;font-weight:700;margin-top:3px}
-.card .cc.up{color:var(--up)} .card .cc.dn{color:var(--color-accent)} .card .cc.nt{color:var(--soft)}
+.card .cc.up{color:var(--up)} .card .cc.dn{color:var(--dn)} .card .cc.nt{color:var(--soft)}
 .card .spark{width:100%;height:52px;display:block;margin-top:10px;overflow:visible}
-.card.up .spark{color:var(--up)} .card.dn .spark{color:var(--color-accent)} .card.nt .spark{color:var(--color-neutral-500)}
+.card.up .spark{color:var(--up)} .card.dn .spark{color:var(--dn)} .card.nt .spark{color:var(--color-neutral-500)}
 .card .spark polyline{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
 .card .spark polygon{fill:currentColor;opacity:.1;stroke:none}
 .card .spark circle{fill:currentColor;stroke:var(--color-bg);stroke-width:1.2;vector-effect:non-scaling-stroke}
@@ -198,7 +201,7 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .card .mc .spark{height:46px;margin-top:0}
 .card .mc.yr .spark{color:var(--color-neutral-400)}
 .card.up .mc.qt .spark{color:var(--up)}
-.card.dn .mc.qt .spark{color:var(--color-accent)}
+.card.dn .mc.qt .spark{color:var(--dn)}
 .card.nt .mc.qt .spark{color:var(--color-neutral-700)}
 .card .mc.yr .spark polyline{stroke-width:1.3}
 .card .mc.qt .spark polyline{stroke-width:2.1}
@@ -214,6 +217,15 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .ddi .ddt{font-size:12px;font-weight:600;color:var(--soft);white-space:nowrap}
 .ddi.hot{background:var(--color-accent);border-color:var(--color-accent)}
 .ddi.hot .ddn,.ddi.hot .ddt{color:var(--color-bg)}
+
+/* — global markets strip & dash footer nav — */
+.others{display:flex;flex-wrap:wrap;gap:7px 20px;margin-top:14px;padding-top:14px;border-top:1px solid var(--hair);font-size:12.5px}
+.others .oi{color:var(--soft);white-space:nowrap}
+.others .oi b{font-weight:700}
+.others .oi.up b{color:var(--up)}
+.others .oi.dn b{color:var(--dn)}
+.dashfoot{display:flex;justify-content:flex-end;margin-top:12px}
+a.tag{text-decoration:none;cursor:pointer}
 
 /* — provider banner — */
 .banner{background:var(--color-text);color:var(--color-bg);padding:14px clamp(16px,2.4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
@@ -250,7 +262,7 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
     </div>
   </header>
 
-  <div class="sec-head"><span class="n">NOW</span><h2>시장 현황 — 지금 어디에 있나</h2></div>
+  <div class="sec-head" id="now"><span class="n">NOW</span><h2>시장 현황 — 지금 어디에 있나</h2></div>
   <p class="sec-sub">마지막 거래일 <b>2026년 8월 3일(월)</b> 종가 기준. 카드마다 그래프가 두 개입니다 — 왼쪽 회색 <b>1Y</b>는 1년 큰 흐름, 오른쪽 진한 <b>1M</b>은 최근 <b>1개월을 하루 단위로</b> 그린 정밀 흐름. 두 그래프는 <b>각자 자기 구간의 최고·최저에 맞춰 그려지므로</b> 높낮이를 서로 비교하지 마시고 모양만 보십시오. 색은 전일 대비 방향(오름 초록·내림 빨강)이며, 금리·공포지수·환율·유가·금은 방향이 곧 좋고 나쁨을 뜻하지 않아 회색으로 표시했습니다.</p>
 
   <section class="dash">
@@ -260,6 +272,8 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
     </div>
 
     <div class="cards" id="cards"></div>
+
+    <div class="others" id="others"></div>
 
     <div class="dday">
       <span class="ddl">다음 관문 · 2026.08.04 기준</span>
@@ -272,6 +286,8 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
         <div class="ddi"><span class="ddn">D-23</span><span class="ddt">08.27 韓 금통위</span></div>
       </div>
     </div>
+
+    <div class="dashfoot"><a class="tag k" href="#part3">주요 인자 설명 →</a></div>
   </section>
 
   <div class="sec-head"><span class="n">PART 1</span><h2>1년 레퍼런스 달력 · 2026.07 → 2027.06</h2></div>
@@ -578,18 +594,18 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
       </div>
 
       <div class="tlrow dn">
+        <div><div class="tld">2026.08.03</div><div class="tlpct">유가 -5.44%</div></div>
+        <div><div class="tlt">이란 리스크 완화 + OPEC+ 증산 → 유가 급락<span class="mk">GL 글로벌</span></div>
+          <div class="tlw">WTI 84.67→80.06달러. 7/15 호르무즈 긴장 급등분을 상당폭 반납.<br>
+          <b>왜 —</b> ① 트럼프의 <b>이란 군사행동 중단</b> 발표로 지정학 리스크 프리미엄 축소 ② OPEC+가 9월부터 <b>증산(+18.8만b/d)</b> 발표 ③ 미·중 제조업 지표 부진에 수요 둔화 우려.</div></div>
+      </div>
+
+      <div class="tlrow dn">
         <div><div class="tld">2026.08.03 (월)</div><div class="tlpct">-5.12%</div></div>
         <div><div class="tlt">역대 폭등 하루 만에 되돌림<span class="mk">KR 한국</span></div>
           <div class="tlw">코스피 6,257.45(-338.00). 삼성전자·SK하이닉스 각각 <b>-6~9%대</b> 급락하며 지수를 끌어내림.<br>
           <b>왜 —</b> ① 7/31 +17.91% 폭등에 대한 <b>차익실현·되돌림 매물</b> ② 외국인이 야간선물에서 대량 매도로 전환 ③ 단일종목 레버리지 상품의 청산 압력이 다시 낙폭을 키움 — 7/28과 같은 패턴.</div>
           <div class="lesson"><b>배운 것 ·</b> 하루짜리 <b>역대급 반등도 하루 만에 되돌려질 수 있습니다.</b> 급등 다음 날은 되돌림 가능성을 항상 열어둬야 합니다.</div></div>
-      </div>
-
-      <div class="tlrow dn">
-        <div><div class="tld">2026.08.03</div><div class="tlpct">유가 -5.44%</div></div>
-        <div><div class="tlt">이란 리스크 완화 + OPEC+ 증산 → 유가 급락<span class="mk">GL 글로벌</span></div>
-          <div class="tlw">WTI 84.67→80.06달러. 7/15 호르무즈 긴장 급등분을 상당폭 반납.<br>
-          <b>왜 —</b> ① 트럼프의 <b>이란 군사행동 중단</b> 발표로 지정학 리스크 프리미엄 축소 ② OPEC+가 9월부터 <b>증산(+18.8만b/d)</b> 발표 ③ 미·중 제조업 지표 부진에 수요 둔화 우려.</div></div>
       </div>
 
     </div>
@@ -601,33 +617,9 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
         <b>관통한 질문 하나 —</b> "AI에 쏟아붓는 돈이 실제 이익으로 돌아오는가?" 7월 내내 <b>아니다</b> 쪽에 베팅했다가, 마지막 주 빅테크 실적으로 <b>그렇다</b> 쪽으로 급선회한 한 달이었습니다.</div></div>
     </div>
 
-    <div class="sec-head" style="margin-top:44px"><span class="n">TYPE</span><h2>반복되는 급등락 6가지 유형</h2></div>
-    <p class="sec-sub">위 사건들을 유형으로 묶으면 다음번에 알아보기 쉽습니다.</p>
-    <div class="types">
-      <div class="ty"><h5><span class="tn">1</span>AI 경쟁 쇼크형</h5>
-        <p>중국·경쟁사가 <b>더 싸고 좋은 AI</b>나 <b>새 메모리 공급</b>을 내놓으면 "우위가 흔들린다"는 공포로 반도체 전체가 급락.
-        <span class="ex">사례 · 7/17 Kimi K3(SOX -5.5%) · 7/28 CXMT 상장(-10.84%)</span></p></div>
-      <div class="ty"><h5><span class="tn">2</span>물가·금리형</h5>
-        <p>CPI·고용이 <b>예상보다 낮으면 반등, 높으면 급락</b>. 금리 결정 자체보다 <b>의장의 말</b>이 더 크게 움직이기도.
-        <span class="ex">사례 · 7/14 CPI 하회 반등 · 7/29 FOMC 동결에도 하락</span></p></div>
-      <div class="ty"><h5><span class="tn">3</span>실적·가이던스형</h5>
-        <p>절대 숫자보다 <b>컨센서스 대비</b>와 <b>앞으로의 계획</b>에 반응. 사상 최대 실적도 기대에 못 미치면 떨어집니다.
-        <span class="ex">사례 · 7/22 알파벳 셀더뉴스 · 7/29 하이닉스 60.5조인데 하락 · 7/30 MS +15% / 메타 -9%</span></p></div>
-      <div class="ty"><h5><span class="tn">4</span>과열·포지션형</h5>
-        <p>PER·버블지표가 쌓이고 <b>큰손의 숏 공시</b> 같은 촉매가 붙으면 한 번에 무너짐. <b>레버리지 쏠림</b>은 낙폭을 배로 키웁니다.
-        <span class="ex">사례 · 7/13 검은 월요일 · 7/28 단일종목 레버리지 증폭</span></p></div>
-      <div class="ty"><h5><span class="tn">5</span>지정학·유가형</h5>
-        <p>전쟁·해협 봉쇄로 <b>유가 급등 → 물가 → 금리</b>로 이어지는 간접 경로. 즉시가 아니라 <b>몇 주 뒤</b> 나타나기도.
-        <span class="ex">사례 · 7/15 호르무즈(WTI +9%)</span></p></div>
-      <div class="ty"><h5><span class="tn">6</span>공포 과잉 되돌림(V자)형</h5>
-        <p>펀더멘털이 멀쩡한데 공포로만 빠진 구간에 <b>확실한 증거</b>가 나오면 되돌림이 하락보다 빠릅니다. <b>외국인 대량 순매수</b>가 동반되는 게 특징.
-        <span class="ex">사례 · 7/31 +17.91%(역대 최대, 외국인 7조 순매수)</span></p></div>
-      <div class="ty"><h5><span class="tn">＋</span>반등을 구분하는 법</h5>
-        <p>모든 반등이 같지 않습니다. <b>7/14·7/22</b>는 지표·기대에 기댄 하루짜리(데드캣)였고, <b>7/31</b>은 실적이라는 근거가 있었습니다. 크기보다 <b>근거가 무엇인지</b>, 그리고 <b>수급(외국인·기관)이 따라붙는지</b>를 함께 보면 구분됩니다.</p></div>
-    </div>
   </div>
 
-  <div class="sec-head"><span class="n">PART 3</span><h2>인자 사전 — 무엇이 주가를 움직이나</h2></div>
+  <div class="sec-head" id="part3"><span class="n">PART 3</span><h2>인자 사전 — 무엇이 주가를 움직이나</h2><a class="tag k" href="#now" style="margin-left:auto">↑ 시장 현황</a></div>
   <p class="sec-sub">6개 갈래로 나눈 25개 핵심 인자. 파란 라벨은 발생 빈도입니다.</p>
 
   <div class="groups">
@@ -686,6 +678,31 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
       </div>
     </section>
   </div>
+
+    <div class="sec-head" style="margin-top:var(--space-8)"><span class="n">TYPE</span><h2>반복되는 급등락 6가지 유형</h2></div>
+    <p class="sec-sub">위 사건들을 유형으로 묶으면 다음번에 알아보기 쉽습니다.</p>
+    <div class="types">
+      <div class="ty"><h5><span class="tn">1</span>AI 경쟁 쇼크형</h5>
+        <p>중국·경쟁사가 <b>더 싸고 좋은 AI</b>나 <b>새 메모리 공급</b>을 내놓으면 "우위가 흔들린다"는 공포로 반도체 전체가 급락.
+        <span class="ex">사례 · 7/17 Kimi K3(SOX -5.5%) · 7/28 CXMT 상장(-10.84%)</span></p></div>
+      <div class="ty"><h5><span class="tn">2</span>물가·금리형</h5>
+        <p>CPI·고용이 <b>예상보다 낮으면 반등, 높으면 급락</b>. 금리 결정 자체보다 <b>의장의 말</b>이 더 크게 움직이기도.
+        <span class="ex">사례 · 7/14 CPI 하회 반등 · 7/29 FOMC 동결에도 하락</span></p></div>
+      <div class="ty"><h5><span class="tn">3</span>실적·가이던스형</h5>
+        <p>절대 숫자보다 <b>컨센서스 대비</b>와 <b>앞으로의 계획</b>에 반응. 사상 최대 실적도 기대에 못 미치면 떨어집니다.
+        <span class="ex">사례 · 7/22 알파벳 셀더뉴스 · 7/29 하이닉스 60.5조인데 하락 · 7/30 MS +15% / 메타 -9%</span></p></div>
+      <div class="ty"><h5><span class="tn">4</span>과열·포지션형</h5>
+        <p>PER·버블지표가 쌓이고 <b>큰손의 숏 공시</b> 같은 촉매가 붙으면 한 번에 무너짐. <b>레버리지 쏠림</b>은 낙폭을 배로 키웁니다.
+        <span class="ex">사례 · 7/13 검은 월요일 · 7/28 단일종목 레버리지 증폭</span></p></div>
+      <div class="ty"><h5><span class="tn">5</span>지정학·유가형</h5>
+        <p>전쟁·해협 봉쇄로 <b>유가 급등 → 물가 → 금리</b>로 이어지는 간접 경로. 즉시가 아니라 <b>몇 주 뒤</b> 나타나기도.
+        <span class="ex">사례 · 7/15 호르무즈(WTI +9%)</span></p></div>
+      <div class="ty"><h5><span class="tn">6</span>공포 과잉 되돌림(V자)형</h5>
+        <p>펀더멘털이 멀쩡한데 공포로만 빠진 구간에 <b>확실한 증거</b>가 나오면 되돌림이 하락보다 빠릅니다. <b>외국인 대량 순매수</b>가 동반되는 게 특징.
+        <span class="ex">사례 · 7/31 +17.91%(역대 최대, 외국인 7조 순매수)</span></p></div>
+      <div class="ty"><h5><span class="tn">＋</span>반등을 구분하는 법</h5>
+        <p>모든 반등이 같지 않습니다. <b>7/14·7/22</b>는 지표·기대에 기댄 하루짜리(데드캣)였고, <b>7/31</b>은 실적이라는 근거가 있었습니다. 크기보다 <b>근거가 무엇인지</b>, 그리고 <b>수급(외국인·기관)이 따라붙는지</b>를 함께 보면 구분됩니다.</p></div>
+    </div>
 
   <div class="sec-head"><span class="n">PART 4</span><h2>매달 돌아오는 지표</h2></div>
   <p class="sec-sub">매월 반복되는 지표입니다. 위 달력의 각 달 칸 하단에도 똑같이 넣어 두었습니다.</p>
@@ -778,16 +795,29 @@ function renderIndicators(D){
       +'<polyline points="'+p.join(' ')+'"/>'
       +'<circle cx="'+last[0]+'" cy="'+last[1]+'" r="2.2"/></svg></div>';
   }
+  function athLine(it){
+    if(!it.ath) return '';
+    var cur=parseFloat(String(it.value).replace(/[^0-9.\-]/g,''));
+    var pct=((cur-it.ath)/it.ath*100).toFixed(2);
+    return '<div class="ath">ATH <b>'+it.ath.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</b> · 고점대비 <b>'+pct+'%</b></div>';
+  }
   var yM=D.yearMonths||12, qM=D.recentMonths||1;
   document.getElementById('cards').innerHTML=D.items.map(function(it){
     return '<div class="card '+it.dir+'">'
       +'<div class="cl"><span>'+it.name+'</span><span class="cx">'+it.code+'</span></div>'
+      +athLine(it)
       +'<div class="cv">'+it.value+'</div>'
       +'<div class="cc '+it.dir+'">'+it.change+'</div>'
       +'<div class="mini">'+chart(it.y,'yr','1Y',range(yM,true))+chart(it.q,'qt','1M',range(qM,false))+'</div>'
       +'<div class="cm">'+it.note+'</div>'
       +'</div>';
   }).join('');
+  var othersEl=document.getElementById('others');
+  if(othersEl && D.others){
+    othersEl.innerHTML=D.others.map(function(o){
+      return '<span class="oi '+o.dir+'"><span>'+o.name+'</span> <b>'+o.change+'</b></span>';
+    }).join('');
+  }
   var ds=document.querySelector('.dashtop .ds');
   if(ds) ds.textContent=D.asOf.replace(/-/g,'.')+' CLOSE · 1Y + 1M(DAILY)';
   var sub=document.querySelector('.dash-asof');
