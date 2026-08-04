@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<title>국내 신용잔고 — Market Drivers Hub</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap');
+:root{
+  --font-heading:"IBM Plex Sans KR",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans KR",system-ui,sans-serif;
+  --font-heading-weight:700;
+  --soft:var(--color-neutral-700); --faint:var(--color-neutral-500);
+  --line:var(--color-divider); --hair:var(--color-neutral-300);
+  --accent:var(--color-accent); --accent-ink:var(--color-accent-700);
+}
+*{box-sizing:border-box}
+html{background:var(--color-bg)}
+body{margin:0;color:var(--color-text);font-family:var(--font-body);line-height:1.55;background:var(--color-bg);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+b,strong{font-weight:700}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(16px,3vw,44px)}
+a{color:var(--color-accent)}
+a:hover{color:var(--color-accent-700)}
+
+.backbtn{position:fixed;top:16px;right:16px;z-index:100;display:inline-flex;align-items:center;gap:6px;
+  background:var(--color-text);color:var(--color-bg);font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  padding:9px 14px;text-decoration:none;box-shadow:var(--shadow-md);border:1px solid var(--color-text)}
+.backbtn:hover{background:var(--color-accent);border-color:var(--color-accent);color:#fff}
+
+.banner{background:var(--color-text);color:var(--color-bg);padding:14px clamp(16px,2.4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.banner .bl{font-size:clamp(12px,1.4vw,16px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px;line-height:1.25}
+.banner .bl .mark{width:10px;height:10px;background:var(--color-accent);flex:none}
+.banner .bl .lt{color:var(--color-neutral-400);font-weight:700}
+.banner .br{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.banner .br .rl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-400);font-weight:700}
+.banner .br .rd{font-size:clamp(14px,1.5vw,18px);font-weight:800;letter-spacing:.02em;color:var(--color-bg)}
+.banner.top{margin-bottom:var(--space-6)}
+.banner.bottom{margin-top:var(--space-8);justify-content:center;text-align:center}
+.banner.bottom .bl{justify-content:center}
+
+.hero{border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);padding:var(--space-6) 0 var(--space-6)}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 var(--space-3);font-weight:700}
+h1{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(24px,3.6vw,40px);line-height:1.14;letter-spacing:-.018em;margin:0 0 var(--space-3)}
+.lede{font-size:clamp(13px,1.4vw,15.5px);color:var(--soft);max-width:80ch;margin:0}
+
+.insight{margin:var(--space-6) 0;padding:20px 22px;background:var(--color-text);color:var(--color-bg);border-left:5px solid var(--color-accent)}
+.insight .ins-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-300);font-weight:800;margin-bottom:8px}
+.insight p{margin:0;font-size:14.5px;line-height:1.7;color:var(--color-neutral-200)}
+.insight p b{color:#fff}
+
+.sec-head{display:flex;align-items:center;gap:var(--space-3);margin:var(--space-8) 0 var(--space-3);padding-top:var(--space-4);border-top:2px solid var(--color-divider)}
+.sec-head .n{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--color-bg);background:var(--color-accent);padding:5px 9px}
+.sec-head h2{font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:-.01em;margin:0}
+.sec-sub{color:var(--soft);font-size:13px;margin:4px 0 var(--space-4)}
+
+/* — stat cards — */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3)}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--color-surface);border:1px solid var(--line);padding:15px 17px}
+.stat .sl{font-size:11px;color:var(--soft);font-weight:600}
+.stat .sv{font-family:var(--font-heading);font-size:23px;font-weight:700;margin-top:6px;letter-spacing:-.01em}
+.stat .sv.dn{color:var(--dn,#2f6fd6)}
+.stat .sv.up{color:var(--up,var(--color-accent))}
+.stat .sc{font-size:11px;color:var(--faint);margin-top:4px}
+
+/* — monthly ratio table — */
+.rtable{width:100%;border-collapse:collapse;font-size:13px;margin-top:var(--space-2)}
+.rtable th,.rtable td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--hair)}
+.rtable th{color:var(--faint);font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.rtable td.hi{font-weight:800;color:var(--accent-ink)}
+.rtable td:first-child,.rtable th:first-child{text-align:left;color:var(--soft);font-weight:600}
+
+.newslist{display:flex;flex-direction:column;gap:1px;background:var(--hair);margin-top:var(--space-2)}
+.nitem{display:grid;grid-template-columns:64px 1fr;gap:var(--space-4);background:var(--color-surface);padding:13px 16px}
+@media(max-width:640px){.nitem{grid-template-columns:1fr;gap:4px}}
+.nitem .nd{font-size:11px;font-weight:700;color:var(--soft);padding-top:2px}
+.nitem .nt{font-family:var(--font-heading);font-weight:700;font-size:14.5px;margin-bottom:4px;letter-spacing:-.005em}
+.nitem .nw{font-size:13px;color:var(--soft);line-height:1.6}
+.nitem .nw b{color:var(--color-text);font-weight:700}
+.nitem .nsrc{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;text-decoration:none}
+.nitem .nsrc:hover{text-decoration:underline}
+
+footer{margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--hair);font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
+</style></head><body>
+
+<a class="backbtn" href="index.html">← Dashboard로 돌아가기</a>
+
+<div class="wrap">
+
+  <div class="banner top">
+    <div class="bl"><span class="mark"></span><span style="color:#FA0909"><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.04</span></div>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">SPECIAL · 레버리지 리스크</p>
+    <h1>국내 신용잔고</h1>
+    <p class="lede">신용융자·반대매매(강제청산)가 최근 급등락 장세에 미친 영향을 수치와 기사로 정리했습니다. <b>매일 업데이트됩니다.</b></p>
+  </header>
+
+  <div class="insight">
+    <div class="ins-label">오늘의 인사이트</div>
+    <p>7월 한 달 국내 증시의 밑바닥에는 <b>신용융자發 반대매매</b>가 있었습니다. 신용융자 잔고는 6/24 역대 최고치인 <b>38.6조원</b>까지 불어난 뒤 7/29 기준 <b>33조원</b> 수준으로 줄었지만 여전히 높습니다. 반대매매 비중(위탁매매 미수금 대비)은 연초 1% 미만에서 6월 <b>3.52%</b>까지 치솟았고, 반대매매 금액은 1월 약 565억원에서 6월 약 4,000억원으로 <b>약 7배</b> 늘었습니다. 7월 코스피가 <b>월간 4회, 사상 최초로 이틀 연속</b> 서킷브레이커를 발동한 배경에는 이 레버리지 청산 압력이 자리하고 있습니다 — 하락이 반대매매를 부르고, 반대매매가 다시 하락을 키우는 악순환입니다.</p>
+  </div>
+
+  <div class="sec-head"><span class="n">DATA</span><h2>핵심 수치</h2></div>
+  <div class="stats">
+    <div class="stat"><div class="sl">신용융자 잔고 (7/29)</div><div class="sv">32.995조원</div><div class="sc">역대 최고 38.63조원(6/24) 대비 축소</div></div>
+    <div class="stat"><div class="sl">반대매매 비중 (6월)</div><div class="sv dn">3.52%</div><div class="sc">위탁매매 미수금 대비, 연초 대비 급등</div></div>
+    <div class="stat"><div class="sl">반대매매 금액 (6월)</div><div class="sv dn">약 4,000억원</div><div class="sc">1월(약 565억원) 대비 약 7배</div></div>
+    <div class="stat"><div class="sl">7월 서킷브레이커</div><div class="sv dn">4회</div><div class="sc">코스피 사상 최초 이틀 연속 발동</div></div>
+  </div>
+
+  <div class="sec-head"><span class="n">TREND</span><h2>월별 반대매매 비중 추이</h2></div>
+  <p class="sec-sub">위탁매매 미수금 대비 반대매매 비중(%), 2026년</p>
+  <table class="rtable">
+    <thead><tr><th>구분</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th><th>7월(29일까지)</th></tr></thead>
+    <tbody>
+      <tr><td>비중</td><td>0.98%</td><td>1.28%</td><td>2.11%</td><td>1.13%</td><td>2.63%</td><td class="hi">3.52%</td><td class="hi">3.17%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-head"><span class="n">NEWS</span><h2>관련 기사</h2></div>
+  <div class="newslist">
+    <div class="nitem">
+      <div class="nd">07.30</div>
+      <div><div class="nt">"계좌 강제 청산됐다" 개미들 비명…하루 만에 600억 반대매매</div>
+        <div class="nw">증시 급락 하루 만에 약 <b>600억원 규모</b> 반대매매가 발생 — 신용으로 주식을 산 개인 투자자들의 계좌가 강제로 청산된 사례가 속출.</div>
+        <a class="nsrc" href="https://www.fnnews.com/news/202607302132405714" target="_blank" rel="noopener">파이낸셜뉴스 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.말</div>
+      <div><div class="nt">반대매매 반년새 596% 급증…증시 폭락에 뒷목잡는 70대</div>
+        <div class="nw">연초 대비 반대매매 규모가 <b>약 6배(+596%)</b> 급증. 고령 투자자를 포함한 개인 투자자들의 레버리지 손실 사례를 조명.</div>
+        <a class="nsrc" href="https://biz.heraldcorp.com/article/10822748" target="_blank" rel="noopener">헤럴드경제 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.말</div>
+      <div><div class="nt">반대매매 3주 만에 최대…이틀 연속 급락에 '빚투' 비상</div>
+        <div class="nw">코스피 이틀 연속 급락 국면에서 반대매매 규모가 3주 만에 최대치를 기록 — 레버리지 투자자들의 연쇄 청산 우려가 커짐.</div>
+        <a class="nsrc" href="https://www.sedaily.com/article/20073913" target="_blank" rel="noopener">서울경제 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.중</div>
+      <div><div class="nt">'빚투 불개미', 신용잔고 38.6조 역대 최고…반대매매 비중 6월 3.52% 급등</div>
+        <div class="nw">신용융자 잔고가 <b>6/24 역대 최고치 38.6조원</b>을 기록. 같은 달 반대매매 비중도 3.52%로 연중 최고 수준까지 치솟음.</div>
+        <a class="nsrc" href="https://www.nspna.com/news/?mode=view&newsid=822706" target="_blank" rel="noopener">NSP통신 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.말</div>
+      <div><div class="nt">초유의 연이틀 서킷브레이커…IMF 위기도 넘은 7월 폭락 충격</div>
+        <div class="nw">코스피가 사상 최초로 <b>이틀 연속 서킷브레이커</b>를 발동 — 낙폭·빈도 면에서 과거 위기 국면을 넘어서는 수준이었다는 평가.</div>
+        <a class="nsrc" href="https://v.daum.net/v/Udy4fxPKU6" target="_blank" rel="noopener">Daum 뉴스 →</a></div>
+    </div>
+  </div>
+
+  <footer>
+    이 페이지의 수치·기사는 공개 보도를 정리한 것으로, 매일 갱신됩니다. <b>본 자료는 시장 이해를 돕기 위한 참고자료이며, 특정 종목의 매수·매도를 권유하지 않습니다.</b>
+  </footer>
+
+  <div class="banner bottom">
+    <div class="bl"><span class="mark"></span><span><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.04</span></div>
+  </div>
+
+</div>
+</body></html>
