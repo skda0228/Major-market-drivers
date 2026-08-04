@@ -53,7 +53,7 @@ h1{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .sec-sub{color:var(--soft);font-size:13px;margin:4px 0 var(--space-4)}
 
 /* — stat cards — */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
 @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.stats{grid-template-columns:1fr}}
 .stat{background:var(--color-surface);border:1px solid var(--line);padding:15px 17px}
@@ -100,14 +100,16 @@ footer{margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid
 
   <div class="insight">
     <div class="ins-label">오늘의 인사이트</div>
-    <p>7월 한 달 국내 증시의 밑바닥에는 <b>신용융자發 반대매매</b>가 있었습니다. 신용융자 잔고는 6/24 역대 최고치인 <b>38.6조원</b>까지 불어난 뒤 7/29 기준 <b>33조원</b> 수준으로 줄었지만 여전히 높습니다. 반대매매 비중(위탁매매 미수금 대비)은 연초 1% 미만에서 6월 <b>3.52%</b>까지 치솟았고, 반대매매 금액은 1월 약 565억원에서 6월 약 4,000억원으로 <b>약 7배</b> 늘었습니다. 7월 코스피가 <b>월간 4회, 사상 최초로 이틀 연속</b> 서킷브레이커를 발동한 배경에는 이 레버리지 청산 압력이 자리하고 있습니다 — 하락이 반대매매를 부르고, 반대매매가 다시 하락을 키우는 악순환입니다.</p>
+    <p>신용융자 잔고는 <b>7/31 기준 28.93조원</b>으로 전 거래일 대비 3.22조원 급감하며 <b>1월 28일 이후 처음으로 30조원 아래</b>로 떨어졌습니다 — 6/24 역대 최고치(38.63조원) 대비 약 10조원 줄어든 규모로, 급락장을 겪은 투자자들이 빚투를 빠르게 정리하고 있다는 신호입니다. 그런데도 <b>반대매매(강제청산)는 7/30·31 이틀 연속 1,000억원대</b>를 기록했고, 7월 한 달 누적으로는 <b>8,000억원을 넘어섰습니다</b> — 6월(약 4,000억원)의 두 배 수준입니다. 잔고는 줄어드는데 반대매매는 늘어나는 이 조합은, <b>버티던 계좌들이 결국 강제로 정리되고 있다</b>는 뜻입니다. 하락이 반대매매를 부르고, 반대매매가 다시 하락을 키우는 악순환은 아직 끝나지 않았습니다.</p>
   </div>
 
   <div class="sec-head"><span class="n">DATA</span><h2>핵심 수치</h2></div>
   <div class="stats">
-    <div class="stat"><div class="sl">신용융자 잔고 (7/29)</div><div class="sv">32.995조원</div><div class="sc">역대 최고 38.63조원(6/24) 대비 축소</div></div>
-    <div class="stat"><div class="sl">반대매매 비중 (6월)</div><div class="sv dn">3.52%</div><div class="sc">위탁매매 미수금 대비, 연초 대비 급등</div></div>
-    <div class="stat"><div class="sl">반대매매 금액 (6월)</div><div class="sv dn">약 4,000억원</div><div class="sc">1월(약 565억원) 대비 약 7배</div></div>
+    <div class="stat"><div class="sl">신용융자 잔고 (7/31)</div><div class="sv">28.93조원</div><div class="sc">전일比 -3.22조원 · 1/28 이후 첫 30조원 하회</div></div>
+    <div class="stat"><div class="sl">전일 반대매매 (7/31)</div><div class="sv dn">1,220억원</div><div class="sc">2거래일 연속 1,000억원대</div></div>
+    <div class="stat"><div class="sl">7월 누적 반대매매</div><div class="sv dn">8,000억원+</div><div class="sc">6월(약 4,000억원) 대비 2배 이상</div></div>
+    <div class="stat"><div class="sl">위탁매매 미수금 (7/31)</div><div class="sv">1.66조원</div><div class="sc">반대매매 비중 계산의 분모</div></div>
+    <div class="stat"><div class="sl">반대매매 비중 (7월, 29일까지)</div><div class="sv dn">3.17%</div><div class="sc">위탁매매 미수금 대비</div></div>
     <div class="stat"><div class="sl">7월 서킷브레이커</div><div class="sv dn">4회</div><div class="sc">코스피 사상 최초 이틀 연속 발동</div></div>
   </div>
 
@@ -122,6 +124,18 @@ footer{margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid
 
   <div class="sec-head"><span class="n">NEWS</span><h2>관련 기사</h2></div>
   <div class="newslist">
+    <div class="nitem">
+      <div class="nd">08.03</div>
+      <div><div class="nt">"개미들 어쩌나" 증시 변동성에 빚투 급감…잔고 30조원 붕괴</div>
+        <div class="nw">신용거래융자 잔고가 7/31 기준 <b>28조9,349억원</b>으로 전 거래일보다 <b>3조2,181억원</b> 급감 — 30조원을 밑돈 건 1월 28일 이후 처음. 위탁매매 미수금은 1조661억원, 반대매매는 1,220억원으로 이틀 연속 1,000억원대.</div>
+        <a class="nsrc" href="https://www.fnnews.com/news/202608031904155069" target="_blank" rel="noopener">파이낸셜뉴스 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07월 누적</div>
+      <div><div class="nt">7월 한 달간 반대매매 8,000억원 넘어서</div>
+        <div class="nw">7월 1~8일 누적 2,020억원이던 반대매매가, 9일 하루에만 1,400억원 넘게 쏟아지며 급증 전환. 월말까지 누적 <b>8,000억원 초과</b> — 6월(약 4,000억원)의 두 배 수준.</div>
+        <a class="nsrc" href="https://www.economicpost.co.kr/175429" target="_blank" rel="noopener">이코노믹포스트 →</a></div>
+    </div>
     <div class="nitem">
       <div class="nd">07.30</div>
       <div><div class="nt">"계좌 강제 청산됐다" 개미들 비명…하루 만에 600억 반대매매</div>
