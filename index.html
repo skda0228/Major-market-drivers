@@ -174,8 +174,8 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 @media(max-width:600px){.cards{grid-template-columns:1fr}}
 .card{border:1px solid var(--line);padding:13px 15px 11px;background:var(--color-bg);gap:0}
 .card .cl{font-size:12px;font-weight:700;color:var(--soft);display:flex;align-items:center;justify-content:space-between;gap:6px}
-.card .ath{font-size:9.5px;color:var(--faint);margin-top:2px;font-variant-numeric:tabular-nums}
-.card .ath b{color:var(--soft);font-weight:700}
+.card .ath{font-size:12.5px;color:var(--soft);margin-top:3px;font-weight:600;font-variant-numeric:tabular-nums}
+.card .ath b{color:var(--color-text);font-weight:800}
 .card .cl .cx{font-size:9px;color:var(--faint);border:1px solid var(--hair);padding:1px 5px;font-weight:700;letter-spacing:.06em}
 .card .cv{font-family:var(--font-heading);font-size:27px;font-weight:700;letter-spacing:-.025em;margin-top:6px;line-height:1.15;color:var(--color-text)}
 .card .cc{font-size:11.5px;font-weight:700;margin-top:3px}
@@ -224,6 +224,8 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .others .oi b{font-weight:700}
 .others .oi.up b{color:var(--up)}
 .others .oi.dn b{color:var(--dn)}
+.others .oi.src{color:var(--accent-ink,var(--color-accent-700));text-decoration:none;margin-left:auto;font-weight:600}
+.others .oi.src:hover{text-decoration:underline}
 .dashfoot{display:flex;justify-content:flex-end;margin-top:12px}
 a.tag{text-decoration:none;cursor:pointer}
 
@@ -799,7 +801,8 @@ function renderIndicators(D){
     if(!it.ath) return '';
     var cur=parseFloat(String(it.value).replace(/[^0-9.\-]/g,''));
     var pct=((cur-it.ath)/it.ath*100).toFixed(2);
-    return '<div class="ath">ATH <b>'+it.ath.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</b> · 고점대비 <b>'+pct+'%</b></div>';
+    var dateStr=it.athDate?' ('+it.athDate.slice(2).replace(/-/g,'.')+')':'';
+    return '<div class="ath">ATH <b>'+it.ath.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</b>'+dateStr+' · 고점대비 <b>'+pct+'%</b></div>';
   }
   var yM=D.yearMonths||12, qM=D.recentMonths||1;
   document.getElementById('cards').innerHTML=D.items.map(function(it){
@@ -816,7 +819,8 @@ function renderIndicators(D){
   if(othersEl && D.others){
     othersEl.innerHTML=D.others.map(function(o){
       return '<span class="oi '+o.dir+'"><span>'+o.name+'</span> <b>'+o.change+'</b></span>';
-    }).join('');
+    }).join('')
+    +'<a class="oi src" href="https://www.investing.com/indices/major-indices" target="_blank" rel="noopener">전 세계 지수 한눈에 보기 (Investing.com) →</a>';
   }
   var ds=document.querySelector('.dashtop .ds');
   if(ds) ds.textContent=D.asOf.replace(/-/g,'.')+' CLOSE · 1Y + 1M(DAILY)';
