@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<title>반도체 시장 특집 — Market Drivers Hub</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap');
+:root{
+  --font-heading:"IBM Plex Sans KR",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans KR",system-ui,sans-serif;
+  --font-heading-weight:700;
+  --soft:var(--color-neutral-700); --faint:var(--color-neutral-500);
+  --line:var(--color-divider); --hair:var(--color-neutral-300);
+  --accent:var(--color-accent); --accent-ink:var(--color-accent-700);
+}
+*{box-sizing:border-box}
+html{background:var(--color-bg)}
+body{margin:0;color:var(--color-text);font-family:var(--font-body);line-height:1.55;background:var(--color-bg);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+b,strong{font-weight:700}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(16px,3vw,44px)}
+a{color:var(--color-accent)}
+a:hover{color:var(--color-accent-700)}
+
+/* — back-to-dashboard button, fixed top-right, follows scroll — */
+.backbtn{position:fixed;top:16px;right:16px;z-index:100;display:inline-flex;align-items:center;gap:6px;
+  background:var(--color-text);color:var(--color-bg);font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  padding:9px 14px;text-decoration:none;box-shadow:var(--shadow-md);border:1px solid var(--color-text)}
+.backbtn:hover{background:var(--color-accent);border-color:var(--color-accent);color:#fff}
+
+/* — banner — */
+.banner{background:var(--color-text);color:var(--color-bg);padding:14px clamp(16px,2.4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.banner .bl{font-size:clamp(12px,1.4vw,16px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px;line-height:1.25}
+.banner .bl .mark{width:10px;height:10px;background:var(--color-accent);flex:none}
+.banner .bl .lt{color:var(--color-neutral-400);font-weight:700}
+.banner .br{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.banner .br .rl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-400);font-weight:700}
+.banner .br .rd{font-size:clamp(14px,1.5vw,18px);font-weight:800;letter-spacing:.02em;color:var(--color-bg)}
+.banner.top{margin-bottom:var(--space-6)}
+.banner.bottom{margin-top:var(--space-8);justify-content:center;text-align:center}
+.banner.bottom .bl{justify-content:center}
+
+/* — hero — */
+.hero{border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);padding:var(--space-6) 0 var(--space-6)}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 var(--space-3);font-weight:700}
+h1{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(24px,3.6vw,40px);line-height:1.14;letter-spacing:-.018em;margin:0 0 var(--space-3)}
+.lede{font-size:clamp(13px,1.4vw,15.5px);color:var(--soft);max-width:80ch;margin:0}
+
+/* — insight callout — */
+.insight{margin:var(--space-6) 0;padding:20px 22px;background:var(--color-text);color:var(--color-bg);border-left:5px solid var(--color-accent)}
+.insight .ins-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-300);font-weight:800;margin-bottom:8px}
+.insight p{margin:0;font-size:14.5px;line-height:1.7;color:var(--color-neutral-200)}
+.insight p b{color:#fff}
+
+/* — region sections — */
+.sec-head{display:flex;align-items:center;gap:var(--space-3);margin:var(--space-8) 0 var(--space-3);padding-top:var(--space-4);border-top:2px solid var(--color-divider)}
+.sec-head .n{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--color-bg);background:var(--color-accent);padding:5px 9px}
+.sec-head h2{font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:-.01em;margin:0}
+.sec-head .cnt{font-size:11.5px;color:var(--faint);margin-left:2px}
+
+.newslist{display:flex;flex-direction:column;gap:1px;background:var(--hair)}
+.nitem{display:grid;grid-template-columns:64px 1fr;gap:var(--space-4);background:var(--color-surface);padding:13px 16px}
+@media(max-width:640px){.nitem{grid-template-columns:1fr;gap:4px}}
+.nitem .nd{font-size:11px;font-weight:700;color:var(--soft);padding-top:2px}
+.nitem .nt{font-family:var(--font-heading);font-weight:700;font-size:14.5px;margin-bottom:4px;letter-spacing:-.005em}
+.nitem .nw{font-size:13px;color:var(--soft);line-height:1.6}
+.nitem .nw b{color:var(--color-text);font-weight:700}
+.nitem .nsrc{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;text-decoration:none}
+.nitem .nsrc:hover{text-decoration:underline}
+
+footer{margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--hair);font-size:11.5px;color:var(--faint);text-align:center;line-height:1.7}
+</style></head><body>
+
+<a class="backbtn" href="index.html">← Dashboard로 돌아가기</a>
+
+<div class="wrap">
+
+  <div class="banner top">
+    <div class="bl"><span class="mark"></span><span style="color:#FA0909"><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.04</span></div>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">SPECIAL · 반도체 시장</p>
+    <h1>반도체 시장 특집</h1>
+    <p class="lede">한국·미국·중국·일본·유럽 반도체 관련 기업들의 최근 1개월 동향을 지역별로 모았습니다. <b>매일 업데이트됩니다.</b></p>
+  </header>
+
+  <div class="insight">
+    <div class="ins-label">오늘의 인사이트</div>
+    <p>7월 한 달, 글로벌 반도체주는 <b>두 차례의 두 자릿수% 폭락과 월말 폭등을 오간 극단적 변동성</b>의 한 달이었습니다. 촉발점은 중국 CXMT의 상하이 상장과 SMIC의 DUV 노광장비 양산 소식 — "중국이 미국 제재를 뚫고 자립하고 있다"는 공포가 삼성전자·SK하이닉스부터 도쿄일렉트론·키옥시아, ASML까지 지역을 가리지 않고 반도체 밸류체인 전체를 때렸습니다. 다만 월말에는 <b>마이크로소프트·아마존의 AI 실적 서프라이즈</b>가 반도체 수요가 꺾이지 않았음을 확인시키며 마이크론·AMD·코어위브가 두 자릿수 급등, 코스피는 역대 최대 폭등으로 화답했습니다. 8월 첫 거래일 코스피가 다시 -5%대로 되돌림한 것에서 보듯, <b>이 변동성 장세는 아직 끝나지 않았습니다.</b></p>
+  </div>
+
+  <div class="sec-head"><span class="n">KR</span><h2>한국</h2></div>
+  <div class="newslist">
+    <div class="nitem">
+      <div class="nd">07.30</div>
+      <div><div class="nt">SK하이닉스, HBM 수요 대응 위해 설비투자 40조원대 후반으로 확대</div>
+        <div class="nw">전년비 <b>약 +60%</b> 늘어난 투자 규모. 청주 M15X 유휴 공간에 장비를 앞당겨 반입해 D램 생산능력을 조기 확대 — 올해 월 <b>7.5만~8만장</b> 웨이퍼 생산능력 확보가 목표. 낸드 생산기지 M17과 패키징 공장 P&amp;T7도 함께 증설 중.</div>
+        <a class="nsrc" href="https://www.hankyung.com/industry/semicon" target="_blank" rel="noopener">한국경제 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.29</div>
+      <div><div class="nt">SK하이닉스 2분기 영업이익 60.5조 사상 최대, 그런데도 주가는 하락</div>
+        <div class="nw">매출 79.3조·영업이익 <b>60.5조원(영업이익률 76%)</b>으로 분기 사상 최대 실적. 그러나 시장 컨센서스(64~70조원)에 못 미쳐 실적 발표 당일 코스피는 <b>-5.98%</b> 급락.</div>
+        <a class="nsrc" href="https://v.daum.net/v/20260729060212345" target="_blank" rel="noopener">Daum 뉴스 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.28</div>
+      <div><div class="nt">中 CXMT 상장 + DUV 양산 소식에 삼성전자·SK하이닉스 동반 급락</div>
+        <div class="nw">중국 국영기업의 심자외선(DUV) 노광장비 양산 소식이 CXMT 상장 이슈와 겹치며, "중국 반도체 자립"에 대한 공포가 국내 대형 반도체주를 끌어내림 — 이날 코스피는 서킷브레이커까지 발동(-10.84%).</div>
+        <a class="nsrc" href="https://www.ytn.co.kr/_ln/0102_202607280758479280" target="_blank" rel="noopener">YTN →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.30</div>
+      <div><div class="nt">삼성전자·SK하이닉스 반도체, 홍콩행 화물기에 실려 수출</div>
+        <div class="nw">인천국제공항 대한항공 화물터미널에서 홍콩행 KE313편에 두 회사의 반도체 수출 물량이 선적 — 아시아 역내 공급망이 여전히 활발히 가동 중임을 보여주는 사례.</div>
+        <a class="nsrc" href="https://www.newspim.com/news/view/20260731001050" target="_blank" rel="noopener">뉴스핌 →</a></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="n">US</span><h2>미국</h2></div>
+  <div class="newslist">
+    <div class="nitem">
+      <div class="nd">07.중</div>
+      <div><div class="nt">AMD, 앤스로픽에 최대 50억달러 투자 + 수백억달러 AI 서버 공급계약</div>
+        <div class="nw">앤스로픽은 <b>2027년 상반기부터 AMD 최신 AI 가속기</b>를 자체 데이터센터·클라우드 인프라에 도입할 계획. 엔비디아 일변도이던 AI 가속기 시장에 AMD가 유의미한 2인자로 자리잡는 계약으로 평가.</div>
+        <a class="nsrc" href="https://aimatters.co.kr/news-report/47555/" target="_blank" rel="noopener">AI매터스 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.30~31</div>
+      <div><div class="nt">MS 실적 힘입어 반도체 일제히 반등 — 마이크론 +18%, 코어위브 +21%</div>
+        <div class="nw">7/27 필라델피아 반도체지수 -2%대 하락 이후, 마이크로소프트의 애저 매출 급증·2026년 설비투자 유지 발표가 "AI 투자 위축 아님" 신호로 해석되며 반등. <b>마이크론 +18.36%, 코어위브 +21.51%, AMD +13.00%, 마벨 +12.18%</b> 급등.</div>
+        <a class="nsrc" href="https://aimatters.co.kr/news-report/47555/" target="_blank" rel="noopener">AI매터스 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.28</div>
+      <div><div class="nt">반도체 약세장 속 브로드컴 홀로 강세</div>
+        <div class="nw">브로드컴은 팔란티어(+7%)와 함께 반도체 재하락 국면에서 상승 — <b>3분기 AI 매출 160억달러</b> 가이던스를 제시하며 시장 신뢰를 지켰음.</div>
+        <a class="nsrc" href="https://aimatters.co.kr/news-report/47225/" target="_blank" rel="noopener">AI매터스 →</a></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="n">CN</span><h2>중국</h2></div>
+  <div class="newslist">
+    <div class="nitem">
+      <div class="nd">07.28</div>
+      <div><div class="nt">CXMT, 상하이거래소 상장 — 올해 아시아 최대 IPO</div>
+        <div class="nw">공모가 대비 <b>+471~472%</b> 시초가 형성. 1분기 매출 508억위안(<b>+719% YoY</b>), D램 시장점유율은 3%→8%로 상승. 중국 반도체 자립 전략의 상징적 이정표로 평가.</div>
+        <a class="nsrc" href="https://www.newsspace.kr/news/article.html?no=14971" target="_blank" rel="noopener">뉴스스페이스 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.중</div>
+      <div><div class="nt">화웨이 어센드 910B, TSMC 대신 SMIC 파운드리로 전환 생산</div>
+        <div class="nw">초기 AI 가속기 '어센드 910A'는 TSMC 공정을 활용했지만, 후속 모델 '910B'는 중국 파운드리 <b>SMIC에서 생산</b> — 미국 제재 속에서도 자국 파운드리 의존도를 높이는 흐름.</div>
+        <a class="nsrc" href="https://v.daum.net/v/20260707050115508?f=p" target="_blank" rel="noopener">이투데이 계열 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.말</div>
+      <div><div class="nt">美 의회, CXMT 상장 계기로 국가안보 조사 촉구</div>
+        <div class="nw">미 의원들은 CXMT가 <b>중국 군수 업체와 연루</b>돼 있어 미국 국가안보를 위협할 수 있다며, 트럼프 행정부에 조사를 요구.</div>
+        <a class="nsrc" href="https://www.newsspace.kr/news/article.html?no=14971" target="_blank" rel="noopener">뉴스스페이스 →</a></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="n">JP</span><h2>일본</h2></div>
+  <div class="newslist">
+    <div class="nitem">
+      <div class="nd">07.16</div>
+      <div><div class="nt">키옥시아, 사상 최고가 대비 -52% 폭락 — 시총 274조원 증발</div>
+        <div class="nw">6/22 기록한 사상 최고가 <b>11만2,700엔</b> 대비 한 달 만에 반토막. 고점 이후 증발한 시가총액은 약 30조엔(<b>약 274조원</b>)에 달함.</div>
+        <a class="nsrc" href="https://biz.newdaily.co.kr/site/data/html/2026/07/17/2026071700042.html" target="_blank" rel="noopener">뉴데일리 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.16</div>
+      <div><div class="nt">이비덴 급락이 도쿄일렉트론·어드반테스트로 번짐</div>
+        <div class="nw">지수 기여도가 큰 반도체 장비·부품주가 연쇄 하락하며 도쿄 증시 전반의 수급이 악화. <b>키옥시아 -8%, 소프트뱅크그룹 -6%대, 도쿄일렉트론 -5%대</b> 하락.</div>
+        <a class="nsrc" href="https://www.g-enews.com/article/Global-Biz/2026/07/202607162323473548e7e8286d56_1" target="_blank" rel="noopener">글로벌이코노믹 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.중</div>
+      <div><div class="nt">AI 단기 과잉투자 우려 + 차익실현 물량이 하락 압력 심화</div>
+        <div class="nw">SK하이닉스 2분기 실적이 시장 예상치(매출 84조·영업이익 64.2조원)를 밑돈 점도 일본 반도체 장비주 투심 악화에 함께 영향.</div>
+        <a class="nsrc" href="https://www.tradingkey.com/kr/analysis/stocks/more/262060217-kioxia-softbank-openai-ipo-masayoshi-son-arm-tradingkey" target="_blank" rel="noopener">TradingKey →</a></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="n">EU</span><h2>유럽</h2></div>
+  <div class="newslist">
+    <div class="nitem">
+      <div class="nd">07.15</div>
+      <div><div class="nt">ASML 2분기 실적 발표 — 유럽 최대 기업가치 등극</div>
+        <div class="nw">AI 붐에 힘입어 올해 주가 <b>약 +70%</b> 급등, 시가총액 <b>6,100억유로</b>로 유럽 상장기업 중 최고. CFO는 장비 가격 인상 여력을 시사했고, EUV 장비 생산능력은 <b>2027년 말까지 거의 예약 완료</b>.</div>
+        <a class="nsrc" href="https://www.newspim.com/news/view/20260715000016" target="_blank" rel="noopener">뉴스핌 →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.중</div>
+      <div><div class="nt">Jefferies, 유럽 반도체 재평가에 ASML·STMicro 목표주가 상향</div>
+        <div class="nw">유럽 반도체 섹터 전반의 밸류에이션 재평가(re-rating) 국면을 근거로 두 회사의 목표주가를 상향 조정.</div>
+        <a class="nsrc" href="https://www.investing.com/news/stock-market-news/jefferies-raises-asml-stmicro-price-targets-on-european-semiconductor-rerating-4772721" target="_blank" rel="noopener">Investing.com →</a></div>
+    </div>
+    <div class="nitem">
+      <div class="nd">07.중</div>
+      <div><div class="nt">美 반도체 급락 여파로 ASML·ASMI 동반 -6%대 하락</div>
+        <div class="nw">미국發 반도체주 급락이 시차 없이 유럽 장으로 번지며 네덜란드 장비주들이 함께 하락 — 글로벌 반도체 밸류체인의 높은 동조화를 보여준 사례.</div>
+        <a class="nsrc" href="https://kr.investing.com/news/stock-market-news/article-2019310" target="_blank" rel="noopener">Investing.com →</a></div>
+    </div>
+  </div>
+
+  <footer>
+    이 페이지의 뉴스·수치는 공개 보도를 정리한 것으로, 매일 갱신됩니다. <b>본 자료는 시장 이해를 돕기 위한 참고자료이며, 특정 종목의 매수·매도를 권유하지 않습니다.</b>
+  </footer>
+
+  <div class="banner bottom">
+    <div class="bl"><span class="mark"></span><span><span class="lt">Provided by</span> SK Asset Management Office</span></div>
+    <div class="br"><span class="rl">Last Updated</span><span class="rd">2026.08.04</span></div>
+  </div>
+
+</div>
+</body></html>
