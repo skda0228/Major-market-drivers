@@ -471,51 +471,58 @@
   {
    "name": "상하이종합",
    "code": "SHCOMP",
-   "value": "3,809.66",
-   "change": "-0.59%",
-   "dir": "dn"
+   "value": "3,878.43",
+   "change": "+1.47%",
+   "dir": "up"
   },
   {
    "name": "항셍",
    "code": "HSI",
-   "value": "26,009.40",
-   "change": "+0.48%",
+   "value": "25,915.82",
+   "change": "+0.24%",
    "dir": "up"
   },
   {
    "name": "VN지수",
    "code": "VNI",
-   "value": "1,762.84",
-   "change": "+1.56%",
-   "dir": "up"
+   "value": "1,776.46",
+   "change": "-0.04%",
+   "dir": "dn"
   },
   {
    "name": "유로스톡스50",
    "code": "SX5E",
-   "value": "6,426.50",
-   "change": "+1.08%",
-   "dir": "up"
+   "value": "6,476.98",
+   "change": "-0.15%",
+   "dir": "dn"
   },
   {
    "name": "영국 FTSE100",
    "code": "UKX",
-   "value": "10,857.70",
-   "change": "-0.10%",
-   "dir": "dn"
+   "value": "10,888.30",
+   "change": "+0.08%",
+   "dir": "up"
   },
   {
    "name": "독일 DAX",
    "code": "DAX",
-   "value": "26,001.31",
-   "change": "+1.45%",
-   "dir": "up"
+   "value": "26,126.30",
+   "change": "-0.29%",
+   "dir": "dn"
   },
   {
    "name": "인도 SENSEX",
    "code": "SENSEX",
-   "value": "78,639.03",
-   "change": "+0.70%",
+   "value": "78,581.00",
+   "change": "+0.19%",
    "dir": "up"
   }
- ]
+ ],
+ "nightFutures": {
+  "name": "코스피200 야간선물",
+  "value": "확인 전",
+  "change": "",
+  "dir": "nt",
+  "note": "CME/Eurex 연계 야간거래(18:00~05:00 KST) — 오전 브리핑 발표 전, 확인되는 대로 갱신"
+ }
 }
