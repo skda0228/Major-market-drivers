@@ -517,12 +517,5 @@
    "change": "+0.19%",
    "dir": "up"
   }
- ],
- "nightFutures": {
-  "name": "코스피200 야간선물",
-  "value": "확인 전",
-  "change": "",
-  "dir": "nt",
-  "note": "CME/Eurex 연계 야간거래(18:00~05:00 KST) — 오전 브리핑 발표 전, 확인되는 대로 갱신"
- }
+ ]
 }

@@ -229,13 +229,6 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .others .oi.dn b{color:var(--dn)}
 .others .oi.src{color:var(--accent-ink,var(--color-accent-700));text-decoration:none;margin-left:auto;font-weight:600}
 .others .oi.src:hover{text-decoration:underline}
-.night{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin-top:10px;padding:8px 12px;border-radius:8px;background:var(--surface-2,rgba(127,127,127,.07));font-size:12.5px}
-.night .nl{color:var(--soft);white-space:nowrap;font-weight:600}
-.night .nv{font-weight:700;white-space:nowrap}
-.night .nv.up{color:var(--up)}
-.night .nv.dn{color:var(--dn)}
-.night .nv.nt{color:var(--soft)}
-.night .nn{color:var(--soft);font-size:11.5px;margin-left:auto}
 .dashfoot{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:12px}
 a.tag{text-decoration:none;cursor:pointer}
 
@@ -286,8 +279,6 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
     <div class="cards" id="cards"></div>
 
     <div class="others" id="others"></div>
-
-    <div class="night" id="night"></div>
 
     <div class="dday">
       <span class="ddl">다음 관문 · 2026.08.06 기준</span>
@@ -847,11 +838,6 @@ function renderIndicators(D){
       return '<span class="oi '+o.dir+'"><span>'+o.name+'</span> <b>'+o.change+'</b></span>';
     }).join('')
     +'<a class="oi src" href="https://www.investing.com/indices/major-indices" target="_blank" rel="noopener">전 세계 지수 한눈에 보기 (Investing.com) →</a>';
-  }
-  var nf=D.nightFutures, nfEl=document.getElementById('night');
-  if(nfEl && nf){
-    nfEl.innerHTML='<span class="nl">'+nf.name+'</span><span class="nv '+nf.dir+'">'+nf.value+(nf.change?' <b>'+nf.change+'</b>':'')+'</span>'
-      +(nf.note?'<span class="nn">'+nf.note+'</span>':'');
   }
   var ds=document.querySelector('.dashtop .ds');
   if(ds) ds.textContent=D.asOf.replace(/-/g,'.')+' CLOSE · 1Y + 1M(DAILY)';
