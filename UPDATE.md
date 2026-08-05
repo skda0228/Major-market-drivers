@@ -86,6 +86,7 @@
 - **니케이225(^N225)**: 실시간 조회 도구의 날짜 라벨이 실제 도쿄 거래일보다 **하루 앞서(-1일)** 찍힙니다. 예: 도구가 "07-30"이라고 표시한 종가가 실제로는 일본시간 7/31 종가. 아는 값 하나와 대조해서 오프셋을 먼저 확인한 뒤 사용하세요.
 - **금(Gold)**: `GC=F` 같은 COMEX 선물 티커는 날짜 라벨이 들쭉날쭉해서(결제 시각 vs 데이터 벤더 표기 차이) 신뢰하기 어렵습니다. 대신 **XAUUSD 현물 시세의 일별 시계열**(예: Alpha Vantage `GOLD_SILVER_HISTORY`, interval=daily)을 쓰면 날짜가 깔끔하게 맞습니다.
 - **WTI**: 원유 결제(official settlement) 수치는 유료/막힌 사이트(NYMEX, Barchart 등)에 있는 경우가 많습니다. 뉴스가 "장중가"라고 스스로 명시한 숫자는 종가로 쓰지 마세요.
+- **일별 시계열 도구에 오늘자 행이 없다고 "데이터가 없다"로 단정하지 마세요.** `get_historical_stock_prices`/`GOLD_SILVER_HISTORY` 같은 일별 시계열은 벤더 쪽 반영이 늦어서 당일자 행이 늦게 뜨는 경우가 흔합니다(특히 니케이225·환율·금). 이때는 **실시간 시세 조회**(`get_stock_info`, `GOLD_SILVER_SPOT` 등)로 바꿔보세요 — 훨씬 자주 바로 나옵니다. `marketState`가 `PREPRE`(오늘 장 시작 전)로 나오면 `previousClose`는 그저께 종가, `regularMarketPrice`(+`regularMarketChangePercent`)가 방금 끝난 어제 세션의 종가·등락률입니다.
 - 그래도 확인이 안 되면 — 원래 원칙대로 **전일 값 유지 + 커밋 메시지에 명시**. 억지로 끼워맞추지 않습니다.
 
 ### 2-2. `index.html`에서 손대는 곳
