@@ -17,6 +17,13 @@ except ImportError:
     sys.exit(1)
 
 try:
+    import feedparser
+except ImportError:
+    import urllib.request
+    import xml.etree.ElementTree as ET
+    feedparser = None
+
+try:
     from google import genai
 except ImportError:
     genai = None
@@ -99,6 +106,101 @@ def generate_ai_analysis(market_name, change_pct):
         return response.text.strip()
     except Exception as e:
         return f"AI 분석 실패: {e}"
+
+def fetch_google_news(query):
+    import urllib.parse
+    import urllib.request
+    import xml.etree.ElementTree as ET
+    
+    encoded_query = urllib.parse.quote(query)
+    url = f"https://news.google.com/rss/search?q={encoded_query}&hl=ko&gl=KR&ceid=KR:ko"
+    
+    news_items = []
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=10) as response:
+            xml_data = response.read()
+            root = ET.fromstring(xml_data)
+            for item in root.findall('.//item')[:15]:
+                title = item.find('title').text if item.find('title') is not None else ''
+                link = item.find('link').text if item.find('link') is not None else ''
+                pub_date = item.find('pubDate').text if item.find('pubDate') is not None else ''
+                source = item.find('source').text if item.find('source') is not None else ''
+                news_items.append({'title': title, 'link': link, 'date': pub_date, 'source': source})
+    except Exception as e:
+        print(f"RSS 가져오기 실패: {e}")
+    return news_items
+
+def update_semiconductor_page():
+    if not genai or not os.environ.get("GEMINI_API_KEY"):
+        print("💡 제미나이 모듈이 없거나 API 키가 없어 반도체 AI 업데이트를 건너뜁니다.")
+        return
+        
+    print("=== 반도체 페이지 AI 업데이트 시작 ===")
+    
+    # 1. 뉴스 긁어오기
+    kr_news = fetch_google_news("한국 반도체 삼성전자 SK하이닉스")
+    us_news = fetch_google_news("미국 반도체 엔비디아 인텔 AMD")
+    global_news = fetch_google_news("글로벌 반도체 주식 시황")
+    
+    all_news = "한국 반도체 관련:\n" + "\n".join([f"- {n['title']} ({n['source']})" for n in kr_news[:7]]) + "\n"
+    all_news += "미국 반도체 관련:\n" + "\n".join([f"- {n['title']} ({n['source']})" for n in us_news[:7]]) + "\n"
+    all_news += "글로벌 시황:\n" + "\n".join([f"- {n['title']} ({n['source']})" for n in global_news[:7]])
+    
+    # 2. 제미나이에게 프롬프트 요청
+    prompt = f"""다음은 최신 반도체 관련 뉴스 헤드라인입니다.
+
+{all_news}
+
+위 내용을 바탕으로 다음을 작성해주세요:
+1. 오늘의 인사이트: 글로벌 반도체 시장의 핵심 트렌드와 흐름을 3~4문장으로 전문가적인 시각에서 요약. 중요한 내용은 <b> 태그로 굵게 표시.
+2. KR(한국), US(미국), CN(중국), JP(일본), EU(유럽) 5개 지역별로 주요 뉴스를 분류하여 HTML 코드로 작성. (관련 뉴스가 없으면 기존 흐름이나 대략적인 상황을 1개라도 적어줄 것)
+
+반드시 아래와 같은 형태의 엄격한 JSON 형식으로 출력해주세요 (마크다운 코드블록 안 써도 됨):
+{{
+  "insight": "<p>내용...</p>",
+  "KR": "<div class=\\"newslist\\">\\n  <div class=\\"nitem\\">\\n    <div class=\\"nd\\">08.10</div>\\n    <div><div class=\\"nt\\">뉴스 제목</div>\\n      <div class=\\"nw\\">뉴스 내용 요약 및 <b>강조</b></div>\\n      <a class=\\"nsrc\\" href=\\"링크\\" target=\\"_blank\\" rel=\\"noopener\\">언론사명 →</a></div>\\n  </div>\\n</div>",
+  "US": "<div class=\\"newslist\\">...</div>",
+  "CN": "<div class=\\"newslist\\">...</div>",
+  "JP": "<div class=\\"newslist\\">...</div>",
+  "EU": "<div class=\\"newslist\\">...</div>"
+}}
+"""
+    try:
+        client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+            config={'response_mime_type': 'application/json'}
+        )
+        
+        res_json = json.loads(response.text)
+        
+        # 3. HTML 파일 교체
+        html_file = "semiconductor.html"
+        if not os.path.exists(html_file):
+            return
+            
+        with open(html_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        # 정규식으로 영역 교체
+        def replace_block(text, marker, new_html):
+            pattern = f"<!-- {marker}_START -->.*?<!-- {marker}_END -->"
+            repl = f"<!-- {marker}_START -->\n{new_html}\n<!-- {marker}_END -->"
+            return re.sub(pattern, repl, text, flags=re.DOTALL)
+            
+        content = replace_block(content, "INSIGHT", res_json.get("insight", ""))
+        for region in ["KR", "US", "CN", "JP", "EU"]:
+            content = replace_block(content, f"{region}_NEWS", res_json.get(region, ""))
+            
+        with open(html_file, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print("💡 반도체 페이지 AI 업데이트 완료!")
+        return True
+    except Exception as e:
+        print(f"반도체 AI 업데이트 중 오류 발생: {e}")
+        return False
 
 def update_html_dates(kst, last_trade_full, last_trade_str):
     html_files = ["index.html", "semiconductor.html", "credit-balance.html"]
@@ -269,6 +371,7 @@ def main():
     except Exception:
         last_trade_full = last_trade_str
 
+    update_semiconductor_page()
     update_html_dates(kst, last_trade_full, last_trade_str)
 
     # 3. Git 자동 커밋 & 푸시
