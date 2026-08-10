@@ -305,8 +305,8 @@
    "name": "공포지수",
    "code": "VIX",
    "dir": "nt",
-   "value": "15.45",
-   "change": "▲ 0.55 (+3.69%)",
+   "value": "15.46",
+   "change": "▲ 0.56 (+3.76%)",
    "note": "AI 분석 실패: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
    "y": [
     14.95,
@@ -320,7 +320,7 @@
     15.86,
     16.5,
     14.9,
-    15.45
+    15.46
    ],
    "q": [
     15.03,
@@ -345,7 +345,7 @@
     15.15,
     14.9,
     14.9,
-    15.45
+    15.46
    ],
    "lastDate": "2026-08-10"
   },
@@ -401,8 +401,8 @@
    "name": "WTI 유가",
    "code": "WTI",
    "dir": "nt",
-   "value": "79.48",
-   "change": "▲ 1.30 (+1.66%)",
+   "value": "79.49",
+   "change": "▲ 1.31 (+1.68%)",
    "note": "호르무즈 리스크 프리미엄 지속 반영 — 3거래일 연속 상승",
    "y": [
     57.42,
@@ -414,7 +414,7 @@
     80.06,
     75.77,
     78.07,
-    79.48
+    79.49
    ],
    "q": [
     71.41,
@@ -439,7 +439,7 @@
     77.75,
     78.07,
     79.13,
-    79.48
+    79.49
    ],
    "lastDate": "2026-08-10"
   },
@@ -447,8 +447,8 @@
    "name": "금 현물",
    "code": "XAU/USD",
    "dir": "nt",
-   "value": "4,388.90",
-   "change": "▼ 10.80 (-0.25%)",
+   "value": "4,387.90",
+   "change": "▼ 11.80 (-0.27%)",
    "note": "7월 고용보고서 수정치 부진 + 금리 하락 기대에 금 재차 급등",
    "y": [
     4325.6,
@@ -460,7 +460,7 @@
     4071.11,
     4064.91,
     4341.83,
-    4388.9
+    4387.9
    ],
    "q": [
     4104.1,
@@ -485,7 +485,7 @@
     4238.25,
     4341.83,
     4401.9,
-    4388.9
+    4387.9
    ],
    "lastDate": "2026-08-10"
   }
@@ -518,24 +518,24 @@
   {
    "name": "유로스톡스50",
    "code": "SX5E",
-   "value": "6,554.12",
-   "change": "+0.46%",
+   "value": "6,554.51",
+   "change": "+0.47%",
    "dir": "up",
    "lastDate": "2026-08-10"
   },
   {
    "name": "영국 FTSE100",
    "code": "UKX",
-   "value": "10,877.39",
-   "change": "-0.22%",
+   "value": "10,877.79",
+   "change": "-0.21%",
    "dir": "dn",
    "lastDate": "2026-08-10"
   },
   {
    "name": "독일 DAX",
    "code": "DAX",
-   "value": "26,389.42",
-   "change": "+0.27%",
+   "value": "26,385.68",
+   "change": "+0.25%",
    "dir": "up",
    "lastDate": "2026-08-10"
   },
