@@ -95,7 +95,7 @@
 
 | 위치 | 무엇을 | 언제 |
 | --- | --- | --- |
-| 상단 배너 `.banner.top .rd` | `Last Updated` 날짜 | 매번 |
+| 상단 배너 `.banner.top .rd` | `Last Updated` **날짜 + 시각** (`YYYY.MM.DD HH:MM`, KST 기준 실제 갱신 시각) | 매번 |
 | `.dday .ddrow` | D-day 항목 — 지난 건 삭제, 남은 건 D-n 재계산, 새로 다가온 일정 추가. 가장 큰 이벤트 하나에만 `class="ddi hot"` | 매번 |
 | 달력 `.mo` 카드 | 지난 일정의 `.ev`에 `done` 클래스 추가 + `<div class="res">✓ …</div>` 결과 상자 삽입. 결과가 좋으면 `res up`, 나쁘면 `res down` | 일정이 지날 때 |
 | 달·월 전환 | 이번 달 `.mo`에 `now` 클래스와 `<span class="nowbadge">이번 달</span>`, 지난 달은 `past` + `pastbadge`로 교체 | 월초 |
