@@ -6,6 +6,10 @@ import subprocess
 import re
 import sys
 
+# 스크립트가 실행된 위치와 상관없이, 무조건 스크립트가 있는 폴더로 작업 경로 강제 변경
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+
 try:
     import yfinance as yf
 except ImportError:
@@ -45,9 +49,7 @@ def get_latest_price(ticker_symbol):
         if df.empty:
             return None, None, None, None
         
-        # [버그 2 해결] 이 종가의 실제 최신 거래일 추출
         actual_date_str = df.index[-1].strftime("%Y-%m-%d")
-        
         close_price = df['Close'].iloc[-1]
         prev_close = ticker.info.get('previousClose')
         
@@ -100,8 +102,26 @@ def generate_ai_analysis(market_name, change_pct):
 
 def update_html_dates(kst, last_trade_full, last_trade_str):
     html_files = ["index.html", "semiconductor.html", "credit-balance.html"]
+    today_dt = datetime.datetime.now(kst).date()
     today_dot = datetime.datetime.now(kst).strftime("%Y.%m.%d %H:%M")
     today_just_date = today_dot[:10]
+    
+    # [잔여 이슈 2 해결] D-Day 자동 계산 로직
+    def replace_dday(match):
+        target_date_str = match.group(1) # "08.13" 등
+        try:
+            year = today_dt.year
+            target_dt = datetime.datetime.strptime(f"{year}.{target_date_str}", "%Y.%m.%d").date()
+            delta = (target_dt - today_dt).days
+            if delta > 0:
+                d_str = f"D-{delta}"
+            elif delta == 0:
+                d_str = "D-Day"
+            else:
+                d_str = f"D+{abs(delta)}"
+            return f'{target_date_str}</span> <span class="d">{d_str}</span>'
+        except Exception:
+            return match.group(0)
     
     for html_file in html_files:
         if os.path.exists(html_file):
@@ -113,11 +133,14 @@ def update_html_dates(kst, last_trade_full, last_trade_str):
             new_content = re.sub(r'마지막 거래일 <b>\d{4}\.\d{2}\.\d{2}\([월화수목금토일]\)</b>', f'마지막 거래일 <b>{last_trade_full}</b>', new_content)
             new_content = re.sub(r'<div class="ds">\d{4}\.\d{2}\.\d{2} CLOSE', f'<div class="ds">{last_trade_str} CLOSE', new_content)
             new_content = re.sub(r'다음 관문 · \d{4}\.\d{2}\.\d{2} 기준', f'다음 관문 · {today_just_date} 기준', new_content)
+            
+            # 카운트다운 정규식 갱신
+            new_content = re.sub(r'(\d{2}\.\d{2})</span> <span class="d">D[-+A-Za-z0-9]+</span>', replace_dday, new_content)
 
             if new_content != content:
                 with open(html_file, 'w', encoding='utf-8') as f:
                     f.write(new_content)
-                print(f"{html_file} 날짜 완벽 연동 업데이트 완료!")
+                print(f"{html_file} 날짜/D-Day 연동 업데이트 완료!")
 
 def main():
     json_file = "indicators.json"
@@ -132,10 +155,7 @@ def main():
     today_str = datetime.datetime.now(kst).strftime("%Y-%m-%d")
 
     big_change_notes = []
-    
-    # [버그 4 방어] 하나라도 실제로 갱신된 지표가 있는지 추적
     any_updates_made = False
-    
     asof_candidates = [data.get("asOf", "2000-01-01")]
 
     print(f"=== 실행 시작 (서버시간: {today_str}) ===")
@@ -155,7 +175,6 @@ def main():
             
         last_saved_date = item.get("lastDate", "2000-01-01")
         
-        # [버그 2 & 3 해결] 멱등성(Idempotency) 체크
         if actual_date > last_saved_date:
             print(f"  -> 🟢 새로운 거래일 감지 ({last_saved_date} -> {actual_date})! 갱신 진행.")
             is_new_day = True
@@ -164,10 +183,14 @@ def main():
             is_new_day = False
         else:
             print(f"  -> 🔴 과거 거래일({actual_date} <= {last_saved_date}). 업데이트 완전히 스킵.")
-            continue # 데이터가 낡았거나 동일하면 완전히 스킵 (WTI/금 Jitter 방지)
+            continue 
             
         any_updates_made = True
-        asof_candidates.append(actual_date)
+        
+        # [잔여 이슈 1 해결] WTI, 금, 환율 등 연속거래 자산은 전체 asOf 후보에서 제외
+        if code not in ["USD/KRW", "WTI", "XAU/USD"]:
+            asof_candidates.append(actual_date)
+            
         item["lastDate"] = actual_date
         
         if abs(change_pct) >= 3.0:
@@ -184,18 +207,16 @@ def main():
         
         val = float(round(price, 2))
         
-        # [버그 1 해결] 일간/월간 배열 회전 및 길이 유지 로직
         if "q" in item:
             if is_new_day or len(item["q"]) == 0:
                 item["q"].append(val)
-                # 길이 초과 시 맨 앞 데이터 제거 (UPDATE.md 규정: 21~23개 유지)
                 while len(item["q"]) > 23:
                     item["q"].pop(0)
             else:
-                item["q"][-1] = val # 새 거래일이 아니면 무한 증식 방지(덮어쓰기)
+                item["q"][-1] = val 
                 
         if "y" in item:
-            actual_month = actual_date[:7] # YYYY-MM 추출
+            actual_month = actual_date[:7] 
             last_saved_month = last_saved_date[:7]
             
             if actual_month > last_saved_month or len(item["y"]) == 0:
@@ -217,8 +238,9 @@ def main():
             continue
             
         last_saved_date = other.get("lastDate", "2000-01-01")
-        if actual_date >= last_saved_date: # 새롭거나 같은 날일 때만
+        if actual_date >= last_saved_date:
             if actual_date > last_saved_date:
+                # 기타 지표(유럽/아시아 증시 등)는 주식과 같이 명확한 장 마감이 있으므로 asOf 포함
                 asof_candidates.append(actual_date)
             other["lastDate"] = actual_date
             other["value"] = format_value(code, price)
@@ -226,22 +248,18 @@ def main():
             other["dir"] = get_dir(code, change_pct)
             any_updates_made = True
 
-    # [부가 문제 해결] 신규 갱신이 없으면 여기서 스크립트 완전 종료 (거짓 신선도 방지)
     if not any_updates_made:
         print("💡 새롭게 갱신된 데이터가 없습니다. (주말/휴장일) - JSON 및 HTML 파일 수정 없이 종료합니다.")
         return
 
-    # [버그 2 해결] asOf는 "오늘 스크립트 실행 날짜"가 아니라 "실제 거래일 중 가장 최신 날짜"
     final_asof = max(asof_candidates)
     data["asOf"] = final_asof
 
-    # JSON 저장
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
         
     print(f"JSON 업데이트 완료! (asOf: {final_asof})")
     
-    # 마지막 거래일 자동 추출 (HTML용)
     last_trade_str = final_asof.replace("-", ".")
     try:
         dt = datetime.datetime.strptime(final_asof, "%Y-%m-%d")
@@ -253,7 +271,7 @@ def main():
 
     update_html_dates(kst, last_trade_full, last_trade_str)
 
-    # 3. Git 자동 커밋 & 푸시 (예외 처리 강화)
+    # 3. Git 자동 커밋 & 푸시
     try:
         subprocess.run(["git", "add", "indicators.json", "index.html", "semiconductor.html", "credit-balance.html"], check=True)
         result = subprocess.run(["git", "diff", "--staged"], capture_output=True, text=True)
@@ -271,4 +289,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-	
