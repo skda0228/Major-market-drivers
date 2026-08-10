@@ -108,7 +108,7 @@ def generate_ai_analysis(market_name, change_pct):
         client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
         prompt = f"오늘 {market_name} 지수가 {change_pct:.2f}% 급변했습니다. 금융 뉴스 헤드라인을 참고해서 원인을 1문장으로 요약해주세요."
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-2.5-pro',
             contents=prompt
         )
         return response.text.strip()
@@ -177,7 +177,7 @@ def update_semiconductor_page():
     try:
         client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-2.5-pro',
             contents=prompt,
             config={'response_mime_type': 'application/json'}
         )
