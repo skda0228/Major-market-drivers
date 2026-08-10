@@ -9,8 +9,9 @@
    "dir": "up",
    "value": "6,299.66",
    "change": "▲ 40.89 (+0.65%)",
-   "note": "이틀째 조정 — 목요일 서킷브레이커 급락 이후 낙폭은 크게 줄었지만 반등은 아직",
+   "note": "서킷브레이커 이후 이틀 연속 반등 — 반도체 대형주 중심 낙폭 만회",
    "y": [
+    3926.59,
     4214.17,
     5224.36,
     6244.13,
@@ -21,7 +22,6 @@
     6595.45,
     6257.45,
     6358.95,
-    6258.77,
     6299.66
    ],
    "q": [
@@ -46,12 +46,10 @@
     6598.26,
     6296.38,
     6258.77,
-    6258.77,
     6299.66
    ],
    "ath": 9385.59,
-   "athDate": "2026-06-19",
-   "lastDate": "2026-08-10"
+   "athDate": "2026-06-19"
   },
   {
    "name": "S&P 500",
@@ -61,6 +59,7 @@
    "change": "▲ 47.68 (+0.62%)",
    "note": "7월 고용보고서 수정치 부진에도 반등 — 금리 인하 기대가 지수 상단 지지",
    "y": [
+    6849.09,
     6845.5,
     6939.03,
     6878.88,
@@ -71,7 +70,6 @@
     7489.72,
     7600.5,
     7737.0,
-    7757.64,
     7757.64
    ],
    "q": [
@@ -96,21 +94,20 @@
     7737.0,
     7723.55,
     7709.96,
-    7757.64,
     7757.64
    ],
    "ath": 7737.0,
-   "athDate": "2026-08-04",
-   "lastDate": "2026-08-07"
+   "athDate": "2026-08-04"
   },
   {
    "name": "나스닥",
    "code": "IXIC",
    "dir": "up",
    "value": "26,690.62",
-   "change": "▲ 342.22 (+1.30%)",
+   "change": "▲ 342.26 (+1.30%)",
    "note": "이틀 연속 조정 후 반도체·AI 대형주 재차 매수세 유입",
    "y": [
+    23365.69,
     23241.99,
     23461.82,
     22668.21,
@@ -121,7 +118,6 @@
     25373.85,
     25913.9,
     26585.0,
-    26690.62,
     26690.62
    ],
    "q": [
@@ -146,12 +142,10 @@
     26585.0,
     26363.44,
     26348.35,
-    26690.62,
     26690.62
    ],
    "ath": 27190.21,
-   "athDate": "2026-06-01",
-   "lastDate": "2026-08-07"
+   "athDate": "2026-06-01"
   },
   {
    "name": "다우존스",
@@ -161,6 +155,7 @@
    "change": "▲ 151.83 (+0.28%)",
    "note": "최고치 대비 소폭 하회한 채 완만한 반등",
    "y": [
+    47716.42,
     48063.29,
     48892.47,
     48977.92,
@@ -171,7 +166,6 @@
     52485.03,
     53178.41,
     54085.41,
-    54036.93,
     54036.93
    ],
    "q": [
@@ -196,21 +190,20 @@
     54085.41,
     54349.12,
     53885.1,
-    54036.93,
     54036.93
    ],
    "ath": 54349.12,
-   "athDate": "2026-08-05",
-   "lastDate": "2026-08-07"
+   "athDate": "2026-08-05"
   },
   {
    "name": "니케이 225",
    "code": "N225",
    "dir": "up",
    "value": "66,970.22",
-   "change": "▲ 1363.51 (+2.08%)",
-   "note": "美 반도체 조정 여진 속 보합권 마감",
+   "change": "▲ 1,363.51 (+2.08%)",
+   "note": "美 반도체 조정 여진 딛고 큰 폭 반등 — 사상 최고치 대비 낙폭 축소",
    "y": [
+    50253.91,
     50339.48,
     53322.85,
     58850.27,
@@ -221,7 +214,6 @@
     64362.02,
     63754.9,
     63957.53,
-    65606.71,
     66970.22
    ],
    "q": [
@@ -246,21 +238,20 @@
     66300.44,
     65683.26,
     65606.71,
-    65606.71,
     66970.22
    ],
    "ath": 72831.73,
-   "athDate": "2026-06-22",
-   "lastDate": "2026-08-10"
+   "athDate": "2026-06-22"
   },
   {
    "name": "미 10년물 국채금리",
    "code": "US10Y",
    "dir": "nt",
-   "value": "4.668%",
-   "change": "▲ 0.008%p (+0.17%)",
+   "value": "4.660%",
+   "change": "▼ 0.010%p (-0.21%)",
    "note": "7월 고용보고서 수정치 부진에 금리 소폭 반락",
    "y": [
+    4.017,
     4.163,
     4.241,
     3.962,
@@ -271,10 +262,10 @@
     4.745,
     4.686,
     4.627,
-    4.66,
-    4.67
+    4.66
    ],
    "q": [
+    4.539,
     4.569,
     4.609,
     4.585,
@@ -295,20 +286,18 @@
     4.627,
     4.617,
     4.67,
-    4.66,
-    4.66,
-    4.67
-   ],
-   "lastDate": "2026-08-10"
+    4.66
+   ]
   },
   {
    "name": "공포지수",
    "code": "VIX",
    "dir": "nt",
-   "value": "15.40",
-   "change": "▲ 0.50 (+3.36%)",
-   "note": "AI 분석 실패: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\\nPlease retry in 59.119121144s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '59s'}]}}",
+   "value": "14.90",
+   "change": "▼ 0.25 (-1.65%)",
+   "note": "이틀 연속 하락 — 목요일 급락에도 공포심리는 빠르게 진정",
    "y": [
+    16.35,
     14.95,
     17.44,
     19.86,
@@ -319,10 +308,10 @@
     15.99,
     15.86,
     16.5,
-    14.9,
-    15.4
+    14.9
    ],
    "q": [
+    15.84,
     15.03,
     17.16,
     16.5,
@@ -343,20 +332,18 @@
     16.5,
     15.81,
     15.15,
-    14.9,
-    14.9,
-    15.4
-   ],
-   "lastDate": "2026-08-10"
+    14.9
+   ]
   },
   {
    "name": "원/달러",
    "code": "USD/KRW",
-   "dir": "nt",
-   "value": "1,417.87",
-   "change": "▲ 10.42 (+0.74%)",
-   "note": "숫자가 내리면 원화 강세 — 위험자산 선호 회복에 원화 큰 폭 반등",
+   "dir": "up",
+   "value": "1,417.76",
+   "change": "▲ 10.31 (+0.73%)",
+   "note": "숫자가 오르면 원화 약세 — 위험선호 회복에도 원화는 하루 만에 반락",
    "y": [
+    1466.13,
     1437.91,
     1449.7,
     1432.32,
@@ -367,10 +354,10 @@
     1420.6,
     1428.77,
     1421.99,
-    1407.45,
-    1417.87
+    1417.76
    ],
    "q": [
+    1503.35,
     1505.91,
     1498.48,
     1497.7,
@@ -392,18 +379,16 @@
     1421.61,
     1422.76,
     1407.45,
-    1407.33,
-    1417.87
-   ],
-   "lastDate": "2026-08-10"
+    1417.76
+   ]
   },
   {
    "name": "WTI 유가",
    "code": "WTI",
    "dir": "nt",
-   "value": "79.37",
-   "change": "▲ 1.19 (+1.52%)",
-   "note": "호르무즈 리스크 프리미엄 지속 반영 — 3거래일 연속 상승",
+   "value": "79.72",
+   "change": "▲ 1.65 (+2.11%)",
+   "note": "호르무즈 리스크 프리미엄 지속 — 나흘 연속 상승",
    "y": [
     57.42,
     65.21,
@@ -413,11 +398,9 @@
     84.67,
     80.06,
     75.77,
-    78.07,
-    79.37
+    79.72
    ],
    "q": [
-    71.41,
     78.14,
     79.34,
     79.6,
@@ -438,18 +421,16 @@
     75.08,
     77.75,
     78.07,
-    79.13,
-    79.37
-   ],
-   "lastDate": "2026-08-10"
+    79.72
+   ]
   },
   {
    "name": "금 현물",
    "code": "XAU/USD",
    "dir": "nt",
-   "value": "4,389.50",
-   "change": "▼ 10.20 (-0.23%)",
-   "note": "7월 고용보고서 수정치 부진 + 금리 하락 기대에 금 재차 급등",
+   "value": "4,334.72",
+   "change": "▼ 7.11 (-0.16%)",
+   "note": "최근 급등 이후 보합권 등락",
    "y": [
     4325.6,
     4713.9,
@@ -459,11 +440,9 @@
     4107.0,
     4071.11,
     4064.91,
-    4341.83,
-    4389.5
+    4334.72
    ],
    "q": [
-    4104.1,
     3997.0,
     4061.1,
     4044.0,
@@ -484,10 +463,8 @@
     4247.76,
     4238.25,
     4341.83,
-    4401.9,
-    4389.5
-   ],
-   "lastDate": "2026-08-10"
+    4334.72
+   ]
   }
  ],
  "others": [
@@ -496,56 +473,49 @@
    "code": "SHCOMP",
    "value": "3,966.59",
    "change": "+0.67%",
-   "dir": "up",
-   "lastDate": "2026-08-10"
+   "dir": "up"
   },
   {
    "name": "항셍",
    "code": "HSI",
    "value": "25,937.49",
    "change": "+1.05%",
-   "dir": "up",
-   "lastDate": "2026-08-10"
+   "dir": "up"
   },
   {
    "name": "VN지수",
    "code": "VNI",
-   "value": "1,776.77",
-   "change": "+0.49%",
-   "dir": "up",
-   "lastDate": "2026-08-10"
+   "value": "1,768.06",
+   "change": "+0.19%",
+   "dir": "up"
   },
   {
    "name": "유로스톡스50",
    "code": "SX5E",
-   "value": "6,552.94",
-   "change": "+0.45%",
-   "dir": "up",
-   "lastDate": "2026-08-10"
+   "value": "6,523.86",
+   "change": "+0.33%",
+   "dir": "up"
   },
   {
    "name": "영국 FTSE100",
    "code": "UKX",
-   "value": "10,875.21",
-   "change": "-0.24%",
-   "dir": "dn",
-   "lastDate": "2026-08-10"
+   "value": "10,901.09",
+   "change": "+0.31%",
+   "dir": "up"
   },
   {
    "name": "독일 DAX",
    "code": "DAX",
-   "value": "26,384.69",
-   "change": "+0.25%",
-   "dir": "up",
-   "lastDate": "2026-08-10"
+   "value": "26,319.45",
+   "change": "+0.69%",
+   "dir": "up"
   },
   {
    "name": "인도 SENSEX",
    "code": "SENSEX",
    "value": "78,542.44",
    "change": "+0.06%",
-   "dir": "up",
-   "lastDate": "2026-08-10"
+   "dir": "up"
   }
  ]
 }
