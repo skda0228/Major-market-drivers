@@ -307,7 +307,7 @@
    "dir": "nt",
    "value": "15.46",
    "change": "▲ 0.56 (+3.76%)",
-   "note": "AI 분석 실패: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro-latest is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
+   "note": "AI 분석 실패: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
    "y": [
     14.95,
     17.44,
@@ -353,8 +353,8 @@
    "name": "원/달러",
    "code": "USD/KRW",
    "dir": "nt",
-   "value": "1,417.64",
-   "change": "▲ 10.19 (+0.72%)",
+   "value": "1,417.81",
+   "change": "▲ 10.36 (+0.74%)",
    "note": "숫자가 내리면 원화 강세 — 위험자산 선호 회복에 원화 큰 폭 반등",
    "y": [
     1437.91,
@@ -368,7 +368,7 @@
     1428.77,
     1421.99,
     1407.45,
-    1417.64
+    1417.81
    ],
    "q": [
     1505.91,
@@ -393,7 +393,7 @@
     1422.76,
     1407.45,
     1407.33,
-    1417.64
+    1417.81
    ],
    "lastDate": "2026-08-10"
   },
@@ -401,8 +401,8 @@
    "name": "WTI 유가",
    "code": "WTI",
    "dir": "nt",
-   "value": "79.47",
-   "change": "▲ 1.29 (+1.65%)",
+   "value": "79.44",
+   "change": "▲ 1.26 (+1.61%)",
    "note": "호르무즈 리스크 프리미엄 지속 반영 — 3거래일 연속 상승",
    "y": [
     57.42,
@@ -414,7 +414,7 @@
     80.06,
     75.77,
     78.07,
-    79.47
+    79.44
    ],
    "q": [
     71.41,
@@ -439,7 +439,7 @@
     77.75,
     78.07,
     79.13,
-    79.47
+    79.44
    ],
    "lastDate": "2026-08-10"
   },
@@ -447,8 +447,8 @@
    "name": "금 현물",
    "code": "XAU/USD",
    "dir": "nt",
-   "value": "4,387.30",
-   "change": "▼ 12.40 (-0.28%)",
+   "value": "4,385.80",
+   "change": "▼ 13.90 (-0.32%)",
    "note": "7월 고용보고서 수정치 부진 + 금리 하락 기대에 금 재차 급등",
    "y": [
     4325.6,
@@ -460,7 +460,7 @@
     4071.11,
     4064.91,
     4341.83,
-    4387.3
+    4385.8
    ],
    "q": [
     4104.1,
@@ -485,7 +485,7 @@
     4238.25,
     4341.83,
     4401.9,
-    4387.3
+    4385.8
    ],
    "lastDate": "2026-08-10"
   }
@@ -518,15 +518,15 @@
   {
    "name": "유로스톡스50",
    "code": "SX5E",
-   "value": "6,551.80",
-   "change": "+0.43%",
+   "value": "6,554.44",
+   "change": "+0.47%",
    "dir": "up",
    "lastDate": "2026-08-10"
   },
   {
    "name": "영국 FTSE100",
    "code": "UKX",
-   "value": "10,873.98",
+   "value": "10,873.77",
    "change": "-0.25%",
    "dir": "dn",
    "lastDate": "2026-08-10"
@@ -534,8 +534,8 @@
   {
    "name": "독일 DAX",
    "code": "DAX",
-   "value": "26,382.16",
-   "change": "+0.24%",
+   "value": "26,389.19",
+   "change": "+0.26%",
    "dir": "up",
    "lastDate": "2026-08-10"
   },
