@@ -471,23 +471,23 @@
   {
    "name": "상하이종합",
    "code": "SHCOMP",
-   "value": "3,966.59",
-   "change": "+0.67%",
-   "dir": "up"
+   "value": "3,934.09",
+   "change": "-0.82%",
+   "dir": "dn"
   },
   {
    "name": "항셍",
    "code": "HSI",
-   "value": "25,937.49",
-   "change": "+1.05%",
-   "dir": "up"
+   "value": "25,440.17",
+   "change": "-0.83%",
+   "dir": "dn"
   },
   {
    "name": "VN지수",
    "code": "VNI",
-   "value": "1,768.06",
-   "change": "+0.19%",
-   "dir": "up"
+   "value": "1,773.41",
+   "change": "-0.19%",
+   "dir": "dn"
   },
   {
    "name": "유로스톡스50",
