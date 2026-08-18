@@ -55,6 +55,18 @@ h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-s
 .cal{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);align-items:start}
 @media(max-width:1180px){.cal{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:800px){.cal{grid-template-columns:1fr}}
+.calToggleInput{position:absolute;opacity:0;pointer-events:none}
+.calToggleBtn{display:none}
+@media(max-width:800px){
+  .calToggleBtn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-bottom:var(--space-3);padding:10px 14px;background:var(--color-surface);border:1px solid var(--line);font-family:var(--font-body);font-size:12.5px;font-weight:700;color:var(--soft);cursor:pointer}
+  .calToggleBtn:hover{color:var(--color-text);border-color:var(--color-text)}
+  .cal .mo{display:none}
+  .cal .mo.now{display:flex}
+  .calToggleInput:checked ~ .cal .mo{display:flex}
+  .calToggleHide{display:none}
+  .calToggleInput:checked ~ .calToggleBtn .calToggleShow{display:none}
+  .calToggleInput:checked ~ .calToggleBtn .calToggleHide{display:inline}
+}
 .mo{background:var(--color-surface);border:1px solid var(--line);display:flex;flex-direction:column}
 .mo.now{border:3px solid var(--color-accent);box-shadow:0 0 0 4px var(--color-accent-100)}
 .mo.past{background:var(--color-bg)}
@@ -303,6 +315,9 @@ footer{margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid
     <span class="si"><span class="sw d"></span><b>회색 줄</b> = 지난 일정 + ✓결과</span>
     <span class="si"><b>≈</b> = 추정일</span>
   </div>
+
+  <input type="checkbox" id="calToggle" class="calToggleInput">
+  <label for="calToggle" class="calToggleBtn"><span class="calToggleShow">이번 달 외 11개월 더 보기 ▾</span><span class="calToggleHide">달력 접기 ▴</span></label>
 
   <div class="cal">
 
