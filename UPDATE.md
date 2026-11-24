@@ -99,7 +99,7 @@
 | `.dday .ddrow` | D-day 항목 — 지난 건 삭제, 남은 건 D-n 재계산, 새로 다가온 일정 추가. 가장 큰 이벤트 하나에만 `class="ddi hot"` | 매번 |
 | 달력 `.mo` 카드 | 지난 일정의 `.ev`에 `done` 클래스 추가 + `<div class="res">✓ …</div>` 결과 상자 삽입. 결과가 좋으면 `res up`, 나쁘면 `res down` | 일정이 지날 때 |
 | 달·월 전환 | 이번 달 `.mo`에 `now` 클래스와 `<span class="nowbadge">이번 달</span>`, 지난 달은 `past` + `pastbadge`로 교체 | 월초 |
-| PART 2 `.tl` | ±3% 이상 급등락·서킷브레이커·중대 뉴스가 있던 날만 `.tlrow` 한 개 추가(최신이 아래). `dn`/`up`/`nt` 중 하나, 교훈이 있으면 `.lesson` 한 줄 | 큰 사건이 있을 때만 |
+| PART 2 `.tlwrap` > `details.tlm` > `.tl` | 히스토리는 **월별 접이식**(`<details class="tlm">`)입니다. ±3% 이상 급등락·서킷브레이커·중대 뉴스가 있던 날만 **해당 월** `details.tlm` 안의 `.tl` 맨 아래에 `.tlrow` 한 개 추가(최신이 아래). 달이 바뀌어 첫 `.tlrow`를 쓸 때는 `.tlwrap` 맨 아래에 새 `<details class="tlm"><summary><span class="tlmo">YYYY년 M월</span><span class="tlc"></span></summary><div class="tl">…</div></details>`를 추가. 건수(`.tlc`)와 "최신 월만 펼침"은 JS가 자동 처리하므로 손대지 않음. `dn`/`up`/`nt` 중 하나, 교훈이 있으면 `.lesson` 한 줄 | 큰 사건이 있을 때만 |
 | `.note` 마무리 | 다가오는 최대 관문 문장 | 관문이 지나갈 때 |
 
 ### 2-3. 하지 말 것
